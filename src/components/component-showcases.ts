@@ -7,6 +7,8 @@ import { DialogExamples } from "./dialog-examples";
 import { DialogShowcaseCard } from "./dialog-showcase-card";
 import { InputExamples } from "./input-examples";
 import { InputShowcaseCard } from "./input-showcase-card";
+import { NativeSelectExamples } from "./native-select-examples";
+import { NativeSelectShowcaseCard } from "./native-select-showcase-card";
 import { SeparatorExamples } from "./separator-examples";
 import { SeparatorShowcaseCard } from "./separator-showcase-card";
 import { SheetExamples } from "./sheet-examples";
@@ -115,6 +117,13 @@ export const COMPONENT_SHOWCASES = [
 		description: "A hand-drawn Base UI tabs styled with shadcn conventions.",
 		Showcase: TabsShowcaseCard,
 		Examples: TabsExamples,
+	},
+	{
+		slug: "native-select",
+		title: "Native Select",
+		description: "A hand-drawn native select styled with shadcn conventions.",
+		Showcase: NativeSelectShowcaseCard,
+		Examples: NativeSelectExamples,
 	},
 	{
 		slug: "input",
