@@ -1,30 +1,20 @@
-import { ArrowLeft, ArrowRight } from "@boxicons/react";
+import { ArrowRight } from "@boxicons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Button } from "../../../registry/components/ui/button";
 import {
 	Card,
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "../../../registry/components/ui/card";
-import { COMPONENT_SHOWCASES } from "../../components/component-showcases";
+} from "../../../../registry/components/ui/card";
+import { COMPONENT_SHOWCASES } from "../../../components/component-showcases";
 
-export const Route = createFileRoute("/components/")({
+export const Route = createFileRoute("/_docs/components/")({
 	component: ComponentsIndex,
 });
 
 function ComponentsIndex() {
 	return (
 		<div className="mx-auto flex w-full max-w-5xl flex-col gap-8 p-8">
-			<Button
-				variant="link"
-				size="sm"
-				className="w-fit px-0"
-				render={<Link to="/" />}
-			>
-				<ArrowLeft />
-				Home
-			</Button>
 			<header className="flex flex-col gap-2">
 				<h1 className="text-4xl">Components</h1>
 				<p className="text-muted-foreground">

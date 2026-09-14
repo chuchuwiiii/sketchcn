@@ -1,14 +1,15 @@
-import { ArrowLeft } from "@boxicons/react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { cn } from "cn";
-import { Button } from "../../registry/components/ui/button";
-import { CodeBlock } from "../components/code-block";
-import type { DocsReferenceRow } from "../components/docs-section";
-import { DocsSection } from "../components/docs-section";
-import { InstallTabs } from "../components/install-tabs";
-import { BgPreview, OutlinePreview } from "../components/sketch-docs-previews";
+import { CodeBlock } from "../../components/code-block";
+import type { DocsReferenceRow } from "../../components/docs-section";
+import { DocsSection } from "../../components/docs-section";
+import { InstallTabs } from "../../components/install-tabs";
+import {
+	BgPreview,
+	OutlinePreview,
+} from "../../components/sketch-docs-previews";
 
-export const Route = createFileRoute("/docs")({ component: DocsPage });
+export const Route = createFileRoute("/_docs/docs")({ component: DocsPage });
 
 const SETUP_SNIPPET = `import { SketchProvider } from "@/components/ui/sketch-provider";
 
@@ -451,17 +452,6 @@ function DocsPage() {
 	return (
 		<div>
 			<div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-8">
-				<Button
-					variant="link"
-					size="sm"
-					className="w-fit px-0"
-					render={
-						<Link to="/components/$name" params={{ name: "sketch-provider" }} />
-					}
-				>
-					<ArrowLeft />
-					Sketch Provider
-				</Button>
 				<header className="flex flex-col gap-2">
 					<h1 className="text-4xl">Sketch Provider</h1>
 					<p className="text-muted-foreground">

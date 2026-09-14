@@ -1,11 +1,11 @@
 import { ArrowLeft } from "@boxicons/react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Button } from "../../../registry/components/ui/button";
-import { findComponentShowcase } from "../../components/component-showcases";
-import { InstallTabs } from "../../components/install-tabs";
-import { ShowcaseCard } from "../../components/showcase-card";
+import { Button } from "../../../../registry/components/ui/button";
+import { findComponentShowcase } from "../../../components/component-showcases";
+import { InstallTabs } from "../../../components/install-tabs";
+import { ShowcaseCard } from "../../../components/showcase-card";
 
-export const Route = createFileRoute("/components/$name")({
+export const Route = createFileRoute("/_docs/components/$name")({
 	loader: ({ params }) => {
 		if (!findComponentShowcase(params.name)) {
 			throw notFound();
@@ -25,15 +25,6 @@ function ComponentPage() {
 
 	return (
 		<div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-8">
-			<Button
-				variant="link"
-				size="sm"
-				className="w-fit px-0"
-				render={<Link to="/components" />}
-			>
-				<ArrowLeft />
-				All components
-			</Button>
 			<section id="preview" className="scroll-mt-8">
 				<showcase.Showcase />
 			</section>
