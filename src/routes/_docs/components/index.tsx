@@ -7,8 +7,16 @@ import {
 	CardTitle,
 } from "../../../../registry/components/ui/card";
 import { COMPONENT_SHOWCASES } from "../../../components/component-showcases";
+import { seo } from "../../../lib/seo";
 
 export const Route = createFileRoute("/_docs/components/")({
+	head: () =>
+		seo({
+			title: "Components — Sketchcn",
+			description:
+				"Browse every Sketchcn component: hand-drawn buttons, cards, dialogs, sheets, tabs, inputs and more, ready to install with the shadcn CLI.",
+			path: "/components",
+		}),
 	component: ComponentsIndex,
 });
 

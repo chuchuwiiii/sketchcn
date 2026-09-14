@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsRouteImport } from './routes/_docs'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
 import { Route as DocsComponentsIndexRouteImport } from './routes/_docs/components/index'
 import { Route as DocsComponentsNameRouteImport } from './routes/_docs/components/$name'
@@ -22,6 +24,16 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const DocsRoute = DocsRouteImport.update({
   id: '/_docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsDocsRoute = DocsDocsRouteImport.update({
@@ -42,12 +54,16 @@ const DocsComponentsNameRoute = DocsComponentsNameRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components': typeof DocsComponentsIndexRoute
@@ -56,19 +72,35 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_docs': typeof DocsRouteWithChildren
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_docs/docs': typeof DocsDocsRoute
   '/_docs/components/$name': typeof DocsComponentsNameRoute
   '/_docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docs' | '/components/$name' | '/components/'
+  fullPaths:
+    | '/'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/docs'
+    | '/components/$name'
+    | '/components/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/docs' | '/components/$name' | '/components'
+  to:
+    | '/'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/docs'
+    | '/components/$name'
+    | '/components'
   id:
     | '__root__'
     | '/'
     | '/_docs'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/_docs/docs'
     | '/_docs/components/$name'
     | '/_docs/components/'
@@ -77,6 +109,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocsRoute: typeof DocsRouteWithChildren
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -93,6 +127,20 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_docs/docs': {
@@ -136,6 +184,8 @@ const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocsRoute: DocsRouteWithChildren,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

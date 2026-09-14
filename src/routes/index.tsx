@@ -31,8 +31,17 @@ import { Tabs, TabsList, TabsTrigger } from "../../registry/components/ui/tabs";
 import { Toggle } from "../../registry/components/ui/toggle";
 import { COMPONENT_SHOWCASES } from "../components/component-showcases";
 import { FloatingComponent } from "../components/floating-component";
+import { SITE, seo } from "../lib/seo";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+	head: () =>
+		seo({
+			title: `${SITE.name} — hand-drawn shadcn/ui components`,
+			description: SITE.description,
+			path: "/",
+		}),
+	component: Home,
+});
 
 function Home() {
 	return (

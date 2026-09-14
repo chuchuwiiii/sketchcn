@@ -8,8 +8,18 @@ import {
 	BgPreview,
 	OutlinePreview,
 } from "../../components/sketch-docs-previews";
+import { seo } from "../../lib/seo";
 
-export const Route = createFileRoute("/_docs/docs")({ component: DocsPage });
+export const Route = createFileRoute("/_docs/docs")({
+	head: () =>
+		seo({
+			title: "Documentation — Sketchcn",
+			description:
+				"Install Sketchcn, wrap your app in SketchProvider, and tune the RoughJS outline and background hooks every component draws through.",
+			path: "/docs",
+		}),
+	component: DocsPage,
+});
 
 const SETUP_SNIPPET = `import { SketchProvider } from "@/components/ui/sketch-provider";
 

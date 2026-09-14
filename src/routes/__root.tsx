@@ -5,32 +5,45 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { Button } from "../../registry/components/ui/button";
 import { SketchProvider } from "../../registry/components/ui/sketch-provider";
+import { SITE, seo } from "../lib/seo";
 import appCss from "../styles.css?url";
 
 const GITHUB_URL = "https://github.com/chuwong35122/sketchcn";
 const X_URL = "https://x.com/chuchuwiiii";
 
 export const Route = createRootRoute({
-	head: () => ({
-		meta: [
-			{
-				charSet: "utf-8",
-			},
-			{
-				name: "viewport",
-				content: "width=device-width, initial-scale=1",
-			},
-			{
-				title: "TanStack Start Starter",
-			},
-		],
-		links: [
-			{
-				rel: "stylesheet",
-				href: appCss,
-			},
-		],
-	}),
+	head: () => {
+		const defaults = seo({
+			title: `${SITE.name} — hand-drawn shadcn/ui components`,
+			description: SITE.description,
+			path: "/",
+		});
+
+		return {
+			meta: [
+				{ charSet: "utf-8" },
+				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				...defaults.meta,
+			],
+			scripts: [
+				{
+					type: "application/ld+json",
+					children: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "WebSite",
+						name: SITE.name,
+						url: SITE.url,
+						description: SITE.description,
+					}),
+				},
+			],
+			links: [
+				{ rel: "stylesheet", href: appCss },
+				{ rel: "icon", href: "/logo.svg", type: "image/svg+xml" },
+				{ rel: "apple-touch-icon", href: "/logo.png" },
+			],
+		};
+	},
 	shellComponent: RootDocument,
 });
 
