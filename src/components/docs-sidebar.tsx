@@ -1,4 +1,4 @@
-import { Book, ComponentIcon, Home, Layers } from "@boxicons/react";
+import { Book, ComponentIcon, Home, Layers, Slider } from "@boxicons/react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
 	Sidebar,
@@ -95,6 +95,15 @@ export function DocsSidebar() {
 								>
 									<Book />
 									<span>Introduction</span>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									isActive={pathname === "/playground"}
+									render={<Link to="/playground" />}
+								>
+									<Slider />
+									<span>Playground</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							<SidebarMenuItem collapsible defaultOpen>

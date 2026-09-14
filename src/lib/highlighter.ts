@@ -1,11 +1,12 @@
 import { createHighlighterCoreSync } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 import bash from "shiki/langs/bash.mjs";
+import css from "shiki/langs/css.mjs";
 import tsx from "shiki/langs/tsx.mjs";
 import darkPlus from "shiki/themes/dark-plus.mjs";
 import lightPlus from "shiki/themes/light-plus.mjs";
 
-export type CodeLanguage = "tsx" | "bash";
+export type CodeLanguage = "tsx" | "bash" | "css";
 
 /*
 	The sync highlighter keeps CodeBlock a plain component: no await, no effect,
@@ -14,7 +15,7 @@ export type CodeLanguage = "tsx" | "bash";
 */
 const highlighter = createHighlighterCoreSync({
 	engine: createJavaScriptRegexEngine(),
-	langs: [tsx, bash],
+	langs: [tsx, bash, css],
 	themes: [lightPlus, darkPlus],
 });
 

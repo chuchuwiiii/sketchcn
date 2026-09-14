@@ -14,6 +14,7 @@ import { Route as DocsRouteImport } from './routes/_docs'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
+import { Route as DocsPlaygroundRouteImport } from './routes/_docs/playground'
 import { Route as DocsComponentsIndexRouteImport } from './routes/_docs/components/index'
 import { Route as DocsComponentsNameRouteImport } from './routes/_docs/components/$name'
 
@@ -41,6 +42,11 @@ const DocsDocsRoute = DocsDocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsPlaygroundRoute = DocsPlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
   id: '/components/',
   path: '/components/',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
+  '/playground': typeof DocsPlaygroundRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components/': typeof DocsComponentsIndexRoute
 }
@@ -65,6 +72,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
+  '/playground': typeof DocsPlaygroundRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components': typeof DocsComponentsIndexRoute
 }
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_docs/docs': typeof DocsDocsRoute
+  '/_docs/playground': typeof DocsPlaygroundRoute
   '/_docs/components/$name': typeof DocsComponentsNameRoute
   '/_docs/components/': typeof DocsComponentsIndexRoute
 }
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs'
+    | '/playground'
     | '/components/$name'
     | '/components/'
   fileRoutesByTo: FileRoutesByTo
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs'
+    | '/playground'
     | '/components/$name'
     | '/components'
   id:
@@ -102,6 +113,7 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/_docs/docs'
+    | '/_docs/playground'
     | '/_docs/components/$name'
     | '/_docs/components/'
   fileRoutesById: FileRoutesById
@@ -150,6 +162,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsDocsRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/_docs/playground': {
+      id: '/_docs/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof DocsPlaygroundRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/_docs/components/': {
       id: '/_docs/components/'
       path: '/components'
@@ -169,12 +188,14 @@ declare module '@tanstack/react-router' {
 
 interface DocsRouteChildren {
   DocsDocsRoute: typeof DocsDocsRoute
+  DocsPlaygroundRoute: typeof DocsPlaygroundRoute
   DocsComponentsNameRoute: typeof DocsComponentsNameRoute
   DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
   DocsDocsRoute: DocsDocsRoute,
+  DocsPlaygroundRoute: DocsPlaygroundRoute,
   DocsComponentsNameRoute: DocsComponentsNameRoute,
   DocsComponentsIndexRoute: DocsComponentsIndexRoute,
 }
