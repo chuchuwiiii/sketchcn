@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "A hand-drawn alert callout styled with shadcn conventions.",
+  "dependencies": [
+    "class-variance-authority",
+    "cn"
+  ],
+  "registryDependencies": [
+    "default",
+    "sketch-provider"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/alert.tsx",
+      "content": "\"use client\"\n\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\nimport * as React from \"react\"\nimport { type PaperVariant, useSketchOutline } from \"./sketch-provider\"\n\nconst alertVariants = cva(\n  \"group/alert relative isolate grid w-full gap-0.5 overflow-clip [overflow-clip-margin:6px] rounded-lg px-3 py-2.5 text-left text-sm [--paper-opacity:0.25] [--sketch-stroke:currentColor] [&>[data-sketch-outline]]:-z-10 has-data-[slot=alert-action]:pr-16 has-[>svg:not([data-sketch-outline])]:grid-cols-[auto_1fr] has-[>svg:not([data-sketch-outline])]:gap-x-2.5 *:[svg:not([data-sketch-outline])]:row-span-2 *:[svg:not([data-sketch-outline])]:translate-y-0.5 *:[svg:not([data-sketch-outline])]:text-current *:[svg:not([data-sketch-outline]):not([class*='size-'])]:size-4 hover:*:[svg:not([data-sketch-outline])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:hover:*:[svg:not([data-sketch-outline])]:animate-none\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-card text-card-foreground [--sketch-stroke:var(--border)]\",\n        destructive:\n          \"bg-destructive/5 text-destructive [--sketch-stroke:var(--destructive)] *:data-[slot=alert-description]:text-destructive/90\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Alert({\n  children,\n  className,\n  paper = \"default\",\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> &\n  VariantProps<typeof alertVariants> & { paper?: PaperVariant }) {\n  const sketchOutline = useSketchOutline()\n\n  return (\n    <div\n      data-slot=\"alert\"\n      data-paper={paper}\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    >\n      {children}\n      <svg\n        aria-hidden=\"true\"\n        data-sketch-outline\n        ref={sketchOutline.ref}\n        style={sketchOutline.style}\n      />\n    </div>\n  )\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\n        \"font-medium group-has-[>svg:not([data-sketch-outline])]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"text-sm text-muted-foreground group-has-[>svg:not([data-sketch-outline])]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-action\"\n      className={cn(\"absolute top-2 right-2\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Alert, AlertAction, AlertDescription, AlertTitle }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

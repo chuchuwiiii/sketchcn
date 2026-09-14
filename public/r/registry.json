@@ -199,6 +199,15 @@
 			"files": [{ "path": "registry/components/ui/card.tsx", "type": "registry:ui" }]
 		},
 		{
+			"name": "alert",
+			"type": "registry:ui",
+			"title": "Alert",
+			"description": "A hand-drawn alert callout styled with shadcn conventions.",
+			"dependencies": ["class-variance-authority", "cn"],
+			"registryDependencies": ["default", "sketch-provider"],
+			"files": [{ "path": "registry/components/ui/alert.tsx", "type": "registry:ui" }]
+		},
+		{
 			"name": "tabs",
 			"type": "registry:ui",
 			"title": "Tabs",

@@ -1,4 +1,6 @@
 import type { ComponentType } from "react";
+import { AlertExamples } from "./alert-examples";
+import { AlertShowcaseCard } from "./alert-showcase-card";
 import { ButtonExamples } from "./button-examples";
 import { ButtonShowcaseCard } from "./button-showcase-card";
 import { CardExamples } from "./card-examples";
@@ -58,6 +60,13 @@ export const COMPONENT_SHOWCASES = [
 		description: "A hand-drawn card container styled with shadcn conventions.",
 		Showcase: CardShowcaseCard,
 		Examples: CardExamples,
+	},
+	{
+		slug: "alert",
+		title: "Alert",
+		description: "A hand-drawn alert callout styled with shadcn conventions.",
+		Showcase: AlertShowcaseCard,
+		Examples: AlertExamples,
 	},
 	{
 		slug: "dialog",
