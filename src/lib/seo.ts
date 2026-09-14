@@ -2,9 +2,11 @@ export const SITE = {
 	url: "https://sketchcn.chuwii.com",
 	name: "Sketchcn",
 	description:
-		"Hand-drawn shadcn/ui components for React. Copy-paste RoughJS sketch styled Base UI primitives straight into your app with the shadcn CLI.",
+		"Add a human touch to your components. A shadcn/ui components library with hand-drawn styles for React — copy-paste RoughJS sketched Base UI primitives straight into your app with the shadcn CLI.",
 	ogImage: "/logo.png",
 	twitterHandle: "@chuchuwiiii",
+	githubUrl: "https://github.com/chuwong35122/sketchcn",
+	xUrl: "https://x.com/chuchuwiiii",
 } as const;
 
 type SeoOptions = {

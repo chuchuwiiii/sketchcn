@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar",
   "title": "Sidebar",
-  "description": "A hand-drawn sidebar that floats inside the page layout, styled with shadcn conventions.",
+  "description": "A sidebar that floats inside the page layout, with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
     "@boxicons/react",

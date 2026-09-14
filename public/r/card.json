@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "title": "Card",
-  "description": "A hand-drawn card container styled with shadcn conventions.",
+  "description": "A card container with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "cn"
   ],

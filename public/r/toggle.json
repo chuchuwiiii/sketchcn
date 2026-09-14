@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle",
   "title": "Toggle",
-  "description": "A pressable Base UI toggle styled with shadcn conventions.",
+  "description": "A pressable Base UI toggle with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",

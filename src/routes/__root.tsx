@@ -5,11 +5,9 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { Button } from "../../registry/components/ui/button";
 import { SketchProvider } from "../../registry/components/ui/sketch-provider";
+import { SiteFooter } from "../components/site-footer";
 import { SITE, seo } from "../lib/seo";
 import appCss from "../styles.css?url";
-
-const GITHUB_URL = "https://github.com/chuwong35122/sketchcn";
-const X_URL = "https://x.com/chuchuwiiii";
 
 export const Route = createRootRoute({
 	head: () => {
@@ -65,7 +63,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 								size="icon"
 								aria-label="Sketchcn on GitHub"
 								render={
-									<a href={GITHUB_URL} target="_blank" rel="noreferrer" />
+									<a href={SITE.githubUrl} target="_blank" rel="noreferrer" />
 								}
 							>
 								<Github />
@@ -74,12 +72,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 								variant="ghost"
 								size="icon"
 								aria-label="Chuwong on X"
-								render={<a href={X_URL} target="_blank" rel="noreferrer" />}
+								render={<a href={SITE.xUrl} target="_blank" rel="noreferrer" />}
 							>
 								<TwitterX />
 							</Button>
 						</div>
 						{children}
+						<SiteFooter />
 					</div>
 				</SketchProvider>
 				<TanStackDevtools

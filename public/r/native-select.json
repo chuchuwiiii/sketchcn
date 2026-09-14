@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "native-select",
   "title": "Native Select",
-  "description": "A hand-drawn native select styled with shadcn conventions.",
+  "description": "A native select with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@boxicons/react",
     "cn"

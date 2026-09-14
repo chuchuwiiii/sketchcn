@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
 	return (
-		<main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-24">
+		<main className="relative flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden px-6 py-24">
 			<FloatingComponents />
 			<div className="relative z-10 flex flex-col items-center gap-6 text-center">
 				<div className="flex animate-wobble items-center gap-3 motion-reduce:animate-none sm:gap-5">
@@ -58,10 +58,13 @@ function Home() {
 						Sketchcn
 					</h1>
 				</div>
-				<p className="max-w-md text-lg text-muted-foreground">
-					{
-						"Hand-drawn shadcn components that look like someone sketched them on a napkin."
-					}
+				<p className="max-w-md text-lg">
+					<span className="block font-medium text-foreground">
+						{"Add a human touch to your components."}
+					</span>
+					<span className="block text-muted-foreground">
+						{"shadcn components library with hand-drawn styles."}
+					</span>
 				</p>
 				<div className="flex flex-wrap items-center justify-center gap-3">
 					<Link to="/components">

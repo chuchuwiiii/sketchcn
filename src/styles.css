@@ -135,6 +135,7 @@ body {
 @theme {
   --animate-float: float 6s ease-in-out infinite;
   --animate-wobble: wobble 7s ease-in-out infinite;
+  --animate-heartbeat: heartbeat 2.4s ease-in-out infinite;
 
   @keyframes float {
     0%,
@@ -144,6 +145,23 @@ body {
     50% {
       transform: rotate(var(--float-tilt, 0deg))
         translate3d(0, var(--float-drift, -14px), 0);
+    }
+  }
+
+  @keyframes heartbeat {
+    0%,
+    70%,
+    100% {
+      transform: scale(1);
+    }
+    12% {
+      transform: scale(1.22);
+    }
+    26% {
+      transform: scale(1.06);
+    }
+    38% {
+      transform: scale(1.16);
     }
   }
 

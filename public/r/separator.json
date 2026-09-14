@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "separator",
   "title": "Separator",
-  "description": "A hand-drawn Base UI separator styled with shadcn conventions.",
+  "description": "A Base UI separator with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",

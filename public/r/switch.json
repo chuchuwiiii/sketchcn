@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch",
   "title": "Switch",
-  "description": "A hand-drawn Base UI switch styled with shadcn conventions.",
+  "description": "A Base UI switch with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",

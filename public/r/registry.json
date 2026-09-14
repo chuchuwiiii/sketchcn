@@ -103,7 +103,7 @@
 			"name": "button",
 			"type": "registry:ui",
 			"title": "Button",
-			"description": "A hand-drawn Base UI button styled with shadcn conventions.",
+			"description": "A Base UI button with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "@boxicons/react", "@fontsource/patrick-hand", "class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/button.tsx", "type": "registry:ui" }]
@@ -112,7 +112,7 @@
 			"name": "toggle",
 			"type": "registry:ui",
 			"title": "Toggle",
-			"description": "A pressable Base UI toggle styled with shadcn conventions.",
+			"description": "A pressable Base UI toggle with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/toggle.tsx", "type": "registry:ui" }]
@@ -121,7 +121,7 @@
 			"name": "switch",
 			"type": "registry:ui",
 			"title": "Switch",
-			"description": "A hand-drawn Base UI switch styled with shadcn conventions.",
+			"description": "A Base UI switch with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/switch.tsx", "type": "registry:ui" }]
@@ -130,7 +130,7 @@
 			"name": "native-select",
 			"type": "registry:ui",
 			"title": "Native Select",
-			"description": "A hand-drawn native select styled with shadcn conventions.",
+			"description": "A native select with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@boxicons/react", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/native-select.tsx", "type": "registry:ui" }]
@@ -139,7 +139,7 @@
 			"name": "input",
 			"type": "registry:ui",
 			"title": "Input",
-			"description": "A hand-drawn Base UI input styled with shadcn conventions.",
+			"description": "A Base UI input with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/input.tsx", "type": "registry:ui" }]
@@ -148,7 +148,7 @@
 			"name": "textarea",
 			"type": "registry:ui",
 			"title": "Textarea",
-			"description": "A hand-drawn textarea styled with shadcn conventions.",
+			"description": "A textarea with hand-drawn style in shadcn conventions.",
 			"dependencies": ["cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/textarea.tsx", "type": "registry:ui" }]
@@ -157,7 +157,7 @@
 			"name": "dialog",
 			"type": "registry:ui",
 			"title": "Dialog",
-			"description": "A hand-drawn Base UI dialog styled with shadcn conventions.",
+			"description": "A Base UI dialog with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "@boxicons/react", "cn"],
 			"registryDependencies": ["default", "sketch-provider", "button"],
 			"files": [{ "path": "registry/components/ui/dialog.tsx", "type": "registry:ui" }]
@@ -166,7 +166,7 @@
 			"name": "sheet",
 			"type": "registry:ui",
 			"title": "Sheet",
-			"description": "A hand-drawn Base UI sheet styled with shadcn conventions.",
+			"description": "A Base UI sheet with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "@boxicons/react", "cn"],
 			"registryDependencies": ["default", "sketch-provider", "button"],
 			"files": [{ "path": "registry/components/ui/sheet.tsx", "type": "registry:ui" }]
@@ -175,7 +175,7 @@
 			"name": "separator",
 			"type": "registry:ui",
 			"title": "Separator",
-			"description": "A hand-drawn Base UI separator styled with shadcn conventions.",
+			"description": "A Base UI separator with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/separator.tsx", "type": "registry:ui" }]
@@ -193,7 +193,7 @@
 			"name": "card",
 			"type": "registry:ui",
 			"title": "Card",
-			"description": "A hand-drawn card container styled with shadcn conventions.",
+			"description": "A card container with hand-drawn style in shadcn conventions.",
 			"dependencies": ["cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/card.tsx", "type": "registry:ui" }]
@@ -202,7 +202,7 @@
 			"name": "alert",
 			"type": "registry:ui",
 			"title": "Alert",
-			"description": "A hand-drawn alert callout styled with shadcn conventions.",
+			"description": "An alert callout with hand-drawn style in shadcn conventions.",
 			"dependencies": ["class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/alert.tsx", "type": "registry:ui" }]
@@ -211,7 +211,7 @@
 			"name": "tabs",
 			"type": "registry:ui",
 			"title": "Tabs",
-			"description": "A hand-drawn Base UI tabs styled with shadcn conventions.",
+			"description": "Base UI tabs with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/tabs.tsx", "type": "registry:ui" }]
@@ -220,7 +220,7 @@
 			"name": "tooltip",
 			"type": "registry:ui",
 			"title": "Tooltip",
-			"description": "A hand-drawn Base UI tooltip styled with shadcn conventions.",
+			"description": "A Base UI tooltip with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "cn"],
 			"registryDependencies": ["default", "sketch-provider"],
 			"files": [{ "path": "registry/components/ui/tooltip.tsx", "type": "registry:ui" }]
@@ -229,7 +229,7 @@
 			"name": "sidebar",
 			"type": "registry:ui",
 			"title": "Sidebar",
-			"description": "A hand-drawn sidebar that floats inside the page layout, styled with shadcn conventions.",
+			"description": "A sidebar that floats inside the page layout, with hand-drawn style in shadcn conventions.",
 			"dependencies": ["@base-ui/react", "@boxicons/react", "class-variance-authority", "cn"],
 			"registryDependencies": [
 				"default",

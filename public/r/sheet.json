@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sheet",
   "title": "Sheet",
-  "description": "A hand-drawn Base UI sheet styled with shadcn conventions.",
+  "description": "A Base UI sheet with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
     "@boxicons/react",

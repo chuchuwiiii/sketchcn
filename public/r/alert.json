@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert",
   "title": "Alert",
-  "description": "A hand-drawn alert callout styled with shadcn conventions.",
+  "description": "An alert callout with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "class-variance-authority",
     "cn"
