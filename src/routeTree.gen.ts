@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsRouteImport } from './routes/_docs'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
 import { Route as DocsPlaygroundRouteImport } from './routes/_docs/playground'
 import { Route as DocsComponentsIndexRouteImport } from './routes/_docs/components/index'
 import { Route as DocsComponentsNameRouteImport } from './routes/_docs/components/$name'
+import { Route as ComponentsNameMdRouteImport } from './routes/components.$name.md'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const DocsRoute = DocsRouteImport.update({
   id: '/_docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
@@ -57,72 +64,91 @@ const DocsComponentsNameRoute = DocsComponentsNameRouteImport.update({
   path: '/components/$name',
   getParentRoute: () => DocsRoute,
 } as any)
+const ComponentsNameMdRoute = ComponentsNameMdRouteImport.update({
+  id: '/components/$name/md',
+  path: '/components/$name/md',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/components/$name': typeof DocsComponentsNameRoute
+  '/components/$name/md': typeof ComponentsNameMdRoute
   '/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/components/$name': typeof DocsComponentsNameRoute
+  '/components/$name/md': typeof ComponentsNameMdRoute
   '/components': typeof DocsComponentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_docs': typeof DocsRouteWithChildren
+  '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_docs/docs': typeof DocsDocsRoute
   '/_docs/playground': typeof DocsPlaygroundRoute
   '/_docs/components/$name': typeof DocsComponentsNameRoute
+  '/components/$name/md': typeof ComponentsNameMdRoute
   '/_docs/components/': typeof DocsComponentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs'
     | '/playground'
     | '/components/$name'
+    | '/components/$name/md'
     | '/components/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/docs'
     | '/playground'
     | '/components/$name'
+    | '/components/$name/md'
     | '/components'
   id:
     | '__root__'
     | '/'
     | '/_docs'
+    | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/_docs/docs'
     | '/_docs/playground'
     | '/_docs/components/$name'
+    | '/components/$name/md'
     | '/_docs/components/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocsRoute: typeof DocsRouteWithChildren
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ComponentsNameMdRoute: typeof ComponentsNameMdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -139,6 +165,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/robots.txt': {
@@ -183,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsComponentsNameRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/components/$name/md': {
+      id: '/components/$name/md'
+      path: '/components/$name/md'
+      fullPath: '/components/$name/md'
+      preLoaderRoute: typeof ComponentsNameMdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -205,8 +245,10 @@ const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocsRoute: DocsRouteWithChildren,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ComponentsNameMdRoute: ComponentsNameMdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

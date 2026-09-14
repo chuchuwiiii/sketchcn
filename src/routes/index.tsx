@@ -79,6 +79,12 @@ function Home() {
 				<span className="text-muted-foreground text-sm">
 					{`${COMPONENT_SHOWCASES.length} components and counting`}
 				</span>
+				<a
+					href="/llms.txt"
+					className="text-muted-foreground text-xs underline decoration-dashed underline-offset-4 transition-colors duration-200 hover:text-foreground motion-reduce:transition-none"
+				>
+					{"Markdown docs for your coding agent — /llms.txt"}
+				</a>
 			</div>
 		</main>
 	);

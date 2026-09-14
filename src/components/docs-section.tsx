@@ -7,6 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../registry/components/ui/card";
+import type { PaperVariant } from "../../registry/components/ui/sketch-provider";
 
 export type DocsReferenceRow = {
 	name: string;
@@ -20,15 +21,17 @@ function DocsSectionRoot({
 	id,
 	title,
 	description,
+	variant,
 	children,
 }: {
 	id: string;
 	title: string;
 	description: string;
+	variant?: PaperVariant;
 	children: ReactNode;
 }) {
 	return (
-		<Card id={id} className="scroll-mt-8">
+		<Card id={id} variant={variant} className="scroll-mt-8">
 			<CardHeader>
 				<CardTitle className="text-xl">{title}</CardTitle>
 				<CardDescription>{description}</CardDescription>

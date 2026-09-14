@@ -8,7 +8,7 @@ import {
 	BgPreview,
 	OutlinePreview,
 } from "../../components/sketch-docs-previews";
-import { seo } from "../../lib/seo";
+import { SITE, seo } from "../../lib/seo";
 
 export const Route = createFileRoute("/_docs/docs")({
 	head: () =>
@@ -79,6 +79,10 @@ const sketchBg = useSketchBg({ hachureAngle: 0 });`;
 const CSS_VARIABLES_SNIPPET = `<div className="[--sketch-roughness:2.6] [--sketch-bowing:2.4]">
   <Button>Rougher button</Button>
 </div>`;
+
+const LLMS_INDEX_SNIPPET = `curl ${SITE.url}/llms.txt`;
+
+const LLMS_COMPONENT_SNIPPET = `curl ${SITE.url}/components/button/md`;
 
 const PROVIDER_PROPS = [
 	{
@@ -483,6 +487,25 @@ function DocsPage() {
 					<p className="text-muted-foreground text-sm">
 						{
 							"The hooks throw when there is no provider above them, so a missing wrapper fails loudly instead of rendering unstyled boxes."
+						}
+					</p>
+				</DocsSection>
+
+				<DocsSection
+					id="llms"
+					variant="polkadots"
+					title="Docs for LLMs"
+					description="Every component doc is also served as plain markdown, so a coding agent can read it without scraping the page."
+				>
+					<DocsSection.Block label="Index of every component doc">
+						<CodeBlock code={LLMS_INDEX_SNIPPET} lang="bash" />
+					</DocsSection.Block>
+					<DocsSection.Block label="A single component as markdown">
+						<CodeBlock code={LLMS_COMPONENT_SNIPPET} lang="bash" />
+					</DocsSection.Block>
+					<p className="text-muted-foreground text-sm">
+						{
+							"llms.txt lists every component with a link to its markdown, so pointing an agent at that one URL is enough for it to find the rest."
 						}
 					</p>
 				</DocsSection>
