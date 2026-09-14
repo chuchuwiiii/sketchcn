@@ -96,6 +96,56 @@ function Home() {
 function FloatingComponents() {
 	return (
 		<div aria-hidden="true" className="absolute inset-0">
+			<FloatingComponent className="top-[15%] left-[5%] [--float-drift:10px] [--float-tilt:-7deg] [animation-duration:7s] md:hidden">
+				<Button size="sm">
+					<Heart />
+					Click me
+				</Button>
+			</FloatingComponent>
+
+			<FloatingComponent className="top-[17%] right-[6%] [--float-drift:-10px] [--float-tilt:8deg] [animation-delay:0.8s] [animation-duration:8s] md:hidden">
+				<Button variant="outline" size="icon" aria-label="Palette">
+					<Palette />
+				</Button>
+			</FloatingComponent>
+
+			<FloatingComponent className="bottom-[19%] left-[5%] [--float-drift:-14px] [--float-tilt:-6deg] [animation-delay:0.5s] [animation-duration:10s] md:hidden">
+				<Card size="sm" className="w-40">
+					<CardHeader>
+						<CardTitle>Sketch card</CardTitle>
+						<CardDescription>{"Rough edges on purpose."}</CardDescription>
+					</CardHeader>
+				</Card>
+			</FloatingComponent>
+
+			<FloatingComponent className="bottom-[6%] left-[7%] [--float-drift:12px] [--float-tilt:6deg] [animation-delay:1.4s] [animation-duration:9s] md:hidden">
+				<div className="flex w-28 flex-col gap-2">
+					<Skeleton className="h-3 w-2/3" />
+					<Skeleton className="h-3 w-full" />
+					<Skeleton className="h-3 w-1/2" />
+				</div>
+			</FloatingComponent>
+
+			<FloatingComponent className="right-[8%] bottom-[9%] [--float-tilt:-5deg] [animation-delay:0.4s] [animation-duration:6.5s] md:hidden">
+				<Switch defaultChecked aria-label="Sketch mode" />
+			</FloatingComponent>
+
+			<FloatingComponent className="top-[3%] left-[34%] [--float-drift:-12px] [--float-tilt:9deg] [animation-delay:2s] [animation-duration:8.5s] md:hidden">
+				<Toggle size="sm" variant="outline" defaultPressed>
+					<Bold />
+					Bold
+				</Toggle>
+			</FloatingComponent>
+
+			<FloatingComponent className="right-[5%] bottom-[21%] [--float-drift:12px] [--float-tilt:-4deg] [animation-delay:1.1s] [animation-duration:9.5s] md:hidden">
+				<Tabs defaultValue="sketch">
+					<TabsList>
+						<TabsTrigger value="sketch">Sketch</TabsTrigger>
+						<TabsTrigger value="ink">Ink</TabsTrigger>
+					</TabsList>
+				</Tabs>
+			</FloatingComponent>
+
 			<FloatingComponent className="top-[12%] left-[8%] hidden [--float-tilt:-8deg] [animation-duration:7s] lg:block">
 				<Button>
 					<Heart />
