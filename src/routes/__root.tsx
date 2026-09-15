@@ -2,6 +2,7 @@ import { Github, TwitterX } from "@boxicons/react";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Button } from "../../registry/components/ui/button";
 import { SketchProvider } from "../../registry/components/ui/sketch-provider";
@@ -92,6 +93,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						},
 					]}
 				/>
+				<Analytics />
 				<Scripts />
 			</body>
 		</html>
