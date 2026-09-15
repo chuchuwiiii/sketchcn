@@ -20,6 +20,25 @@ export function App({ children }: { children: React.ReactNode }) {
 }
 ```
 
+Everything below it draws through the same seed, so components pick up the hand-drawn outline without any extra wiring.
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SketchProvider } from "@/components/ui/sketch-provider";
+import { Switch } from "@/components/ui/switch";
+
+export function SignUpForm() {
+  return (
+    <SketchProvider seed={42}>
+      <Input placeholder="you@example.com" />
+      <Switch defaultChecked />
+      <Button>Sign up</Button>
+    </SketchProvider>
+  );
+}
+```
+
 ## SketchProvider props
 
 | Prop | Type | Default | Description |
