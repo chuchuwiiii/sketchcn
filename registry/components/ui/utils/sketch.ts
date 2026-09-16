@@ -4,6 +4,8 @@ import type { Options } from "roughjs/bin/core";
 export const DEFAULT_SEED = 20_260_828;
 export const DEFAULT_STROKE_WIDTH = 1.6;
 export const MIN_STROKE_WIDTH = 1;
+export const DEFAULT_BOWING = 1;
+export const BOW_REFERENCE_LENGTH = 600;
 
 export const PAPER_VARIANTS = [
 	"default",
@@ -131,6 +133,31 @@ export function getCssSketchSeed(
 	}
 
 	return value;
+}
+
+/**
+ * Scales `bowing` down so a large element's outline stays inside its clip margin.
+ *
+ * RoughJS bows a segment outward by an amount proportional to that segment's
+ * length, so a tall card bulges several pixels past its own box and
+ * `overflow-clip-margin` shaves the stroke away mid-edge. Capping the bow at a
+ * reference length keeps the overflow constant at any element size.
+ *
+ * @param bowing RoughJS `bowing` option, defaulting to RoughJS' own default.
+ * @param width Drawing width in pixels.
+ * @param height Drawing height in pixels.
+ * @returns The bowing value to draw with.
+ */
+export function getScaledBowing(
+	bowing: number | undefined,
+	width: number,
+	height: number,
+): number {
+	const longestEdge = Math.max(width, height);
+
+	return (
+		(bowing ?? DEFAULT_BOWING) * Math.min(1, BOW_REFERENCE_LENGTH / longestEdge)
+	);
 }
 
 export function getBorderRadius(target: Element): number {
