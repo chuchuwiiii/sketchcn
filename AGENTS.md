@@ -24,6 +24,15 @@ Use the regular shadcn component name and filename without project-specific pref
 
 Registry components should use Base UI primitives, Tailwind utility classes, `class-variance-authority` for variants, and `cn` for class merging. Use `@boxicons/react` for icons and `@fontsource/patrick-hand` as the default font.
 
+## Component Docs (`/md` and `llms.txt`)
+
+Every component change must ship with its docs update in the same change set.
+
+- Add or update `public/docs/<slug>.md` whenever a component is added, renamed, or has its props, variants, or usage changed. This file is the source served at `/components/<slug>/md`.
+- The `<slug>` must match the component's entry in `src/components/component-showcases.ts`; a doc without a matching showcase entry is silently dropped from `/md` and `llms.txt`.
+- `llms.txt` is generated from those docs, so keep the showcase `title` and `description` accurate — they are the text listed there.
+- Removing a component means removing both its showcase entry and its `public/docs/<slug>.md`.
+
 ## Code Style
 
 Write TypeScript and keep components small and typed. Use tabs and double quotes, matching Biome. Prefer clear names over comments; add comments only for non-obvious constraints. Do not commit or push without explicit instruction.
