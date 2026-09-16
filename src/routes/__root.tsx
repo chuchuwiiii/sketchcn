@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { Button } from "../../registry/components/ui/button";
 import { SketchProvider } from "../../registry/components/ui/sketch-provider";
+import { Toaster } from "../../registry/components/ui/toast";
 import { SiteFooter } from "../components/site-footer";
 import { SITE, seo } from "../lib/seo";
 import appCss from "../styles.css?url";
@@ -81,6 +82,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						{children}
 						<SiteFooter />
 					</div>
+					<Toaster />
 				</SketchProvider>
 				<TanStackDevtools
 					config={{
