@@ -226,6 +226,15 @@
 			"files": [{ "path": "registry/components/ui/tooltip.tsx", "type": "registry:ui" }]
 		},
 		{
+			"name": "toast",
+			"type": "registry:ui",
+			"title": "Toast",
+			"description": "A Base UI toast with hand-drawn style in shadcn conventions.",
+			"dependencies": ["@base-ui/react", "@boxicons/react", "cn"],
+			"registryDependencies": ["default", "sketch-provider", "button"],
+			"files": [{ "path": "registry/components/ui/toast.tsx", "type": "registry:ui" }]
+		},
+		{
 			"name": "sidebar",
 			"type": "registry:ui",
 			"title": "Sidebar",

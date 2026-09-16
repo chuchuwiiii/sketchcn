@@ -22,6 +22,7 @@ import {
   getCssSketchOptions,
   getCssSketchSeed,
   getPaddingBoxSize,
+  getScaledBowing,
   MIN_STROKE_WIDTH,
   SketchContext,
   type SketchOutline,
@@ -92,7 +93,11 @@ export function useSketchOutline(
         drawingOptions.strokeWidth ?? DEFAULT_STROKE_WIDTH,
       );
       const path = getSketchPath(shape, target, width, height, strokeWidth);
-      const drawn = drawing.path(path, { ...drawingOptions, strokeWidth });
+      const drawn = drawing.path(path, {
+        ...drawingOptions,
+        bowing: getScaledBowing(drawingOptions.bowing, width, height),
+        strokeWidth,
+      });
 
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
       svg.replaceChildren(drawn);

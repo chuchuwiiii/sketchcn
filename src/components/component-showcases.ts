@@ -27,6 +27,8 @@ import { TabsExamples } from "./tabs-examples";
 import { TabsShowcaseCard } from "./tabs-showcase-card";
 import { TextareaExamples } from "./textarea-examples";
 import { TextareaShowcaseCard } from "./textarea-showcase-card";
+import { ToastExamples } from "./toast-examples";
+import { ToastShowcaseCard } from "./toast-showcase-card";
 import { ToggleExamples } from "./toggle-examples";
 import { ToggleShowcaseCard } from "./toggle-showcase-card";
 
@@ -50,28 +52,32 @@ export const COMPONENT_SHOWCASES = [
 	{
 		slug: "button",
 		title: "Button",
-		description: "A Base UI button with hand-drawn style in shadcn conventions.",
+		description:
+			"A Base UI button with hand-drawn style in shadcn conventions.",
 		Showcase: ButtonShowcaseCard,
 		Examples: ButtonExamples,
 	},
 	{
 		slug: "card",
 		title: "Card",
-		description: "A card container with hand-drawn style in shadcn conventions.",
+		description:
+			"A card container with hand-drawn style in shadcn conventions.",
 		Showcase: CardShowcaseCard,
 		Examples: CardExamples,
 	},
 	{
 		slug: "alert",
 		title: "Alert",
-		description: "An alert callout with hand-drawn style in shadcn conventions.",
+		description:
+			"An alert callout with hand-drawn style in shadcn conventions.",
 		Showcase: AlertShowcaseCard,
 		Examples: AlertExamples,
 	},
 	{
 		slug: "dialog",
 		title: "Dialog",
-		description: "A Base UI dialog with hand-drawn style in shadcn conventions.",
+		description:
+			"A Base UI dialog with hand-drawn style in shadcn conventions.",
 		Showcase: DialogShowcaseCard,
 		Examples: DialogExamples,
 	},
@@ -107,16 +113,25 @@ export const COMPONENT_SHOWCASES = [
 		Examples: SkeletonExamples,
 	},
 	{
+		slug: "toast",
+		title: "Toast",
+		description: "A Base UI toast with hand-drawn style in shadcn conventions.",
+		Showcase: ToastShowcaseCard,
+		Examples: ToastExamples,
+	},
+	{
 		slug: "toggle",
 		title: "Toggle",
-		description: "A pressable Base UI toggle with hand-drawn style in shadcn conventions.",
+		description:
+			"A pressable Base UI toggle with hand-drawn style in shadcn conventions.",
 		Showcase: ToggleShowcaseCard,
 		Examples: ToggleExamples,
 	},
 	{
 		slug: "switch",
 		title: "Switch",
-		description: "A Base UI switch with hand-drawn style in shadcn conventions.",
+		description:
+			"A Base UI switch with hand-drawn style in shadcn conventions.",
 		Showcase: SwitchShowcaseCard,
 		Examples: SwitchExamples,
 	},
