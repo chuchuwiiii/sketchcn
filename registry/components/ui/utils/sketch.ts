@@ -24,16 +24,18 @@ export type SketchTheme = {
 
 export const SketchContext = createContext<SketchTheme | null>(null);
 
-export type SketchShape = "rectangle" | "underline" | "vertical-line";
+export type SketchShape = "circle" | "rectangle" | "underline" | "vertical-line";
 
 export type SketchOutlineOptions = Omit<Partial<Options>, "seed"> & {
 	borderRadius?: number;
+	clip?: boolean;
 	id?: string;
 	opacity?: number;
 	shape?: SketchShape;
 };
 
 export type SketchOutline = {
+	clipPath: string | undefined;
 	ref: Ref<SVGSVGElement>;
 	style: CSSProperties;
 };
@@ -209,6 +211,27 @@ export function createRoundedRectanglePath(
 		`Q ${left} ${bottom} ${left} ${bottom - cornerRadius}`,
 		`V ${top + cornerRadius}`,
 		`Q ${left} ${top} ${left + cornerRadius} ${top}`,
+		"Z",
+	].join(" ");
+}
+
+/**
+ * Draws the ellipse inscribed in the box as two half arcs.
+ *
+ */
+export function createCirclePath(
+	width: number,
+	height: number,
+	strokeInset: number,
+): string {
+	const radiusX = width / 2 - strokeInset;
+	const radiusY = height / 2 - strokeInset;
+	const centerY = height / 2;
+
+	return [
+		`M ${strokeInset} ${centerY}`,
+		`A ${radiusX} ${radiusY} 0 1 1 ${width - strokeInset} ${centerY}`,
+		`A ${radiusX} ${radiusY} 0 1 1 ${strokeInset} ${centerY}`,
 		"Z",
 	].join(" ");
 }

@@ -1,6 +1,8 @@
 import type { ComponentType } from "react";
 import { AlertExamples } from "./alert-examples";
 import { AlertShowcaseCard } from "./alert-showcase-card";
+import { AvatarExamples } from "./avatar-examples";
+import { AvatarShowcaseCard } from "./avatar-showcase-card";
 import { ButtonExamples } from "./button-examples";
 import { ButtonShowcaseCard } from "./button-showcase-card";
 import { CardExamples } from "./card-examples";
@@ -66,6 +68,13 @@ export const COMPONENT_SHOWCASES = [
 			"A card container with hand-drawn style in shadcn conventions.",
 		Showcase: CardShowcaseCard,
 		Examples: CardExamples,
+	},
+	{
+		slug: "avatar",
+		title: "Avatar",
+		description: "A Base UI avatar clipped inside its hand-drawn outline.",
+		Showcase: AvatarShowcaseCard,
+		Examples: AvatarExamples,
 	},
 	{
 		slug: "alert",
