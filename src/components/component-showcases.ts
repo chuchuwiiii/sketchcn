@@ -31,6 +31,8 @@ import { ToastExamples } from "./toast-examples";
 import { ToastShowcaseCard } from "./toast-showcase-card";
 import { ToggleExamples } from "./toggle-examples";
 import { ToggleShowcaseCard } from "./toggle-showcase-card";
+import { TooltipExamples } from "./tooltip-examples";
+import { TooltipShowcaseCard } from "./tooltip-showcase-card";
 
 export type ComponentShowcase = {
 	slug: string;
@@ -118,6 +120,14 @@ export const COMPONENT_SHOWCASES = [
 		description: "A Base UI toast with hand-drawn style in shadcn conventions.",
 		Showcase: ToastShowcaseCard,
 		Examples: ToastExamples,
+	},
+	{
+		slug: "tooltip",
+		title: "Tooltip",
+		description:
+			"A Base UI tooltip with hand-drawn style in shadcn conventions.",
+		Showcase: TooltipShowcaseCard,
+		Examples: TooltipExamples,
 	},
 	{
 		slug: "toggle",
