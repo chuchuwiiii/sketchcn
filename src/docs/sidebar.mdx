@@ -73,13 +73,31 @@ Sidebar adds no props of its own. Size it with the variables `SidebarProvider` s
 
 ## Parts
 
-Layout: `SidebarProvider`, `Sidebar`, `SidebarInset`, `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarRail`, `SidebarSeparator`, `SidebarInput`.
-
-Grouping: `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`.
-
-Menus: `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton`, `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`.
-
-Control: `SidebarTrigger`.
+| Part | Description |
+| --- | --- |
+| `SidebarProvider` | Owns the open state and the width variables. Wrap the whole shell in it. |
+| `Sidebar` | The drawn panel, on desktop or inside a sheet on mobile. |
+| `SidebarInset` | The `main` area beside the panel. |
+| `SidebarHeader` | Block pinned to the top of the panel. |
+| `SidebarContent` | Scrollable middle of the panel. |
+| `SidebarFooter` | Block pinned to the bottom of the panel. |
+| `SidebarRail` | Thin strip along the panel edge that toggles it. |
+| `SidebarSeparator` | Sketched divider sized to the panel padding. |
+| `SidebarInput` | Sidebar-sized `Input`. |
+| `SidebarGroup` | A labelled section of the panel. |
+| `SidebarGroupLabel` | Heading for a group, hidden once collapsed to icons. |
+| `SidebarGroupAction` | Control pinned to the right of the group label. |
+| `SidebarGroupContent` | Body of a group. |
+| `SidebarMenu` | The `ul` holding menu items. |
+| `SidebarMenuItem` | A single `li`. |
+| `SidebarMenuButton` | The clickable row, with size and variant scales. |
+| `SidebarMenuAction` | Secondary control pinned to the right of a row. |
+| `SidebarMenuBadge` | Count or status pinned to the right of a row. |
+| `SidebarMenuSkeleton` | Loading placeholder shaped like a row. |
+| `SidebarMenuSub` | Nested `ul` for child rows. |
+| `SidebarMenuSubItem` | A single nested `li`. |
+| `SidebarMenuSubButton` | The clickable nested row. |
+| `SidebarTrigger` | Button that toggles the panel from anywhere. |
 
 ## Examples
 

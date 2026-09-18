@@ -10,12 +10,9 @@ export function SketchCssSection({
 }) {
 	return (
 		<div className="flex flex-col gap-4">
-			<div className="flex flex-col gap-1.5">
-				<h3 className="text-xl">Styles</h3>
-				<p className="text-muted-foreground text-sm">
-					{`${title} leans on these rules from sketch.css. The shadcn CLI installs the file with sketch-provider; copying the component by hand means copying them too.`}
-				</p>
-			</div>
+			<p className="text-muted-foreground text-sm">
+				{`${title} leans on these rules from sketch.css. The shadcn CLI installs the file with sketch-provider; copying the component by hand means copying them too.`}
+			</p>
 			<CodeBlock code={css} lang="css" />
 			<p className="text-muted-foreground text-sm">
 				<Link

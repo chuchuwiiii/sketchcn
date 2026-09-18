@@ -48,7 +48,7 @@ Only `TSX`, `bash`, and `css` are available; `src/lib/highlighter.ts` bundles th
 
 - Imports go in a preamble above the `# Title`, with relative paths — the `@/` alias does not resolve from `.mdx`.
 - Component tags used as blocks (`<Preview />`, a demo) sit alone on their own line, which is also how the markdown serializer finds and removes them.
-- Order each doc as title, intro, `<Preview />`, `## Installation`, `<Styles />`, then usage, props, `## Examples`, and `## Animation`.
+- Order each doc as title, intro, `<Preview />`, `## Installation`, `## Styles` with `<Styles />`, then usage, props, `## Examples`, and `## Animation`.
 - Document only what sketchcn adds; see **Props** below.
 - Every `##` section renders as a card: `remarkDocSections` in `src/lib/mdx/remark-doc-sections.ts` wraps everything between a `##` heading and the next one in a `<DocSection>`, leaving the heading above the card. Let the plugin do it rather than writing a card in the `.mdx`.
 
@@ -61,6 +61,14 @@ A doc covers sketchcn's own surface only. A prop that exists in shadcn or in the
 - Close a table with one line naming the primitive that owns the rest, rather than listing its props. If our only change is a default, say so in prose — `Positioning stays with Base UI. Only the defaults differ: side is "top", sideOffset is 8.`
 - A component with nothing of its own says so in one line (`Input adds no props of its own.`) or documents its variables instead, the way Sidebar documents `--sidebar-width`.
 - Parts tables stay: they describe what each part renders, which is our anatomy, not an upstream prop list.
+- A `## Parts` section is always a table, never a prose list of names — one row per exported part, in composition order, with a one-line description of what it renders:
+
+  ```
+  | Part | Description |
+  | --- | --- |
+  | `Dialog` | Root that owns the open state. |
+  | `DialogContent` | The centred, outlined popup. |
+  ```
 
 ## Code Style
 
