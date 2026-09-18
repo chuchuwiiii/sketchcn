@@ -52,14 +52,6 @@ function Input({ className, type, ...props }: InputPrimitive.Props) {
 
 type FileButtonBox = { height: number; left: number; top: number; width: number }
 
-/**
- * Measures the `::file-selector-button` so a sketch outline can be laid over it.
- *
- * The button is a pseudo-element and cannot hold the outline `<svg>` itself, so
- * its used box is read from the computed style and mirrored onto a sibling span.
- * Engines that report `auto` instead of a used width return `null`, which drops
- * the decoration rather than drawing it in the wrong place.
- */
 function useFileButtonBox(enabled: boolean) {
   const [input, setInput] = useState<HTMLElement | null>(null)
   const [box, setBox] = useState<FileButtonBox | null>(null)

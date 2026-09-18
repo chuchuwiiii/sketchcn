@@ -26,7 +26,9 @@ export function CodeBlock({
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output built from a local literal, never user input.
 				dangerouslySetInnerHTML={{ __html: highlight(code, lang) }}
 			/>
-			<CopyButton value={code} />
+			<div className="sticky top-0 shrink-0">
+				<CopyButton value={code} />
+			</div>
 			<svg
 				aria-hidden="true"
 				data-sketch-outline

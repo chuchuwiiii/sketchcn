@@ -40,12 +40,6 @@ export type SketchOutline = {
 	style: CSSProperties;
 };
 
-/**
- * Namespace for the `--sketch-*` custom properties a drawing reads.
- *
- * `"bg"` resolves `--sketch-bg-<name>` first and falls back to `--sketch-<name>`,
- * so a background inherits shared wobble settings while keeping its own fill.
- */
 export type SketchScope = "outline" | "bg";
 
 const CSS_NUMBER_OPTIONS = {
@@ -118,12 +112,6 @@ export function getCssSketchSeed(
 	target: Element,
 	scope: SketchScope = "outline",
 ): number | undefined {
-	/*
-		The seed is read as a quoted string because CSS minifiers round bare
-		numbers to six significant digits (20260828 ships as 20260800), which
-		would change every wobble between dev and production. Bare numbers are
-		still accepted for hand-written overrides that stay small.
-	*/
 	const raw = readScopedCssValue(getComputedStyle(target), scope, "seed").replace(
 		/^["']|["']$/g,
 		"",
@@ -137,19 +125,6 @@ export function getCssSketchSeed(
 	return value;
 }
 
-/**
- * Scales `bowing` down so a large element's outline stays inside its clip margin.
- *
- * RoughJS bows a segment outward by an amount proportional to that segment's
- * length, so a tall card bulges several pixels past its own box and
- * `overflow-clip-margin` shaves the stroke away mid-edge. Capping the bow at a
- * reference length keeps the overflow constant at any element size.
- *
- * @param bowing RoughJS `bowing` option, defaulting to RoughJS' own default.
- * @param width Drawing width in pixels.
- * @param height Drawing height in pixels.
- * @returns The bowing value to draw with.
- */
 export function getScaledBowing(
 	bowing: number | undefined,
 	width: number,
@@ -215,10 +190,6 @@ export function createRoundedRectanglePath(
 	].join(" ");
 }
 
-/**
- * Draws the ellipse inscribed in the box as two half arcs.
- *
- */
 export function createCirclePath(
 	width: number,
 	height: number,

@@ -405,11 +405,6 @@ const SIDEBAR_GROUP_CLASS =
 const SIDEBAR_GROUP_LABEL_CLASS =
   "flex h-8 shrink-0 items-center gap-2 rounded-md px-2 text-sidebar-foreground/70 text-xs transition-[margin,opacity] duration-200 ease-linear outline-hidden group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 [&>svg]:size-4 [&>svg]:shrink-0"
 
-/*
-  Sidebar parts keep their semantic tag (<li>, <ul>, and a <div> label) while
-  Base UI types every collapsible part against <div> or <button>. The casts at
-  each Collapsible boundary forward props untouched; only the element differs.
-*/
 const COLLAPSIBLE_PANEL_CLASS =
   "h-(--collapsible-panel-height) overflow-hidden transition-[height,opacity] duration-200 ease-out motion-reduce:transition-none data-ending-style:h-0 data-ending-style:opacity-0 data-starting-style:h-0 data-starting-style:opacity-0"
 

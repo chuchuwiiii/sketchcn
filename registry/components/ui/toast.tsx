@@ -15,11 +15,6 @@ import { memo } from "react"
 import { Button } from "./button"
 import { type PaperVariant, useSketchOutline } from "./sketch-provider"
 
-/**
- * Base UI’s toast uses MutationObserver + flushSync to recalculate height on mutations.
-  Boxicons use dangerouslySetInnerHTML, causing unmemoized icons to rewrite their markup on every render.
-  This creates an infinite render loop.
- */
 const TOAST_ICONS = {
   error: memo(XCircle),
   info: memo(InfoCircle),

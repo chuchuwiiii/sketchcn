@@ -39,3 +39,16 @@ Takes every Base UI `Input` prop, which covers the native input attributes: `typ
 ## Notes
 
 - `type="file"` gets its own sketch outline drawn over the file-selector button, measured from the real button box, and the outline boils on hover.
+
+## Animation
+
+The file-selector outline boils while the field is hovered, using the `sketch-dash-boil` keyframe from `sketch.css`.
+
+```tsx
+// on the svg drawn over the file-selector button
+"group-hover/input:[--sketch-dash:6_4] group-hover/input:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]"
+```
+
+```tsx
+<Input type="file" className="[--sketch-dash-animation:none]" />
+```

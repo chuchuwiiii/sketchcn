@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { InfoCircle } from "@boxicons/react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { cn } from "cn";
 import { CodeBlock } from "../../components/code-block";
 import type { DocsReferenceRow } from "../../components/docs-section";
@@ -78,6 +79,109 @@ const sketchBg = useSketchBg({ hachureAngle: 0 });`;
 
 const CSS_VARIABLES_SNIPPET = `<div className="[--sketch-roughness:2.6] [--sketch-bowing:2.4]">
   <Button>Rougher button</Button>
+</div>`;
+
+const KEYFRAMES_SNIPPET = `@keyframes sketch-dash-boil {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes sketch-dash-alternate {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes sketch-icon-wiggle {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes sketch-avatar-wobble {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  35% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+
+  60% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  80% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+
+  100% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+@keyframes sketch-hatch-reveal {
+  0% {
+    --sketch-bg-reveal-lead: 0%;
+    --sketch-bg-reveal-trail: 0%;
+  }
+
+  45%,
+  55% {
+    --sketch-bg-reveal-lead: 100%;
+    --sketch-bg-reveal-trail: 0%;
+  }
+
+  100% {
+    --sketch-bg-reveal-lead: 100%;
+    --sketch-bg-reveal-trail: 100%;
+  }
+}`;
+
+const ANIMATION_USAGE_SNIPPET = `<div className="[--sketch-dash:6_4] hover:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]">
+  <Button variant="ghost">Boiling outline</Button>
+</div>
+
+<InfoCircle className="hover:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />`;
+
+const REDUCED_MOTION_SNIPPET = `@media (prefers-reduced-motion: reduce) {
+  [data-sketch-outline] path {
+    animation: none;
+  }
+
+  [data-sketch-reveal] [data-sketch-bg] {
+    animation: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  [data-slot="avatar-group"] > [data-slot="avatar"]:hover {
+    animation: none;
+  }
+}`;
+
+const REVEAL_SNIPPET = `<div className="relative isolate rounded-lg px-4 py-3" data-sketch-reveal>
+  <span>Loading</span>
+  <svg
+    aria-hidden="true"
+    data-sketch-bg
+    className="-z-10"
+    ref={sketchBg.ref}
+    style={sketchBg.style}
+  />
+</div>`;
+
+const PAPER_SNIPPET = `<div
+  className="relative isolate rounded-lg p-4 [--paper-opacity:0.5]"
+  data-paper="graph"
+>
+  Graph paper behind any element
 </div>`;
 
 const LLMS_INDEX_SNIPPET = `curl ${SITE.url}/llms.txt`;
@@ -277,6 +381,85 @@ const CSS_VARIABLES = [
 	},
 ] as const satisfies readonly DocsReferenceRow[];
 
+const KEYFRAMES = [
+	{
+		name: "sketch-dash-boil",
+		type: "outline dash",
+		defaultValue: "1s steps(2) infinite",
+		cssVariable: "--sketch-dash-animation",
+		description:
+			"Shifts the dash offset by one full period in two steps, so the outline reads as redrawn by hand. Needs --sketch-dash set. Used by the ghost Button and the Input file selector on hover.",
+	},
+	{
+		name: "sketch-dash-alternate",
+		type: "outline dash",
+		defaultValue: "1s steps(2) infinite",
+		cssVariable: "--sketch-dash-animation",
+		description:
+			"The same sweep against a 5 5 dasharray, so dashes and gaps swap places every frame. Used by Toggle while pressed.",
+	},
+	{
+		name: "sketch-icon-wiggle",
+		type: "transform",
+		defaultValue: "180ms ease-in-out infinite",
+		description:
+			"Rocks an icon between -5 and 5 degrees. Used by Button on press and by the Alert and Toast icons on hover.",
+	},
+	{
+		name: "sketch-avatar-wobble",
+		type: "transform",
+		defaultValue: "450ms ease-out forwards",
+		description:
+			"Lifts an element out of a stack and lands it level but raised, so it stays up while hovered. Used by AvatarGroup.",
+	},
+	{
+		name: "sketch-hatch-reveal",
+		type: "mask",
+		defaultValue: "2400ms linear infinite",
+		description:
+			"Wipes the hachure mask on and off along the hatch angle. Applied by data-sketch-reveal, which is the whole of Skeleton's animation.",
+	},
+] as const satisfies readonly DocsReferenceRow[];
+
+const DATA_ATTRIBUTES = [
+	{
+		name: "data-sketch-outline",
+		type: "svg",
+		description:
+			"Marks the outline svg. Its paths keep a non-scaling stroke and read --sketch-dash, --sketch-dash-animation, --sketch-fill and --sketch-fill-opacity.",
+	},
+	{
+		name: "data-sketch-bg",
+		type: "svg",
+		description: "Marks the hachure svg and applies --sketch-bg-opacity.",
+	},
+	{
+		name: "data-sketch-reveal",
+		type: "ancestor",
+		description:
+			"Masks the data-sketch-bg svg below it and runs sketch-hatch-reveal on a loop.",
+	},
+	{
+		name: "data-paper",
+		type: "PaperVariant",
+		defaultValue: '"default"',
+		description:
+			"Draws a repeating paper texture on a ::before at z-index -1, so the element needs position: relative and isolate. Accepts polkadots, filled-dots, hexagons, graph and plus.",
+	},
+	{
+		name: "--paper-pattern",
+		type: "color",
+		defaultValue: "#9c92ac",
+		description: "Colour of the paper texture.",
+	},
+	{
+		name: "--paper-opacity",
+		type: "number",
+		defaultValue: "0.4",
+		description: "Opacity of the paper texture layer.",
+	},
+] as const satisfies readonly DocsReferenceRow[];
+
 type CssVariableExample = {
 	value: string;
 	className: string;
@@ -462,6 +645,46 @@ function CssVariableGallery() {
 	);
 }
 
+const KEYFRAME_PREVIEWS = [
+	{
+		name: "sketch-dash-boil",
+		className:
+			"[--sketch-dash:6_4] [--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]",
+	},
+	{
+		name: "sketch-dash-alternate",
+		className:
+			"[--sketch-dash:5_5] [--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]",
+	},
+	{
+		name: "sketch-avatar-wobble",
+		className: "hover:[animation:sketch-avatar-wobble_450ms_ease-out_forwards]",
+	},
+] as const;
+
+function KeyframeGallery() {
+	return (
+		<div className="flex flex-wrap items-center gap-4 p-4">
+			{KEYFRAME_PREVIEWS.map((preview) => (
+				<OutlinePreview key={preview.name} className={preview.className}>
+					<span className="font-mono text-xs">{preview.name}</span>
+				</OutlinePreview>
+			))}
+			<OutlinePreview className="hover:[&_svg:not([data-sketch-outline])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:hover:[&_svg:not([data-sketch-outline])]:animate-none">
+				<span className="flex items-center gap-2 font-mono text-xs">
+					<InfoCircle className="size-4" />
+					sketch-icon-wiggle
+				</span>
+			</OutlinePreview>
+			<div data-sketch-reveal>
+				<BgPreview className="text-primary">
+					<span className="font-mono text-xs">sketch-hatch-reveal</span>
+				</BgPreview>
+			</div>
+		</div>
+	);
+}
+
 function DocsPage() {
 	return (
 		<div>
@@ -601,7 +824,59 @@ function DocsPage() {
 					</DocsSection.Block>
 					<p className="text-muted-foreground text-sm">
 						{
-							"Variables are read from the drawn element itself, so they cascade like any other CSS custom property and work with Tailwind arbitrary properties, variants, and dark mode."
+							"Variables are read from the drawn element itself, so they cascade like any other CSS custom property and work with Tailwind arbitrary properties, variants, and dark mode. "
+						}
+						<Link
+							to="/sketch-styles"
+							className="underline decoration-dashed underline-offset-4 transition-colors hover:text-foreground"
+						>
+							Read sketch.css in full
+						</Link>
+						{"."}
+					</p>
+				</DocsSection>
+
+				<DocsSection
+					id="animations"
+					title="Animations"
+					description="sketch.css ships five keyframes. They are global, so any element can use them through --sketch-dash-animation, an animation shorthand, or a Tailwind arbitrary animate-[…] value."
+				>
+					<DocsSection.Reference rows={KEYFRAMES} />
+					<DocsSection.Block label="Live, the dashed ones loop and the rest react to hover">
+						<KeyframeGallery />
+					</DocsSection.Block>
+					<DocsSection.Block label="The keyframes, as shipped">
+						<CodeBlock code={KEYFRAMES_SNIPPET} lang="css" />
+					</DocsSection.Block>
+					<DocsSection.Block label="Use them on your own elements">
+						<CodeBlock code={ANIMATION_USAGE_SNIPPET} />
+					</DocsSection.Block>
+					<DocsSection.Block label="Already silenced under prefers-reduced-motion">
+						<CodeBlock code={REDUCED_MOTION_SNIPPET} lang="css" />
+					</DocsSection.Block>
+					<p className="text-muted-foreground text-sm">
+						{
+							"Animations you add yourself are not covered by that block, so pair them with motion-reduce:animate-none."
+						}
+					</p>
+				</DocsSection>
+
+				<DocsSection
+					id="data-attributes"
+					variant="graph"
+					title="Data attributes"
+					description="sketch.css styles these attributes wherever they appear, so they work on your own markup, not only inside the components."
+				>
+					<DocsSection.Reference rows={DATA_ATTRIBUTES} />
+					<DocsSection.Block label="Wipe any hachure svg">
+						<CodeBlock code={REVEAL_SNIPPET} />
+					</DocsSection.Block>
+					<DocsSection.Block label="Paper texture behind any element">
+						<CodeBlock code={PAPER_SNIPPET} />
+					</DocsSection.Block>
+					<p className="text-muted-foreground text-sm">
+						{
+							"The reveal mask is driven by --sketch-bg-reveal-lead and --sketch-bg-reveal-trail, declared with @property so they can be animated. Treat them as internal to the reveal; the angle follows --sketch-bg-hachure-angle."
 						}
 					</p>
 				</DocsSection>

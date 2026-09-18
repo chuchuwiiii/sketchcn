@@ -16,6 +16,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
 import { Route as DocsPlaygroundRouteImport } from './routes/_docs/playground'
+import { Route as DocsSketchStylesRouteImport } from './routes/_docs/sketch-styles'
 import { Route as DocsComponentsIndexRouteImport } from './routes/_docs/components/index'
 import { Route as DocsComponentsNameRouteImport } from './routes/_docs/components/$name'
 import { Route as ComponentsNameMdRouteImport } from './routes/components.$name.md'
@@ -54,6 +55,11 @@ const DocsPlaygroundRoute = DocsPlaygroundRouteImport.update({
   path: '/playground',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsSketchStylesRoute = DocsSketchStylesRouteImport.update({
+  id: '/sketch-styles',
+  path: '/sketch-styles',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsComponentsIndexRoute = DocsComponentsIndexRouteImport.update({
   id: '/components/',
   path: '/components/',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
+  '/sketch-styles': typeof DocsSketchStylesRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components/$name/md': typeof ComponentsNameMdRoute
   '/components/': typeof DocsComponentsIndexRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
+  '/sketch-styles': typeof DocsSketchStylesRoute
   '/components/$name': typeof DocsComponentsNameRoute
   '/components/$name/md': typeof ComponentsNameMdRoute
   '/components': typeof DocsComponentsIndexRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_docs/docs': typeof DocsDocsRoute
   '/_docs/playground': typeof DocsPlaygroundRoute
+  '/_docs/sketch-styles': typeof DocsSketchStylesRoute
   '/_docs/components/$name': typeof DocsComponentsNameRoute
   '/components/$name/md': typeof ComponentsNameMdRoute
   '/_docs/components/': typeof DocsComponentsIndexRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/docs'
     | '/playground'
+    | '/sketch-styles'
     | '/components/$name'
     | '/components/$name/md'
     | '/components/'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/docs'
     | '/playground'
+    | '/sketch-styles'
     | '/components/$name'
     | '/components/$name/md'
     | '/components'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/_docs/docs'
     | '/_docs/playground'
+    | '/_docs/sketch-styles'
     | '/_docs/components/$name'
     | '/components/$name/md'
     | '/_docs/components/'
@@ -202,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsPlaygroundRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/_docs/sketch-styles': {
+      id: '/_docs/sketch-styles'
+      path: '/sketch-styles'
+      fullPath: '/sketch-styles'
+      preLoaderRoute: typeof DocsSketchStylesRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/_docs/components/': {
       id: '/_docs/components/'
       path: '/components'
@@ -229,6 +248,7 @@ declare module '@tanstack/react-router' {
 interface DocsRouteChildren {
   DocsDocsRoute: typeof DocsDocsRoute
   DocsPlaygroundRoute: typeof DocsPlaygroundRoute
+  DocsSketchStylesRoute: typeof DocsSketchStylesRoute
   DocsComponentsNameRoute: typeof DocsComponentsNameRoute
   DocsComponentsIndexRoute: typeof DocsComponentsIndexRoute
 }
@@ -236,6 +256,7 @@ interface DocsRouteChildren {
 const DocsRouteChildren: DocsRouteChildren = {
   DocsDocsRoute: DocsDocsRoute,
   DocsPlaygroundRoute: DocsPlaygroundRoute,
+  DocsSketchStylesRoute: DocsSketchStylesRoute,
   DocsComponentsNameRoute: DocsComponentsNameRoute,
   DocsComponentsIndexRoute: DocsComponentsIndexRoute,
 }

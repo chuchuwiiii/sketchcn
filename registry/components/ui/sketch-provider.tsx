@@ -49,18 +49,6 @@ export function SketchProvider({ children, seed = DEFAULT_SEED }: SketchProvider
   return <SketchContext.Provider value={value}>{children}</SketchContext.Provider>;
 }
 
-
-/**
- * Draws a RoughJS outline into an `<svg>` overlaying the parent element.
- *
- * @param options RoughJS options plus `shape`, `opacity`, `clip`, and `id`.
- * `id` seeds the wobble and defaults to `useId()`. Because `useId()` shifts
- * with tree position, pass a stable `id` when the drawn geometry must not
- * change, such as shared shapes across instances or visual regression
- * snapshots. `clip` also publishes the drawn shape as a `<clipPath>`.
- * @returns The `ref` and `style` to spread onto the outline `<svg>`, plus the
- * `clipPath` value to hand to any element that should sit inside the drawing.
- */
 export function useSketchOutline(
   options: SketchOutlineOptions = {},
   scope: SketchScope = "outline",
@@ -142,7 +130,6 @@ export function useSketchOutline(
       height: "100%",
       left: 0,
       opacity,
-      // Rough's wobble swings past the viewBox; the default svg clip shaves it to a hairline.
       overflow: "visible",
       pointerEvents: "none",
       position: "absolute",
@@ -156,12 +143,6 @@ export function useSketchBg(options: SketchOutlineOptions = {}): SketchOutline {
   return useSketchOutline(options, "bg");
 }
 
-/**
- * Mirrors a drawn shape into a `<clipPath>` so content can sit inside the ink.
- *
- * Only the geometry is copied: a clip region is filled, never stroked, so the
- * cut follows the centre of the drawn stroke and the ink straddles the edge.
- */
 function createClipPathDefs(id: string, drawn: SVGGElement): SVGDefsElement {
   const defs = document.createElementNS(SVG_NAMESPACE, "defs");
   const clipPath = document.createElementNS(SVG_NAMESPACE, "clipPath");
@@ -181,9 +162,6 @@ function createClipPathDefs(id: string, drawn: SVGGElement): SVGDefsElement {
   return defs;
 }
 
-/**
- * Joins a drawn outline into one closed region.
- */
 function closeDrawnPath(d: string): string {
   let isFirstMove = true;
 

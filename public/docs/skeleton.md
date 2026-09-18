@@ -40,3 +40,24 @@ Takes every `div` prop. Size it with utility classes; there is no size variant.
 ```
 
 - It renders `aria-hidden`, so pair it with your own live region when the wait is long.
+
+## Animation
+
+Skeleton is a `data-sketch-reveal` wrapper around a `data-sketch-bg` svg. `sketch.css` masks the hachure and wipes it on a 2400ms `sketch-hatch-reveal` loop; there is no JavaScript timer.
+
+```css
+[data-sketch-reveal] [data-sketch-bg] {
+  --sketch-bg-reveal-mask: linear-gradient(
+    calc((180 + var(--sketch-bg-hachure-angle)) * 1deg),
+    transparent var(--sketch-bg-reveal-trail),
+    #000 var(--sketch-bg-reveal-trail),
+    #000 var(--sketch-bg-reveal-lead),
+    transparent var(--sketch-bg-reveal-lead)
+  );
+  mask-image: var(--sketch-bg-reveal-mask);
+  -webkit-mask-image: var(--sketch-bg-reveal-mask);
+  animation: sketch-hatch-reveal 2400ms linear infinite;
+}
+```
+
+The mask angle is derived from `--sketch-bg-hachure-angle`, so rotating the hatch rotates the wipe with it. Under `prefers-reduced-motion` the mask and the animation are both dropped, leaving a static hatched block.

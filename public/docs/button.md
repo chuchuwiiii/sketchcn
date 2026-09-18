@@ -91,3 +91,23 @@ The component also exports `buttonVariants`, `BUTTON_VARIANTS`, `BUTTON_SIZES` a
 - Icons are `size-4` by default and scale down automatically on `xs` and `sm`.
 - A leading or trailing `<svg>` gets extra inline padding, so icon buttons stay optically balanced.
 - Pressing a button nudges it down one pixel and wiggles its icon.
+
+## Animation
+
+Two keyframes from `sketch.css`, both applied as Tailwind arbitrary animations.
+
+```tsx
+// Ghost variant: the dashed outline boils while hovered
+"[--sketch-dash:6_4] hover:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]"
+
+// Every variant: the icon wiggles while the button is held
+"active:[&>svg:not([data-sketch-outline]):not([data-sketch-bg])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite]"
+```
+
+Drop either by overriding the variable or the animation on the instance.
+
+```tsx
+<Button variant="ghost" className="hover:[--sketch-dash-animation:none]">
+  Still outline
+</Button>
+```

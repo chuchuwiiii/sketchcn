@@ -59,3 +59,19 @@ An `svg` as the first child becomes the leading icon and the grid switches to tw
 ## Notes
 
 - Hovering the alert wiggles its icon, unless the user prefers reduced motion.
+
+## Animation
+
+Hovering the alert wiggles its leading icon with the `sketch-icon-wiggle` keyframe from `sketch.css`.
+
+```tsx
+"hover:*:[svg:not([data-sketch-outline])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:hover:*:[svg:not([data-sketch-outline])]:animate-none"
+```
+
+The paper texture is drawn through `data-paper`, so `--paper-pattern` and `--paper-opacity` tune it. Alert already lowers the opacity to keep the text readable.
+
+```tsx
+<Alert paper="graph" className="[--paper-opacity:0.4]">
+  <AlertTitle>Denser paper</AlertTitle>
+</Alert>
+```

@@ -40,3 +40,21 @@ All other props are forwarded to the Base UI `Toggle` primitive. The component a
 
 - Icon-only toggles need an `aria-label`.
 - For a form field that submits a value, use Switch instead.
+
+## Animation
+
+A pressed toggle dashes its outline and alternates the dashes with the `sketch-dash-alternate` keyframe from `sketch.css`, so the border reads as redrawn by hand.
+
+```tsx
+"data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]"
+```
+
+Hovering raises the fill instead, through `--sketch-fill-opacity`.
+
+```tsx
+"hover:[--sketch-fill-opacity:0.08] data-pressed:[--sketch-fill-opacity:0.14]"
+```
+
+```tsx
+<Toggle className="data-pressed:[--sketch-dash-animation:none]">Quiet</Toggle>
+```

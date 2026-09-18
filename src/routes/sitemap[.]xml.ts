@@ -2,7 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { COMPONENT_SHOWCASES } from "../components/component-showcases";
 import { canonicalUrl } from "../lib/seo";
 
-const STATIC_PATHS = ["/", "/docs", "/playground", "/components"];
+const STATIC_PATHS = [
+	"/",
+	"/docs",
+	"/sketch-styles",
+	"/playground",
+	"/components",
+];
 
 function urlEntry(path: string) {
 	return `\t<url><loc>${canonicalUrl(path)}</loc></url>`;

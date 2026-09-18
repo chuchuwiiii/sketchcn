@@ -1,9 +1,11 @@
 import { ArrowLeft } from "@boxicons/react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Button } from "../../../../registry/components/ui/button";
+import { componentSketchCss } from "../../../components/component-css";
 import { findComponentShowcase } from "../../../components/component-showcases";
 import { InstallTabs } from "../../../components/install-tabs";
 import { ShowcaseCard } from "../../../components/showcase-card";
+import { SketchCssCard } from "../../../components/sketch-css-card";
 import { canonicalUrl, seo } from "../../../lib/seo";
 
 export const Route = createFileRoute("/_docs/components/$name")({
@@ -66,6 +68,8 @@ function ComponentPage() {
 		return <ComponentNotFound />;
 	}
 
+	const sketchCss = componentSketchCss(showcase.slug);
+
 	return (
 		<div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-8">
 			<section id="preview" className="scroll-mt-8">
@@ -79,6 +83,11 @@ function ComponentPage() {
 					<InstallTabs name={showcase.slug} />
 				</ShowcaseCard>
 			</section>
+			{sketchCss && (
+				<section id="styles" className="scroll-mt-8">
+					<SketchCssCard css={sketchCss} title={showcase.title} />
+				</section>
+			)}
 			{showcase.Examples && (
 				<section id="examples" className="scroll-mt-8">
 					<showcase.Examples />

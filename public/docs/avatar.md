@@ -69,3 +69,22 @@ Takes every `div` prop. A drawn circle for the overflow count, sized from the av
 ```
 
 - Always pass `alt` to `AvatarImage`; the fallback text is not read while the image is showing.
+
+## Animation
+
+Inside an `AvatarGroup`, hovering a face lifts it out of the stack with the `sketch-avatar-wobble` keyframe from `sketch.css`. It ends raised, so the face stays up while the hover is held.
+
+```tsx
+// on AvatarGroup
+"*:data-[slot=avatar]:hover:z-10 *:data-[slot=avatar]:hover:[animation:sketch-avatar-wobble_450ms_ease-out_forwards]"
+```
+
+`sketch.css` already disables it under `prefers-reduced-motion`.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="avatar-group"] > [data-slot="avatar"]:hover {
+    animation: none;
+  }
+}
+```

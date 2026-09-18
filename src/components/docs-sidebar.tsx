@@ -1,5 +1,6 @@
 import { Book, ComponentIcon, Home, Layers, Slider } from "@boxicons/react";
 import { Link, useRouterState } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -28,8 +29,10 @@ const UI_SHOWCASES = COMPONENT_SHOWCASES.filter(
 
 function ShowcaseSubMenu({
 	showcases,
+	children,
 }: {
 	showcases: readonly { slug: string; title: string }[];
+	children?: ReactNode;
 }) {
 	const pathname = useRouterState({
 		select: (state) => state.location.pathname,
@@ -47,6 +50,7 @@ function ShowcaseSubMenu({
 					</SidebarMenuSubButton>
 				</SidebarMenuSubItem>
 			))}
+			{children}
 		</SidebarMenuSub>
 	);
 }
@@ -111,7 +115,16 @@ export function DocsSidebar() {
 									<Layers />
 									<span>Providers</span>
 								</SidebarMenuButton>
-								<ShowcaseSubMenu showcases={PROVIDER_SHOWCASES} />
+								<ShowcaseSubMenu showcases={PROVIDER_SHOWCASES}>
+									<SidebarMenuSubItem>
+										<SidebarMenuSubButton
+											isActive={pathname === "/sketch-styles"}
+											render={<Link to="/sketch-styles" />}
+										>
+											<span>Sketch Styles</span>
+										</SidebarMenuSubButton>
+									</SidebarMenuSubItem>
+								</ShowcaseSubMenu>
 							</SidebarMenuItem>
 							<SidebarMenuItem collapsible defaultOpen>
 								<SidebarMenuButton>

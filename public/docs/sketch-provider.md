@@ -41,10 +41,10 @@ export function SignUpForm() {
 
 ## SketchProvider props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `children` | `ReactNode` | — | The tree that can read sketch settings. |
-| `seed` | `number` | `20260828` | Base seed for the wobble. Every hook mixes it with its own id, so one seed change reshuffles the whole page deterministically. |
+| Prop       | Type        | Default    | Description                                                                                                                    |
+| ---------- | ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `children` | `ReactNode` | —          | The tree that can read sketch settings.                                                                                        |
+| `seed`     | `number`    | `20260828` | Base seed for the wobble. Every hook mixes it with its own id, so one seed change reshuffles the whole page deterministically. |
 
 Every other drawing option comes from `--sketch-*` CSS variables.
 
@@ -73,12 +73,12 @@ export function Panel({ children }: { children: React.ReactNode }) {
 }
 ```
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `shape` | `"rectangle" \| "underline"` | `"rectangle"` | Rectangle follows the element border radius; underline draws a single stroke along the bottom edge. |
-| `id` | `string` | `useId()` | Seeds the wobble. Pass a stable id when the geometry must not change. |
-| `opacity` | `number` | — | Applied to the returned svg style. |
-| `...roughOptions` | `Partial<Options>` | — | Any RoughJS option except `seed`: roughness, bowing, stroke, strokeWidth, strokeLineDash, fill, fillStyle. |
+| Option            | Type                         | Default       | Description                                                                                                |
+| ----------------- | ---------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
+| `shape`           | `"rectangle" \| "underline"` | `"rectangle"` | Rectangle follows the element border radius; underline draws a single stroke along the bottom edge.        |
+| `id`              | `string`                     | `useId()`     | Seeds the wobble. Pass a stable id when the geometry must not change.                                      |
+| `opacity`         | `number`                     | —             | Applied to the returned svg style.                                                                         |
+| `...roughOptions` | `Partial<Options>`           | —             | Any RoughJS option except `seed`: roughness, bowing, stroke, strokeWidth, strokeLineDash, fill, fillStyle. |
 
 The outline is measured from the padding box and redrawn whenever the element resizes or its class or style attribute changes.
 
@@ -90,15 +90,15 @@ The outline is measured from the padding box and redrawn whenever the element re
 const sketchBg = useSketchBg({ hachureGap: 6 });
 ```
 
-| Option | Default | CSS variable |
-| --- | --- | --- |
-| `fill` | `currentColor` | `--sketch-bg-fill` |
-| `fillStyle` | `hachure` | `--sketch-bg-fill-style` |
-| `fillWeight` | `0.4` | `--sketch-bg-fill-weight` |
-| `hachureGap` | `4` | `--sketch-bg-hachure-gap` |
-| `hachureAngle` | `-45` | `--sketch-bg-hachure-angle` |
-| `stroke` | `transparent` | `--sketch-bg-stroke` |
-| `opacity` | `0.5` | `--sketch-bg-opacity` |
+| Option         | Default        | CSS variable                |
+| -------------- | -------------- | --------------------------- |
+| `fill`         | `currentColor` | `--sketch-bg-fill`          |
+| `fillStyle`    | `hachure`      | `--sketch-bg-fill-style`    |
+| `fillWeight`   | `0.4`          | `--sketch-bg-fill-weight`   |
+| `hachureGap`   | `4`            | `--sketch-bg-hachure-gap`   |
+| `hachureAngle` | `-45`          | `--sketch-bg-hachure-angle` |
+| `stroke`       | `transparent`  | `--sketch-bg-stroke`        |
+| `opacity`      | `0.5`          | `--sketch-bg-opacity`       |
 
 ## CSS variables
 
@@ -110,23 +110,166 @@ const sketchBg = useSketchBg({ hachureGap: 6 });
 </div>
 ```
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `--sketch-seed` | `"20260828"` | Base seed, overriding the provider for the subtree. Quote it, because CSS minifiers round bare numbers to six significant digits. |
-| `--sketch-roughness` | `1.1` | How far strokes stray from the ideal path. |
-| `--sketch-bowing` | `1.4` | How much straight lines bend. |
-| `--sketch-stroke` | `currentColor` | Stroke colour of the outline. |
-| `--sketch-stroke-width` | `1.6` | Stroke width in pixels. |
-| `--sketch-disable-multi-stroke` | `true` | Draw one pass instead of the doubled pencil pass. |
-| `--sketch-preserve-vertices` | `true` | Keep corners anchored to the layout box. |
-| `--sketch-fill` | — | Fill colour, also used by the CSS fill transition. |
-| `--sketch-fill-style` | `solid` | RoughJS fill style, such as solid, hachure or zigzag. |
-| `--sketch-fill-weight` | — | Thickness of each fill stroke for hatched styles. |
-| `--sketch-hachure-gap` | — | Distance between hachure strokes. |
-| `--sketch-hachure-angle` | — | Angle of the hachure lines in degrees. |
-| `--sketch-dash` | `none` | CSS stroke-dasharray on the outline. |
-| `--sketch-dash-animation` | `none` | CSS animation shorthand, used by the boil and alternate keyframes. |
-| `--sketch-fill-opacity` | `1` | CSS fill-opacity on the drawn path, transitioned over 150ms. |
+| Variable                        | Default        | Description                                                                                                                       |
+| ------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `--sketch-seed`                 | `"20260828"`   | Base seed, overriding the provider for the subtree. Quote it, because CSS minifiers round bare numbers to six significant digits. |
+| `--sketch-roughness`            | `1.1`          | How far strokes stray from the ideal path.                                                                                        |
+| `--sketch-bowing`               | `1.4`          | How much straight lines bend.                                                                                                     |
+| `--sketch-stroke`               | `currentColor` | Stroke colour of the outline.                                                                                                     |
+| `--sketch-stroke-width`         | `1.6`          | Stroke width in pixels.                                                                                                           |
+| `--sketch-disable-multi-stroke` | `true`         | Draw one pass instead of the doubled pencil pass.                                                                                 |
+| `--sketch-preserve-vertices`    | `true`         | Keep corners anchored to the layout box.                                                                                          |
+| `--sketch-fill`                 | —              | Fill colour, also used by the CSS fill transition.                                                                                |
+| `--sketch-fill-style`           | `solid`        | RoughJS fill style, such as solid, hachure or zigzag.                                                                             |
+| `--sketch-fill-weight`          | —              | Thickness of each fill stroke for hatched styles.                                                                                 |
+| `--sketch-hachure-gap`          | —              | Distance between hachure strokes.                                                                                                 |
+| `--sketch-hachure-angle`        | —              | Angle of the hachure lines in degrees.                                                                                            |
+| `--sketch-dash`                 | `none`         | CSS stroke-dasharray on the outline.                                                                                              |
+| `--sketch-dash-animation`       | `none`         | CSS animation shorthand, used by the boil and alternate keyframes.                                                                |
+| `--sketch-fill-opacity`         | `1`            | CSS fill-opacity on the drawn path, transitioned over 150ms.                                                                      |
+
+## Animations
+
+`sketch.css` ships five keyframes. They are global, so any element can use them through `--sketch-dash-animation`, an `animation` shorthand, or a Tailwind arbitrary `animate-[…]` value. They arrive with `sketch-provider`, so there is nothing to copy into your own CSS.
+
+| Keyframe                | Applied through                             | Used by                                         |
+| ----------------------- | ------------------------------------------- | ----------------------------------------------- |
+| `sketch-dash-boil`      | `--sketch-dash` + `--sketch-dash-animation` | Ghost Button and Input on hover                 |
+| `sketch-dash-alternate` | `--sketch-dash` + `--sketch-dash-animation` | Toggle while pressed                            |
+| `sketch-icon-wiggle`    | `animate-[…]` on the icon                   | Button on press, Alert and Toast icons on hover |
+| `sketch-avatar-wobble`  | `[animation:…]` on the element              | AvatarGroup on hover                            |
+| `sketch-hatch-reveal`   | `data-sketch-reveal` on an ancestor         | Skeleton                                        |
+
+```css
+@keyframes sketch-dash-boil {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/*
+  Alternating dashes: with a 5/5 dasharray the period is 10, so sampling the
+  -10 sweep at steps(2) swaps dash and gap positions on every other frame.
+*/
+@keyframes sketch-dash-alternate {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes sketch-icon-wiggle {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* The lift ends level and raised, so the hovered face stays up while it is held. */
+@keyframes sketch-avatar-wobble {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  35% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+
+  60% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+
+  80% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+
+  100% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+}
+
+@keyframes sketch-hatch-reveal {
+  0% {
+    --sketch-bg-reveal-lead: 0%;
+    --sketch-bg-reveal-trail: 0%;
+  }
+
+  45%,
+  55% {
+    --sketch-bg-reveal-lead: 100%;
+    --sketch-bg-reveal-trail: 0%;
+  }
+
+  100% {
+    --sketch-bg-reveal-lead: 100%;
+    --sketch-bg-reveal-trail: 100%;
+  }
+}
+```
+
+Use them on your own elements the same way the components do.
+
+```tsx
+<div className="[--sketch-dash:6_4] hover:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]">
+  <Button variant="ghost">Boiling outline</Button>
+</div>
+
+<BxHeart className="hover:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />
+```
+
+`sketch.css` already silences the dash, hatch reveal and avatar wobble under `prefers-reduced-motion`. Animations you add yourself are not covered, so pair them with `motion-reduce:animate-none`.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  [data-sketch-outline] path {
+    animation: none;
+  }
+
+  [data-sketch-reveal] [data-sketch-bg] {
+    animation: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  [data-slot="avatar-group"] > [data-slot="avatar"]:hover {
+    animation: none;
+  }
+}
+```
+
+## Data attributes
+
+`sketch.css` styles these attributes wherever they appear, so they work on your own markup, not only inside the components.
+
+| Attribute             | What it does                                                                                                                                                    |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data-sketch-outline` | Marks the outline svg. Its paths take `--sketch-dash`, `--sketch-dash-animation`, `--sketch-fill` and `--sketch-fill-opacity`, and keep a non-scaling stroke.   |
+| `data-sketch-bg`      | Marks the hachure svg and applies `--sketch-bg-opacity`.                                                                                                        |
+| `data-sketch-reveal`  | Set on an ancestor, it masks the `data-sketch-bg` svg below it and runs `sketch-hatch-reveal` on a 2400ms loop. This is the whole of Skeleton's animation.      |
+| `data-paper`          | Draws a repeating paper texture behind the element through a mask. Accepts `polkadots`, `filled-dots`, `hexagons`, `graph` and `plus`; `default` draws nothing. |
+
+```tsx
+<div className="relative isolate rounded-lg p-4" data-paper="graph">
+  Graph paper behind any element
+</div>
+
+<div className="relative isolate" data-sketch-reveal>
+  <span>Loading</span>
+  <svg aria-hidden="true" data-sketch-bg ref={sketchBg.ref} style={sketchBg.style} />
+</div>
+```
+
+The paper layer is an `::before` pseudo-element at `z-index: -1`, so the element needs `position: relative` and `isolate`. Two variables tune it.
+
+| Variable          | Default   | Description                   |
+| ----------------- | --------- | ----------------------------- |
+| `--paper-pattern` | `#9c92ac` | Colour of the texture.        |
+| `--paper-opacity` | `0.4`     | Opacity of the texture layer. |
+
+The reveal mask is driven by two registered custom properties, `--sketch-bg-reveal-lead` and `--sketch-bg-reveal-trail`. They are declared with `@property` as percentages so they can be animated; treat them as internal to the reveal.
 
 ## Option precedence
 

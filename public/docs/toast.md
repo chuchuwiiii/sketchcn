@@ -145,3 +145,17 @@ toast.add({
 - The registry item and route are named `toast`; `Toaster` is the component you mount.
 - Hovering a toast wiggles its icon, unless the user prefers reduced motion.
 - A `loading` toast never times out on its own; close or update it yourself, or use `toast.promise`.
+
+## Animation
+
+Hovering a toast wiggles its icon with the `sketch-icon-wiggle` keyframe from `sketch.css`, and a `loading` toast spins its icon instead.
+
+```tsx
+"group-hover/toast:[&_svg]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:group-hover/toast:[&_svg]:animate-none"
+```
+
+The `variant` prop sets `data-paper` on the toast, so `--paper-pattern` and `--paper-opacity` tune the texture.
+
+```tsx
+toast("Saved", { variant: "graph" });
+```

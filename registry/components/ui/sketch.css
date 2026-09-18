@@ -125,21 +125,12 @@
   --paper-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-/*
-  Hand-drawn "boil": two positions, half a dash period apart, held 0.5s each.
-  steps(2) samples progress at 0 and 0.5, so the -10 endpoint (one full
-  --sketch-dash period, which would land back where it started) is never shown.
-*/
 @keyframes sketch-dash-boil {
   to {
     stroke-dashoffset: -10;
   }
 }
 
-/*
-  Alternating dashes: with a 5/5 dasharray the period is 10, so sampling the
-  -10 sweep at steps(2) swaps dash and gap positions on every other frame.
-*/
 @keyframes sketch-dash-alternate {
   to {
     stroke-dashoffset: -10;
@@ -157,7 +148,6 @@
   }
 }
 
-/* The lift ends level and raised, so the hovered face stays up while it is held. */
 @keyframes sketch-avatar-wobble {
   0% {
     transform: translateY(0) rotate(0deg);
