@@ -1,0 +1,126 @@
+import {
+	ToggleFilterDemo,
+	ToggleToolbarDemo,
+} from "../components/demos/toggle-demos";
+
+# Toggle
+
+A pressable Base UI toggle styled with shadcn conventions. Use it for a single on/off control that lives in a toolbar, not in a form.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/toggle.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { Bold } from "@boxicons/react";
+import { Toggle } from "@/components/ui/toggle";
+
+export function BoldToggle() {
+  return (
+    <Toggle aria-label="Bold" defaultPressed>
+      <Bold />
+      Bold
+    </Toggle>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "outline"` | `"default"` | Outline draws a sketch border even when unpressed. |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Height, padding and icon scale. |
+
+Everything else, including the pressed state props, is forwarded to the Base UI `Toggle` primitive. The component also exports `toggleVariants`, `TOGGLE_VARIANTS` and `TOGGLE_SIZES`.
+
+## Examples
+
+### Formatting toolbar
+
+<ToggleToolbarDemo />
+
+```TSX
+import { Toggle } from "@/components/ui/toggle";
+
+const TEXT_MARKS = [
+  { value: "bold", label: "Bold", Icon: Bold },
+  { value: "italic", label: "Italic", Icon: Italic },
+  { value: "underline", label: "Underline", Icon: TextUnderline },
+];
+
+export function TextToolbar() {
+  const [marks, setMarks] = useState<string[]>(["bold"]);
+
+  function toggleMark(value: string, pressed: boolean) {
+    setMarks((current) => {
+      if (pressed) {
+        return [...current, value];
+      }
+
+      return current.filter((mark) => mark !== value);
+    });
+  }
+
+  return (
+    <div className="flex gap-1">
+      {TEXT_MARKS.map(({ value, label, Icon }) => (
+        <Toggle
+          key={value}
+          variant="outline"
+          size="sm"
+          aria-label={label}
+          pressed={marks.includes(value)}
+          onPressedChange={(pressed) => toggleMark(value, pressed)}
+        >
+          <Icon />
+        </Toggle>
+      ))}
+    </div>
+  );
+}
+```
+
+### Controlled filter
+
+<ToggleFilterDemo />
+
+```TSX
+import { Toggle } from "@/components/ui/toggle";
+
+export function DraftsFilter() {
+  const [showDrafts, setShowDrafts] = useState(false);
+
+  return (
+    <Toggle pressed={showDrafts} onPressedChange={setShowDrafts}>
+      Show drafts
+    </Toggle>
+  );
+}
+```
+
+## Animation
+
+A pressed toggle dashes its outline and alternates the dashes with the `sketch-dash-alternate` keyframe from `sketch.css`, so the border reads as redrawn by hand.
+
+```TSX
+"data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]"
+```
+
+Hovering raises the fill instead, through `--sketch-fill-opacity`.
+
+```TSX
+"hover:[--sketch-fill-opacity:0.08] data-pressed:[--sketch-fill-opacity:0.14]"
+```
+
+```TSX
+<Toggle className="data-pressed:[--sketch-dash-animation:none]">Quiet</Toggle>
+```

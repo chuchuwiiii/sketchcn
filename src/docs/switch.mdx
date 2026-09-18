@@ -1,0 +1,89 @@
+import {
+	SwitchControlledDemo,
+	SwitchSettingRowDemo,
+} from "../components/demos/switch-demos";
+
+# Switch
+
+A hand-drawn Base UI switch styled with shadcn conventions. Use it for a setting that applies immediately.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/switch.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { Switch } from "@/components/ui/switch";
+
+export function SketchMode() {
+  return <Switch aria-label="Sketch mode" defaultChecked />;
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "default"` | `"default"` | Track and thumb size. |
+
+Everything else, including the checked state props, is forwarded to the Base UI `Switch.Root` primitive. The component also exports `switchVariants` and `SWITCH_SIZES`.
+
+## Examples
+
+### Settings row
+
+<SwitchSettingRowDemo />
+
+```TSX
+import { Switch } from "@/components/ui/switch";
+
+export function SettingRow() {
+  const id = useId();
+
+  return (
+    <div className="flex w-full items-center justify-between gap-4">
+      <div className="flex flex-col">
+        <label htmlFor={id} className="text-sm">
+          Rough edges
+        </label>
+        <span className="text-muted-foreground text-xs">
+          Redraw every outline with a hand-drawn wobble.
+        </span>
+      </div>
+      <Switch id={id} defaultChecked />
+    </div>
+  );
+}
+```
+
+### Controlled
+
+<SwitchControlledDemo />
+
+```TSX
+import { Switch } from "@/components/ui/switch";
+
+export function AutosaveToggle() {
+  const [autosave, setAutosave] = useState(true);
+
+  return (
+    <div className="flex items-center gap-3">
+      <Switch
+        checked={autosave}
+        onCheckedChange={setAutosave}
+        aria-label="Autosave"
+      />
+      <span className="text-sm">
+        Autosave is {autosave ? "on" : "off"}
+      </span>
+    </div>
+  );
+}
+```

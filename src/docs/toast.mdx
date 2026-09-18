@@ -1,0 +1,252 @@
+import {
+	ToastActionDemo,
+	ToastBasicDemo,
+	ToastPaperDemo,
+	ToastPersistentDemo,
+	ToastPromiseDemo,
+	ToastSetupDemo,
+} from "../components/demos/toast-demos";
+
+# Toast
+
+A hand-drawn Base UI toast styled with shadcn conventions. Toasts stack from the bottom right, expand on hover, and can be swiped away.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/toast.json
+```
+
+<Styles />
+
+## Usage
+
+Render `<Toaster />` once near the root of your app. It portals its own viewport, so no other wiring is needed.
+
+```TSX
+import { Toaster } from "@/components/ui/toast";
+
+export function App({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
+}
+```
+
+Then call `toast` from anywhere.
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function SaveButton() {
+  return (
+    <Button
+      onClick={() =>
+        toast.add({
+          type: "success",
+          title: "Sketch saved",
+          description: "Everyone on the board can see it now.",
+        })
+      }
+    >
+      Save sketch
+    </Button>
+  );
+}
+```
+
+## Parts
+
+| Part | Description |
+| --- | --- |
+| `Toaster` | Provider, portal, viewport and toast list in one. Mount it once. |
+| `Toast` | A single outlined toast. |
+| `ToastContent` | Row holding the icon, text and controls. |
+| `ToastTitle` | Accessible name, filled from `title`. |
+| `ToastDescription` | Supporting text, filled from `description`. |
+| `ToastAction` | Action button, rendered from `actionProps`. Defaults to an outline button. |
+| `ToastClose` | Dismiss button. Defaults to a ghost icon button. |
+| `ToastProvider` | Provider only, if you compose the pieces yourself. |
+| `ToastPortal` | Portal only. |
+| `ToastViewport` | Fixed bottom-right stack. |
+
+## Options
+
+Options passed to `toast.add` are the Base UI toast options, with one sketch addition.
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `data` | `{ variant?: PaperVariant }` | — | `variant` draws a paper texture behind the toast. |
+
+`type` picks the leading icon and tint from the sketch icon set.
+
+`PaperVariant` is `"default" | "polkadots" | "hexagons" | "graph" | "plus" | "filled-dots"`.
+
+## Examples
+
+### Setup
+
+<ToastSetupDemo />
+
+```TSX
+import { Toaster } from "@/components/ui/toast";
+
+export function App({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
+}
+```
+
+### Save confirmation
+
+<ToastBasicDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function SaveButton() {
+  return (
+    <Button
+      onClick={() =>
+        toast.add({
+          type: "success",
+          title: "Sketch saved",
+          description: "Everyone on the board can see it now.",
+        })
+      }
+    >
+      Save sketch
+    </Button>
+  );
+}
+```
+
+### Undo an action
+
+<ToastActionDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function DeleteButton() {
+  return (
+    <Button
+      variant="destructive"
+      onClick={() =>
+        toast.add({
+          title: "Sketch deleted",
+          description: "It moves to the bin for 30 days.",
+          actionProps: { children: "Undo", onClick: restoreSketch },
+        })
+      }
+    >
+      Delete sketch
+    </Button>
+  );
+}
+```
+
+### Paper texture
+
+<ToastPaperDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function PublishButton() {
+  return (
+    <Button
+      onClick={() =>
+        toast.add({
+          type: "warning",
+          title: "Running low on space",
+          description: "You have used 92% of your workspace.",
+          data: { variant: "plus" },
+        })
+      }
+    >
+      Publish
+    </Button>
+  );
+}
+```
+
+### Promise
+
+<ToastPromiseDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function ExportButton() {
+  return (
+    <Button
+      onClick={() =>
+        toast.promise(exportSketch(), {
+          loading: "Exporting sketch",
+          success: "Export ready",
+          error: "Export failed",
+        })
+      }
+    >
+      Export PNG
+    </Button>
+  );
+}
+```
+
+### Stays until dismissed
+
+<ToastPersistentDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/toast";
+
+export function ConnectionToast() {
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast.add({
+          type: "warning",
+          title: "You are offline",
+          description: "Changes are queued until the connection is back.",
+          timeout: 0,
+          priority: "high",
+        })
+      }
+    >
+      Go offline
+    </Button>
+  );
+}
+```
+
+## Animation
+
+Hovering a toast wiggles its icon with the `sketch-icon-wiggle` keyframe from `sketch.css`, and a `loading` toast spins its icon instead.
+
+```TSX
+"group-hover/toast:[&_svg]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:group-hover/toast:[&_svg]:animate-none"
+```
+
+The `variant` prop sets `data-paper` on the toast, so `--paper-pattern` and `--paper-opacity` tune the texture.
+
+```TSX
+toast("Saved", { variant: "graph" });
+```

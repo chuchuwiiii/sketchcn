@@ -1,0 +1,149 @@
+import {
+	TooltipBasicDemo,
+	TooltipDelayDemo,
+	TooltipPaperDemo,
+	TooltipSetupDemo,
+	TooltipSideDemo,
+} from "../components/demos/tooltip-demos";
+
+# Tooltip
+
+A hand-drawn Base UI tooltip styled with shadcn conventions. It portals its content, draws its own sketch outline, and can carry any paper texture.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/tooltip.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { Palette } from "@boxicons/react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+export function PaletteButton() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <Button variant="outline" size="icon" aria-label="Palette">
+              <Palette />
+            </Button>
+          }
+        />
+        <TooltipContent>Change the palette</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
+```
+
+## Props
+
+### TooltipProvider
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `delay` | `number` | `200` | Milliseconds to wait before a tooltip opens on hover. |
+
+### TooltipContent
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `PaperVariant` | `"polkadots"` | Paper texture drawn behind the content. |
+
+Positioning stays with Base UI. Only the defaults differ: `side` is `"top"`, `sideOffset` is `8`, `align` is `"center"`.
+
+`Tooltip` and `TooltipTrigger` add nothing; their props are forwarded to the matching Base UI primitives.
+
+## Examples
+
+### Setup
+
+<TooltipSetupDemo />
+
+```TSX
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+export function App({ children }: { children: React.ReactNode }) {
+  return <TooltipProvider>{children}</TooltipProvider>;
+}
+```
+
+### Icon button
+
+<TooltipBasicDemo />
+
+```TSX
+import { Palette } from "@boxicons/react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+export function PaletteButton() {
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button variant="outline" size="icon" aria-label="Palette">
+            <Palette />
+          </Button>
+        }
+      />
+      <TooltipContent>Change the palette</TooltipContent>
+    </Tooltip>
+  );
+}
+```
+
+### Side and offset
+
+<TooltipSideDemo />
+
+```TSX
+<Tooltip>
+  <TooltipTrigger render={<Button variant="outline">Layers</Button>} />
+  <TooltipContent side="right" sideOffset={12}>
+    Show the layer panel
+  </TooltipContent>
+</Tooltip>
+```
+
+### Paper texture
+
+<TooltipPaperDemo />
+
+```TSX
+<Tooltip>
+  <TooltipTrigger render={<Button variant="outline">Grid</Button>} />
+  <TooltipContent variant="graph">Snap strokes to the grid</TooltipContent>
+</Tooltip>
+```
+
+### No delay
+
+<TooltipDelayDemo />
+
+```TSX
+<TooltipProvider delay={0}>
+  <Tooltip>
+    <TooltipTrigger render={<Button variant="outline">Instant</Button>} />
+    <TooltipContent>Opens with no delay</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```

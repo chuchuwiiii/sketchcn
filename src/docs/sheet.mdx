@@ -1,0 +1,123 @@
+import {
+	SheetControlledDemo,
+	SheetFormDemo,
+} from "../components/demos/sheet-demos";
+
+# Sheet
+
+A hand-drawn Base UI sheet styled with shadcn conventions. Same API as Dialog, but it slides in from an edge.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/sheet.json
+```
+
+## Usage
+
+```TSX
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
+export function FiltersSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button variant="outline">Filters</Button>} />
+      <SheetContent side="right">
+        <SheetHeader>
+          <SheetTitle>Filters</SheetTitle>
+          <SheetDescription>Narrow the sketch list.</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+## Parts
+
+`Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetFooter`, `SheetClose`, `SheetOverlay`, `SheetPortal`.
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | Edge the sheet slides in from. |
+| `showCloseButton` | `boolean` | `true` | Hides the corner close button when false. |
+
+Both live on `SheetContent`. All other props are forwarded to the matching Base UI parts.
+
+## Examples
+
+### Form in a sheet
+
+<SheetFormDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Textarea } from "@/components/ui/textarea";
+
+export function EditSketchSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button>Edit details</Button>} />
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit details</SheetTitle>
+          <SheetDescription>Update the sketch without leaving the canvas.</SheetDescription>
+        </SheetHeader>
+        <div className="flex flex-col gap-3 px-4">
+          <Input placeholder="Sketch name" />
+          <Textarea placeholder="What is it for?" />
+        </div>
+        <SheetFooter>
+          <SheetClose render={<Button variant="outline" />}>Cancel</SheetClose>
+          <Button>Save changes</Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}
+```
+
+### Controlled open state
+
+<SheetControlledDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+
+export function FiltersSheet() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Filters
+      </Button>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side="left">
+          <SheetHeader>
+            <SheetTitle>Filters</SheetTitle>
+            <SheetDescription>Narrow the sketches you are looking at.</SheetDescription>
+          </SheetHeader>
+          <SheetFooter>
+            <Button onClick={() => setOpen(false)}>Apply</Button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </>
+  );
+}
+```

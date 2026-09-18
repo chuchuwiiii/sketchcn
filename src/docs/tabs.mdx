@@ -1,0 +1,100 @@
+import {
+	TabsControlledDemo,
+	TabsSettingsDemo,
+} from "../components/demos/tabs-demos";
+
+# Tabs
+
+Hand-drawn Base UI tabs styled with shadcn conventions, in a filled or an underlined style.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/tabs.json
+```
+
+## Usage
+
+```TSX
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+export function PenTabs() {
+  return (
+    <Tabs defaultValue="sketch">
+      <TabsList>
+        <TabsTrigger value="sketch">Sketch</TabsTrigger>
+        <TabsTrigger value="ink">Ink</TabsTrigger>
+      </TabsList>
+      <TabsContent value="sketch">Rough pencil pass.</TabsContent>
+      <TabsContent value="ink">Final inked pass.</TabsContent>
+    </Tabs>
+  );
+}
+```
+
+## Parts and props
+
+| Part | Prop | Type | Default | Description |
+| --- | --- | --- | --- | --- |
+| `TabsList` | `variant` | `"default" \| "line"` | `"default"` | Default fills the list background; line drops it and underlines the active tab. |
+
+Everything else, including `orientation` and the `value` props that pair a trigger with its panel, is forwarded to the matching Base UI `Tabs` parts. A vertical `Tabs` stacks the list down the side and draws the indicator along it. The component also exports `tabsListVariants`.
+
+## Examples
+
+### Settings panels
+
+<TabsSettingsDemo />
+
+```TSX
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+export function AccountSettings() {
+  return (
+    <Tabs defaultValue="profile" className="w-full">
+      <TabsList>
+        <TabsTrigger value="profile">Profile</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="profile" className="flex flex-col gap-2">
+        <Input placeholder="Display name" />
+        <Button className="self-start">Save profile</Button>
+      </TabsContent>
+      <TabsContent value="password" className="flex flex-col gap-2">
+        <Input type="password" placeholder="New password" />
+        <Button className="self-start">Update password</Button>
+      </TabsContent>
+    </Tabs>
+  );
+}
+```
+
+### Controlled from outside
+
+<TabsControlledDemo />
+
+```TSX
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+export function PreviewTabs() {
+  const [tab, setTab] = useState("preview");
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Tabs value={tab} onValueChange={setTab}>
+        <TabsList variant="line">
+          <TabsTrigger value="preview">Preview</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
+        </TabsList>
+        <TabsContent value="preview">A hand-drawn preview.</TabsContent>
+        <TabsContent value="code">The source behind it.</TabsContent>
+      </Tabs>
+      <Button size="sm" variant="outline" onClick={() => setTab("code")}>
+        Jump to code
+      </Button>
+    </div>
+  );
+}
+```

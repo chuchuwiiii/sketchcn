@@ -6,7 +6,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../registry/components/ui/card";
-import { CodeBlock } from "./code-block";
 
 function ShowcaseCardRoot({
 	title,
@@ -56,24 +55,6 @@ function ShowcaseCardRow({
 	);
 }
 
-function ShowcaseCardExample({
-	label,
-	code,
-	children,
-}: {
-	label: string;
-	code: string;
-	children: React.ReactNode;
-}) {
-	return (
-		<div className="flex flex-col gap-2">
-			<span className="text-muted-foreground text-xs">{label}</span>
-			<div className="flex flex-wrap items-center gap-3 p-4">{children}</div>
-			<CodeBlock code={code} className="w-full" />
-		</div>
-	);
-}
-
 function ShowcaseCardNote({
 	href,
 	linkLabel,
@@ -95,6 +76,5 @@ function ShowcaseCardNote({
 
 export const ShowcaseCard = Object.assign(ShowcaseCardRoot, {
 	Row: ShowcaseCardRow,
-	Example: ShowcaseCardExample,
 	Note: ShowcaseCardNote,
 });

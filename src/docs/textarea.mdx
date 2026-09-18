@@ -1,0 +1,88 @@
+import {
+	TextareaCommentFormDemo,
+	TextareaCounterDemo,
+} from "../components/demos/textarea-demos";
+
+# Textarea
+
+A hand-drawn textarea styled with shadcn conventions.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/textarea.json
+```
+
+## Usage
+
+```TSX
+import { Textarea } from "@/components/ui/textarea";
+
+export function NoteField() {
+  return <Textarea placeholder="Describe the sketch" rows={4} />;
+}
+```
+
+## Props
+
+Textarea adds no props of its own. Every prop is forwarded to the native `textarea`.
+
+## Examples
+
+### With a character counter
+
+<TextareaCounterDemo />
+
+```TSX
+import { Textarea } from "@/components/ui/textarea";
+
+const FEEDBACK_LIMIT = 120;
+
+export function FeedbackField() {
+  const [feedback, setFeedback] = useState("");
+
+  return (
+    <div className="flex w-full flex-col gap-1.5">
+      <Textarea
+        value={feedback}
+        maxLength={FEEDBACK_LIMIT}
+        onChange={(event) => setFeedback(event.target.value)}
+        placeholder="What did you think?"
+      />
+      <span className="self-end text-muted-foreground text-xs">
+        {feedback.length}/{FEEDBACK_LIMIT}
+      </span>
+    </div>
+  );
+}
+```
+
+### Comment form
+
+<TextareaCommentFormDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+
+export function CommentForm() {
+  const id = useId();
+
+  return (
+    <form className="flex w-full flex-col gap-2">
+      <label htmlFor={id} className="text-sm">
+        Leave a note
+      </label>
+      <Textarea id={id} rows={4} placeholder="Sketch a longer thought" />
+      <div className="flex justify-end gap-2">
+        <Button variant="ghost" type="reset">
+          Clear
+        </Button>
+        <Button type="submit">Post</Button>
+      </div>
+    </form>
+  );
+}
+```

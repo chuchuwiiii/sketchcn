@@ -1,0 +1,184 @@
+import {
+	AlertActionDemo,
+	AlertBasicDemo,
+	AlertCalmDemo,
+	AlertDestructiveDemo,
+	AlertPaperDemo,
+} from "../components/demos/alert-demos";
+
+# Alert
+
+A hand-drawn alert callout styled with shadcn conventions. Like Card, it can carry a paper texture.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/alert.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { InfoCircle } from "@boxicons/react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+export function FreshInk() {
+  return (
+    <Alert>
+      <InfoCircle />
+      <AlertTitle>Fresh ink</AlertTitle>
+      <AlertDescription>No two outlines match.</AlertDescription>
+    </Alert>
+  );
+}
+```
+
+An `svg` as the first child becomes the leading icon and the grid switches to two columns automatically.
+
+## Parts
+
+| Part | Description |
+| --- | --- |
+| `Alert` | The outlined container with `role="alert"`. |
+| `AlertTitle` | Heading line. |
+| `AlertDescription` | Supporting text. |
+| `AlertAction` | Pinned to the right edge, for a dismiss or undo control. |
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `paper` | `"default" \| "polkadots" \| "hexagons" \| "graph" \| "plus" \| "filled-dots"` | `"default"` | Paper texture drawn behind the content. |
+
+`variant` is the standard `default` and `destructive` pair; destructive tints the drawn border along with the text.
+
+## Examples
+
+### Release note
+
+<AlertBasicDemo />
+
+```TSX
+import { InfoCircle } from "@boxicons/react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+export function ReleaseNote() {
+  return (
+    <Alert>
+      <InfoCircle />
+      <AlertTitle>Sketchcn 1.2 is out</AlertTitle>
+      <AlertDescription>
+        Alerts now draw their own outline with RoughJS.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+### Upload error
+
+<AlertDestructiveDemo />
+
+```TSX
+import { AlertTriangle } from "@boxicons/react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+export function UploadError() {
+  return (
+    <Alert variant="destructive">
+      <AlertTriangle />
+      <AlertTitle>Upload failed</AlertTitle>
+      <AlertDescription>
+        The file is larger than the 5 MB limit.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+### With action
+
+<AlertActionDemo />
+
+```TSX
+import { CheckCircle } from "@boxicons/react";
+import {
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+
+export function DraftSaved() {
+  return (
+    <Alert>
+      <CheckCircle />
+      <AlertTitle>Draft saved</AlertTitle>
+      <AlertDescription>You can keep sketching from any device.</AlertDescription>
+      <AlertAction>
+        <Button size="xs" variant="ghost">
+          Undo
+        </Button>
+      </AlertAction>
+    </Alert>
+  );
+}
+```
+
+### Paper texture
+
+<AlertPaperDemo />
+
+```TSX
+import { AlertTriangle } from "@boxicons/react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+export function MaintenanceNotice() {
+  return (
+    <Alert paper="graph" variant="destructive">
+      <AlertTriangle />
+      <AlertTitle>Scheduled maintenance</AlertTitle>
+      <AlertDescription>
+        Sketches are read-only until 18:00.
+      </AlertDescription>
+    </Alert>
+  );
+}
+```
+
+### Steadier outline
+
+<AlertCalmDemo />
+
+```TSX
+import { Alert, AlertTitle } from "@/components/ui/alert";
+
+export function CalmAlert() {
+  return (
+    <Alert className="[--sketch-roughness:0.4] [--sketch-bowing:0.6]">
+      <AlertTitle>A steadier hand drew this one</AlertTitle>
+    </Alert>
+  );
+}
+```
+
+## Animation
+
+Hovering the alert wiggles its leading icon with the `sketch-icon-wiggle` keyframe from `sketch.css`.
+
+```TSX
+"hover:*:[svg:not([data-sketch-outline])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:hover:*:[svg:not([data-sketch-outline])]:animate-none"
+```
+
+The paper texture is drawn through `data-paper`, so `--paper-pattern` and `--paper-opacity` tune it. Alert already lowers the opacity to keep the text readable.
+
+```TSX
+<Alert paper="graph" className="[--paper-opacity:0.4]">
+  <AlertTitle>Denser paper</AlertTitle>
+</Alert>
+```

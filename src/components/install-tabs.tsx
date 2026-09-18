@@ -8,7 +8,7 @@ import {
 import { highlight } from "../lib/highlighter";
 import { CopyButton } from "./copy-button";
 
-const REGISTRY_URL = "https://sketchcn.chuwii.com/r";
+export const REGISTRY_URL = "https://sketchcn.chuwii.com/r";
 
 const PACKAGE_MANAGERS = [
 	{

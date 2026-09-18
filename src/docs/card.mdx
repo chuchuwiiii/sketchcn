@@ -1,0 +1,167 @@
+import {
+	CardLinkCardDemo,
+	CardSettingsDemo,
+	CardSignInDemo,
+} from "../components/demos/card-demos";
+
+# Card
+
+A hand-drawn card container styled with shadcn conventions. The card body can carry a paper texture behind its content.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/card.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export function SketchCard() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Sketch card</CardTitle>
+        <CardDescription>Rough edges on purpose.</CardDescription>
+      </CardHeader>
+      <CardContent>Every component ships as plain source you own.</CardContent>
+    </Card>
+  );
+}
+```
+
+## Parts
+
+| Part | Description |
+| --- | --- |
+| `Card` | The outlined container. |
+| `CardHeader` | Title, description and action row. |
+| `CardTitle` | Heading text, scales down at `size="sm"`. |
+| `CardDescription` | Muted supporting text. |
+| `CardAction` | Pinned to the top right of the header. |
+| `CardContent` | Main body. |
+| `CardFooter` | Bordered footer strip with a muted background. |
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"default" \| "sm"` | `"default"` | Tightens the `--card-spacing` and the title size. |
+| `variant` | `"default" \| "polkadots" \| "hexagons" \| "graph" \| "plus" \| "filled-dots"` | `"default"` | Paper texture drawn behind the content. |
+
+All other props are forwarded to the underlying `div`.
+
+## Paper variants
+
+```TSX
+<Card variant="graph">
+  <CardHeader>
+    <CardTitle>Graph paper</CardTitle>
+    <CardDescription>Engineering graph paper.</CardDescription>
+  </CardHeader>
+</Card>
+```
+
+| Variant | Look |
+| --- | --- |
+| `default` | Plain card surface. |
+| `polkadots` | Bullet-journal dot paper. |
+| `hexagons` | Hex grid. |
+| `graph` | Engineering graph paper. |
+| `plus` | Scattered plus-sign paper. |
+| `filled-dots` | Fine speckled dot paper. |
+
+## Examples
+
+### Sign-in card
+
+<CardSignInDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+
+export function SignInCard() {
+  return (
+    <Card variant="graph" className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Welcome back</CardTitle>
+        <CardDescription>Sign in to keep sketching.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        <Input type="email" placeholder="hello@chuwii.com" />
+        <Input type="password" placeholder="Password" />
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">Sign in</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+```
+
+### Settings card
+
+<CardSettingsDemo />
+
+```TSX
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+
+export function NotificationsCard() {
+  const id = useId();
+
+  return (
+    <Card size="sm" className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Notifications</CardTitle>
+        <CardDescription>Choose what lands in your inbox.</CardDescription>
+        <CardAction>
+          <Switch id={id} defaultChecked aria-label="Notifications" />
+        </CardAction>
+      </CardHeader>
+      <CardContent className="text-muted-foreground text-sm">
+        Weekly digests only, never more than one per week.
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Card as a link
+
+<CardLinkCardDemo />
+
+```TSX
+import { Link } from "@tanstack/react-router";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+export function ComponentLinkCard() {
+  return (
+    <Link to="/components/$name" params={{ name: "button" }}>
+      <Card className="h-full transition-transform hover:-translate-y-1">
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between gap-2">
+            Button
+            <ArrowRight className="size-4" />
+          </CardTitle>
+          <CardDescription>A hand-drawn Base UI button.</CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
+  );
+}
+```

@@ -1,0 +1,140 @@
+import {
+	ButtonAsLinkDemo,
+	ButtonConfirmDemo,
+	ButtonFormActionsDemo,
+} from "../components/demos/button-demos";
+
+# Button
+
+A hand-drawn Base UI button styled with shadcn conventions. Every button draws its outline (and, for `secondary`, its fill) through RoughJS, so it needs a `SketchProvider` above it in the tree.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/button.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { Button } from "@/components/ui/button";
+
+export function SaveAction() {
+  return <Button onClick={save}>Save sketch</Button>;
+}
+```
+
+## Variants
+
+| Variant | When to use |
+| --- | --- |
+| `default` | Primary action. Filled sketch background. |
+| `outline` | Secondary action on a plain surface. |
+| `secondary` | Muted action, sketch-filled with the secondary color. |
+| `ghost` | Low-emphasis action. Outline boils on hover. |
+| `destructive` | Irreversible actions such as delete. |
+| `link` | Inline text action. Draws a sketch underline instead of a box. |
+
+## Sizes
+
+Text sizes: `xs`, `sm`, `default`, `lg`.
+
+Icon-only sizes: `icon-xs`, `icon-sm`, `icon`, `icon-lg`. Pass an `aria-label` when the button has no text.
+
+```TSX
+<Button size="icon-sm" aria-label="Edit">
+  <Pencil />
+</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "outline" \| "secondary" \| "ghost" \| "destructive" \| "link"` | `"default"` | Visual style. |
+| `size` | `"xs" \| "sm" \| "default" \| "lg" \| "icon-xs" \| "icon-sm" \| "icon" \| "icon-lg"` | `"default"` | Height, padding and icon scale. |
+
+Everything else, including `render` and `disabled`, is forwarded to the Base UI `Button` primitive and documented there.
+
+The component also exports `buttonVariants`, `BUTTON_VARIANTS`, `BUTTON_SIZES` and `ICON_BUTTON_SIZES` for building your own variant lists.
+
+## Examples
+
+### Form actions
+
+<ButtonFormActionsDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+
+export function FormActions() {
+  return (
+    <div className="flex justify-end gap-2">
+      <Button variant="ghost">Cancel</Button>
+      <Button type="submit">
+        <Plus />
+        Save sketch
+      </Button>
+    </div>
+  );
+}
+```
+
+### Rendered as a link with the render prop
+
+<ButtonAsLinkDemo />
+
+```TSX
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+
+export function DocsLink() {
+  return (
+    <Button variant="outline" render={<Link to="/docs" />}>
+      Read the docs
+      <ArrowRight />
+    </Button>
+  );
+}
+```
+
+### Destructive row action
+
+<ButtonConfirmDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+
+export function DeleteRow({ onDelete }: { onDelete: () => void }) {
+  return (
+    <Button variant="destructive" size="sm" onClick={onDelete}>
+      <Trash />
+      Delete
+    </Button>
+  );
+}
+```
+
+## Animation
+
+Two keyframes from `sketch.css`, both applied as Tailwind arbitrary animations.
+
+```TSX
+// Ghost variant: the dashed outline boils while hovered
+"[--sketch-dash:6_4] hover:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]"
+
+// Every variant: the icon wiggles while the button is held
+"active:[&>svg:not([data-sketch-outline]):not([data-sketch-bg])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite]"
+```
+
+Drop either by overriding the variable or the animation on the instance.
+
+```TSX
+<Button variant="ghost" className="hover:[--sketch-dash-animation:none]">
+  Still outline
+</Button>
+```

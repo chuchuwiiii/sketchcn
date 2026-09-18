@@ -1,0 +1,99 @@
+import {
+	SeparatorSectionDemo,
+	SeparatorSignInDemo,
+	SeparatorToolbarDemo,
+} from "../components/demos/separator-demos";
+
+# Separator
+
+A hand-drawn Base UI separator styled with shadcn conventions. It can run horizontally or vertically, and can carry a label in the middle.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/separator.json
+```
+
+## Usage
+
+```TSX
+import { Separator } from "@/components/ui/separator";
+
+<Separator />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"solid" \| "dashed" \| "double"` | `"solid"` | Stroke style. Double draws two parallel lines. |
+| `children` | `ReactNode` | — | Label rendered in the middle, with a line drawn on each side. |
+
+`orientation` behaves as it does in the standard Separator; both directions are drawn with RoughJS.
+
+The component also exports `SEPARATOR_VARIANTS` for building your own variant lists.
+
+## Examples
+
+### Sign-in divider
+
+<SeparatorSignInDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+
+export function SignInForm() {
+  return (
+    <form className="flex w-full max-w-sm flex-col gap-3">
+      <Input type="email" placeholder="you@sketch.app" />
+      <Button type="submit">Continue with email</Button>
+      <Separator>or</Separator>
+      <Button variant="outline" type="button">
+        Continue with GitHub
+      </Button>
+    </form>
+  );
+}
+```
+
+### Inline meta row
+
+<SeparatorToolbarDemo />
+
+```TSX
+import { Separator } from "@/components/ui/separator";
+
+export function ProfileMeta() {
+  return (
+    <div className="flex h-6 items-center gap-3 text-muted-foreground text-sm">
+      <span>12 sketches</span>
+      <Separator orientation="vertical" />
+      <span>3 drafts</span>
+      <Separator orientation="vertical" />
+      <span>Updated today</span>
+    </div>
+  );
+}
+```
+
+### Section break
+
+<SeparatorSectionDemo />
+
+```TSX
+import { Separator } from "@/components/ui/separator";
+
+export function NoteSection() {
+  return (
+    <section className="flex w-full flex-col gap-4">
+      <p className="text-sm">Everything above is the rough draft.</p>
+      <Separator variant="double" />
+      <p className="text-sm">Everything below is the inked version.</p>
+    </section>
+  );
+}
+```

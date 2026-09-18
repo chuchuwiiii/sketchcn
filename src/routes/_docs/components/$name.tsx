@@ -1,11 +1,15 @@
 import { ArrowLeft } from "@boxicons/react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import type { MDXComponents } from "mdx/types";
 import { Button } from "../../../../registry/components/ui/button";
 import { componentSketchCss } from "../../../components/component-css";
-import { findComponentShowcase } from "../../../components/component-showcases";
-import { InstallTabs } from "../../../components/install-tabs";
-import { ShowcaseCard } from "../../../components/showcase-card";
-import { SketchCssCard } from "../../../components/sketch-css-card";
+import {
+	type ComponentShowcase,
+	findComponentShowcase,
+} from "../../../components/component-showcases";
+import { MDX_ELEMENTS } from "../../../components/mdx-components";
+import { SketchCssSection } from "../../../components/sketch-css-section";
+import { findComponentDocContent } from "../../../lib/docs/component-docs";
 import { canonicalUrl, seo } from "../../../lib/seo";
 
 export const Route = createFileRoute("/_docs/components/$name")({
@@ -60,40 +64,32 @@ export const Route = createFileRoute("/_docs/components/$name")({
 	notFoundComponent: ComponentNotFound,
 });
 
+function docComponents(showcase: ComponentShowcase): MDXComponents {
+	const sketchCss = componentSketchCss(showcase.slug);
+
+	return {
+		...MDX_ELEMENTS,
+		Preview: showcase.Showcase,
+		Styles: () =>
+			sketchCss ? (
+				<SketchCssSection css={sketchCss} title={showcase.title} />
+			) : null,
+	};
+}
+
 function ComponentPage() {
 	const { name } = Route.useParams();
 	const showcase = findComponentShowcase(name);
+	const Doc = findComponentDocContent(name);
 
-	if (!showcase) {
+	if (!showcase || !Doc) {
 		return <ComponentNotFound />;
 	}
 
-	const sketchCss = componentSketchCss(showcase.slug);
-
 	return (
-		<div className="mx-auto flex w-full max-w-4xl flex-col gap-6 p-8">
-			<section id="preview" className="scroll-mt-8">
-				<showcase.Showcase />
-			</section>
-			<section id="installation" className="scroll-mt-8">
-				<ShowcaseCard
-					title="Installation"
-					description={`Add ${showcase.title} with the shadcn CLI.`}
-				>
-					<InstallTabs name={showcase.slug} />
-				</ShowcaseCard>
-			</section>
-			{sketchCss && (
-				<section id="styles" className="scroll-mt-8">
-					<SketchCssCard css={sketchCss} title={showcase.title} />
-				</section>
-			)}
-			{showcase.Examples && (
-				<section id="examples" className="scroll-mt-8">
-					<showcase.Examples />
-				</section>
-			)}
-		</div>
+		<article className="mx-auto flex w-full max-w-4xl flex-col gap-4 p-8">
+			<Doc components={docComponents(showcase)} />
+		</article>
 	);
 }
 

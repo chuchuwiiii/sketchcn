@@ -1,0 +1,133 @@
+import {
+	InputLabelledDemo,
+	InputSearchDemo,
+	InputValidationDemo,
+} from "../components/demos/input-demos";
+
+# Input
+
+A hand-drawn Base UI input styled with shadcn conventions.
+
+<Preview />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://sketchcn.chuwii.com/r/input.json
+```
+
+<Styles />
+
+## Usage
+
+```TSX
+import { Input } from "@/components/ui/input";
+
+export function SearchField() {
+  return <Input placeholder="Sketch something" />;
+}
+```
+
+## Props
+
+Input adds no props of its own. Every prop is forwarded to the Base UI `Input` primitive, which documents them.
+
+## States
+
+- Focus draws the outline in the ring colour.
+- `aria-invalid` draws it in the destructive colour.
+- `disabled` drops the opacity and blocks pointer events.
+
+## Examples
+
+### Labelled field with a hint
+
+<InputLabelledDemo />
+
+```TSX
+import { Input } from "@/components/ui/input";
+
+export function EmailField() {
+  const id = useId();
+
+  return (
+    <div className="flex w-full flex-col gap-1.5">
+      <label htmlFor={id} className="text-sm">
+        Email
+      </label>
+      <Input id={id} type="email" placeholder="hello@chuwii.com" />
+      <span className="text-muted-foreground text-xs">
+        We only use this to send you sketches.
+      </span>
+    </div>
+  );
+}
+```
+
+### Search bar
+
+<InputSearchDemo />
+
+```TSX
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+export function SearchBar({ onSearch }: { onSearch: (term: string) => void }) {
+  const [term, setTerm] = useState("");
+
+  return (
+    <div className="flex w-full items-center gap-2">
+      <Input
+        value={term}
+        onChange={(event) => setTerm(event.target.value)}
+        placeholder="Search sketches"
+      />
+      <Button size="icon" aria-label="Search" onClick={() => onSearch(term)}>
+        <Search />
+      </Button>
+    </div>
+  );
+}
+```
+
+### Live validation
+
+<InputValidationDemo />
+
+```TSX
+import { Input } from "@/components/ui/input";
+
+export function UsernameField() {
+  const [username, setUsername] = useState("");
+  const isTooShort = username.length > 0 && username.length < 3;
+
+  return (
+    <div className="flex w-full flex-col gap-1.5">
+      <Input
+        value={username}
+        aria-invalid={isTooShort}
+        onChange={(event) => setUsername(event.target.value)}
+        placeholder="Username"
+      />
+      {isTooShort && (
+        <span className="text-destructive text-xs">
+          Usernames need at least 3 characters.
+        </span>
+      )}
+    </div>
+  );
+}
+```
+
+## Animation
+
+The file-selector outline boils while the field is hovered, using the `sketch-dash-boil` keyframe from `sketch.css`.
+
+```TSX
+// on the svg drawn over the file-selector button
+"group-hover/input:[--sketch-dash:6_4] group-hover/input:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]"
+```
+
+```TSX
+<Input type="file" className="[--sketch-dash-animation:none]" />
+```
