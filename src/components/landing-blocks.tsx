@@ -284,7 +284,12 @@ function TeamBlock() {
 								<TooltipContent>{name}</TooltipContent>
 							</Tooltip>
 						))}
-						<AvatarGroupCount>+4</AvatarGroupCount>
+						<Tooltip>
+							<TooltipTrigger
+								render={<AvatarGroupCount>+4</AvatarGroupCount>}
+							/>
+							<TooltipContent>{"4 more members"}</TooltipContent>
+						</Tooltip>
 					</AvatarGroup>
 				</CardAction>
 			</CardHeader>
