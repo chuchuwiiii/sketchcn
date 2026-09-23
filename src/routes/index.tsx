@@ -32,6 +32,7 @@ import { Tabs, TabsList, TabsTrigger } from "../../registry/components/ui/tabs";
 import { Toggle } from "../../registry/components/ui/toggle";
 import { COMPONENT_SHOWCASES } from "../components/component-showcases";
 import { FloatingComponent } from "../components/floating-component";
+import { LandingBlocks } from "../components/landing-blocks";
 import { SITE, seo } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -45,6 +46,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+	return (
+		<>
+			<Hero />
+			<LandingBlocks />
+		</>
+	);
+}
+
+function Hero() {
 	return (
 		<main className="relative flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden px-6 py-24">
 			<FloatingComponents />
