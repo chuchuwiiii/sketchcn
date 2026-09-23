@@ -76,9 +76,9 @@ const TODOS = [
 ];
 
 const TEAM_MEMBERS = [
-	{ initials: "CW", name: "Chuwong", email: "chu@sketch.cn", role: "owner" },
-	{ initials: "MK", name: "Mali K.", email: "mali@sketch.cn", role: "editor" },
-	{ initials: "TP", name: "Tong P.", email: "tong@sketch.cn", role: "viewer" },
+	{ initials: "CW", name: "Chuwong", email: "chu@chuwii.com", role: "owner" },
+	{ initials: "MK", name: "Mali K.", email: "mali@chuwii.com", role: "editor" },
+	{ initials: "TP", name: "Tong P.", email: "tong@chuwii.com", role: "viewer" },
 ];
 
 const PRODUCT_SIZES = ["S", "M", "L"];
