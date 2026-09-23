@@ -72,6 +72,10 @@
   [data-slot="avatar-group"] > [data-slot="avatar"]:hover {
     animation: none;
   }
+
+  [data-slot="checkbox-indicator"] > svg {
+    animation: none;
+  }
 }
 
 [data-sketch-outline] path[fill]:not([fill="none"]) {
@@ -145,6 +149,24 @@
 
   50% {
     transform: rotate(5deg);
+  }
+}
+
+@keyframes sketch-check-boil {
+  0% {
+    filter: var(--sketch-check-frame-1);
+  }
+
+  33% {
+    filter: var(--sketch-check-frame-2);
+  }
+
+  66% {
+    filter: var(--sketch-check-frame-3);
+  }
+
+  100% {
+    filter: var(--sketch-check-frame-0);
   }
 }
 

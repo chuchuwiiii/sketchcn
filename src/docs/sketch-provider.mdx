@@ -81,7 +81,7 @@ export function Panel({ children }: { children: React.ReactNode }) {
 
 | Option            | Type                         | Default       | Description                                                                                                |
 | ----------------- | ---------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
-| `shape`           | `"rectangle" \| "underline"` | `"rectangle"` | Rectangle follows the element border radius; underline draws a single stroke along the bottom edge.        |
+| `shape`           | `"rectangle" \| "circle" \| "underline" \| "vertical-line"` | `"rectangle"` | Rectangle follows the element border radius; underline and vertical-line draw a single edge stroke. |
 | `id`              | `string`                     | `useId()`     | Seeds the wobble. Pass a stable id when the geometry must not change.                                      |
 | `opacity`         | `number`                     | —             | Applied to the returned svg style.                                                                         |
 | `...roughOptions` | `Partial<Options>`           | —             | Any RoughJS option except `seed`: roughness, bowing, stroke, strokeWidth, strokeLineDash, fill, fillStyle. |
@@ -105,6 +105,14 @@ const sketchBg = useSketchBg({ hachureGap: 6 });
 | `hachureAngle` | `-45`          | `--sketch-bg-hachure-angle` |
 | `stroke`       | `transparent`  | `--sketch-bg-stroke`        |
 | `opacity`      | `0.5`          | `--sketch-bg-opacity`       |
+
+## useSketchSeed
+
+Returns the `seed` of the nearest `SketchProvider`, for effects drawn outside RoughJS that should reshuffle with it.
+
+```TSX
+const seed = useSketchSeed();
+```
 
 ## CSS variables
 

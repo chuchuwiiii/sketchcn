@@ -20,6 +20,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../../registry/components/ui/card";
+import { Checkbox } from "../../registry/components/ui/checkbox";
 import { Input } from "../../registry/components/ui/input";
 import {
 	NativeSelect,
@@ -130,6 +131,13 @@ function FloatingComponents() {
 				<Switch defaultChecked aria-label="Sketch mode" />
 			</FloatingComponent>
 
+			<FloatingComponent className="top-[23%] left-[40%] [--float-drift:8px] [--float-tilt:-6deg] [animation-delay:1.6s] [animation-duration:7.5s] md:hidden">
+				<div className="flex items-center gap-2 text-sm">
+					<Checkbox defaultChecked aria-label="Ship it" />
+					Ship it
+				</div>
+			</FloatingComponent>
+
 			<FloatingComponent className="top-[3%] left-[34%] [--float-drift:-12px] [--float-tilt:9deg] [animation-delay:2s] [animation-duration:8.5s] md:hidden">
 				<Toggle size="sm" variant="outline" defaultPressed>
 					<Bold />
@@ -191,6 +199,13 @@ function FloatingComponents() {
 				<Button variant="outline" size="icon-lg" aria-label="Palette">
 					<Palette />
 				</Button>
+			</FloatingComponent>
+
+			<FloatingComponent className="top-[34%] left-[4%] hidden [--float-drift:-10px] [--float-tilt:6deg] [animation-delay:0.2s] [animation-duration:8s] lg:block">
+				<div className="flex items-center gap-2">
+					<Checkbox defaultChecked aria-label="Looks hand-drawn" />
+					Looks hand-drawn
+				</div>
 			</FloatingComponent>
 
 			<FloatingComponent className="top-[46%] left-[2%] hidden [--float-tilt:-12deg] [animation-delay:2s] [animation-duration:8.5s] 2xl:block">

@@ -62,7 +62,7 @@ const CSS_BOOLEAN_OPTIONS = {
 	preserveVertices: "preserve-vertices",
 } as const;
 
-export function createSeed(seed: number, instanceId: string): number {
+export function createSeed(seed: number, instanceId: string, max = 2_147_483_647): number {
 	let hash = seed;
 
 	for (let index = 0; index < instanceId.length; index += 1) {
@@ -70,7 +70,7 @@ export function createSeed(seed: number, instanceId: string): number {
 		hash |= 0;
 	}
 
-	return (hash >>> 0) % 2_147_483_647 || 1;
+	return (hash >>> 0) % max || 1;
 }
 
 export function getCssSketchOptions(

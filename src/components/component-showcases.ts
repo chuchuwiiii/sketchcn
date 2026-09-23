@@ -3,6 +3,7 @@ import { AlertShowcaseCard } from "./alert-showcase-card";
 import { AvatarShowcaseCard } from "./avatar-showcase-card";
 import { ButtonShowcaseCard } from "./button-showcase-card";
 import { CardShowcaseCard } from "./card-showcase-card";
+import { CheckboxShowcaseCard } from "./checkbox-showcase-card";
 import { DialogShowcaseCard } from "./dialog-showcase-card";
 import { InputShowcaseCard } from "./input-showcase-card";
 import { NativeSelectShowcaseCard } from "./native-select-showcase-card";
@@ -120,6 +121,13 @@ export const COMPONENT_SHOWCASES = [
 		description:
 			"A Base UI switch with hand-drawn style in shadcn conventions.",
 		Showcase: SwitchShowcaseCard,
+	},
+	{
+		slug: "checkbox",
+		title: "Checkbox",
+		description:
+			"A Base UI checkbox with a hand-drawn box and a seeded, wobbling Boxicons tick.",
+		Showcase: CheckboxShowcaseCard,
 	},
 	{
 		slug: "tabs",

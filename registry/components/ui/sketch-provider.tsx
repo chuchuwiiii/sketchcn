@@ -139,6 +139,10 @@ export function useSketchOutline(
   };
 }
 
+export function useSketchSeed(): number {
+  return useSketch().seed;
+}
+
 export function useSketchBg(options: SketchOutlineOptions = {}): SketchOutline {
   return useSketchOutline(options, "bg");
 }
