@@ -7,6 +7,7 @@ import {
 	Package,
 	Send,
 } from "@boxicons/react";
+import { useState } from "react";
 import {
 	Alert,
 	AlertDescription,
@@ -81,7 +82,9 @@ const TEAM_MEMBERS = [
 	{ initials: "TP", name: "Tong P.", email: "tong@chuwii.com", role: "viewer" },
 ];
 
-const PRODUCT_SIZES = ["S", "M", "L"];
+const PRODUCT_SIZES = ["S", "M", "L"] as const;
+
+type ProductSize = (typeof PRODUCT_SIZES)[number];
 
 export function LandingBlocks() {
 	return (
@@ -143,6 +146,8 @@ function LoginBlock() {
 }
 
 function ProductBlock() {
+	const [selectedSize, setSelectedSize] = useState<ProductSize>("M");
+
 	return (
 		<Card variant="polkadots" className="lg:row-span-2">
 			<Card className="mx-(--card-spacing) aspect-4/3 items-center justify-center bg-muted">
@@ -159,7 +164,9 @@ function ProductBlock() {
 						key={size}
 						variant="outline"
 						size="sm"
-						defaultPressed={size === "M"}
+						aria-label={`Size ${size}`}
+						pressed={selectedSize === size}
+						onPressedChange={() => setSelectedSize(size)}
 					>
 						{size}
 					</Toggle>
@@ -241,24 +248,48 @@ function NotificationsBlock() {
 }
 
 function TodoBlock() {
+	const [doneIds, setDoneIds] = useState(
+		() => new Set(TODOS.filter(({ done }) => done).map(({ id }) => id)),
+	);
+
+	const toggleTodo = (id: string, checked: boolean) => {
+		setDoneIds((previous) => {
+			const next = new Set(previous);
+			if (checked) {
+				next.add(id);
+			} else {
+				next.delete(id);
+			}
+			return next;
+		});
+	};
+
 	return (
 		<Card size="sm">
 			<CardHeader>
 				<CardTitle className="text-lg">{"Today"}</CardTitle>
-				<CardDescription>{"2 of 4 done"}</CardDescription>
+				<CardDescription>{`${doneIds.size} of ${TODOS.length} done`}</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-2">
-				{TODOS.map(({ id, label, done }) => (
-					<div key={id} className="flex items-center gap-2">
-						<Checkbox id={`landing-${id}`} defaultChecked={done} />
-						<label
-							htmlFor={`landing-${id}`}
-							className={done ? "text-muted-foreground line-through" : ""}
-						>
-							{label}
-						</label>
-					</div>
-				))}
+				{TODOS.map(({ id, label }) => {
+					const isDone = doneIds.has(id);
+
+					return (
+						<div key={id} className="flex items-center gap-2">
+							<Checkbox
+								id={`landing-${id}`}
+								checked={isDone}
+								onCheckedChange={(checked) => toggleTodo(id, checked)}
+							/>
+							<label
+								htmlFor={`landing-${id}`}
+								className={isDone ? "text-muted-foreground line-through" : ""}
+							>
+								{label}
+							</label>
+						</div>
+					);
+				})}
 			</CardContent>
 		</Card>
 	);
