@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "A Base UI checkbox with a hand-drawn box and a seeded, wobbling Boxicons tick.",
+  "dependencies": [
+    "@base-ui/react",
+    "@boxicons/react",
+    "cn"
+  ],
+  "registryDependencies": [
+    "default",
+    "sketch-provider"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/checkbox.tsx",
+      "content": "\"use client\"\n\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\"\nimport { Check } from \"@boxicons/react\"\nimport { cn } from \"cn\"\nimport { type CSSProperties, useId } from \"react\"\nimport { useSketchOutline, useSketchSeed } from \"./sketch-provider\"\nimport { createSeed } from \"./utils/sketch\"\n\nconst WOBBLE = { FREQUENCY: 0.08, OCTAVES: 2, SCALE: 4.5 }\nconst BOIL_FRAMES = [0, 1, 2, 3] as const\n\ntype CheckFrameStyle = CSSProperties &\n  Record<`--sketch-check-frame-${(typeof BOIL_FRAMES)[number]}`, string>\n\nfunction Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {\n  const boxOutline = useSketchOutline()\n  const instanceId = useId()\n  \n  const baseSeed = createSeed(useSketchSeed(), instanceId, 100_000) * BOIL_FRAMES.length\n  const filterId = `sketch-check-${instanceId.replace(/[^a-zA-Z0-9-]/g, \"\")}`\n  const frameStyle: CheckFrameStyle = {\n    \"--sketch-check-frame-0\": `url(#${filterId}-0)`,\n    \"--sketch-check-frame-1\": `url(#${filterId}-1)`,\n    \"--sketch-check-frame-2\": `url(#${filterId}-2)`,\n    \"--sketch-check-frame-3\": `url(#${filterId}-3)`,\n  }\n\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer relative isolate flex size-4 shrink-0 items-center justify-center rounded-[3px] outline-none transition-colors group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:ring-3 focus-visible:ring-ring/50 data-disabled:cursor-not-allowed data-disabled:opacity-50 *:data-sketch-outline:-z-10 [--sketch-fill:var(--primary)] [--sketch-fill-opacity:0] [--sketch-stroke:var(--primary)] hover:[--sketch-fill-opacity:0.1] aria-invalid:[--sketch-fill:var(--destructive)] aria-invalid:[--sketch-stroke:var(--destructive)] aria-invalid:text-destructive text-primary\",\n        className\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"pointer-events-none absolute -top-1.5 -right-1.5 bottom-0.5 left-0.5 [clip-path:inset(-4px)] transition-[clip-path,opacity] duration-200 ease-out data-ending-style:opacity-0 data-starting-style:[clip-path:inset(-4px_100%_-4px_-4px)] motion-reduce:transition-none\"\n        style={frameStyle}\n      >\n        <svg aria-hidden=\"true\" className=\"absolute size-0\">\n          {BOIL_FRAMES.map((frame) => (\n            <filter\n              key={frame}\n              id={`${filterId}-${frame}`}\n              x=\"-20%\"\n              y=\"-20%\"\n              width=\"140%\"\n              height=\"140%\"\n            >\n              <feTurbulence\n                type=\"fractalNoise\"\n                baseFrequency={WOBBLE.FREQUENCY}\n                numOctaves={WOBBLE.OCTAVES}\n                seed={baseSeed + frame}\n              />\n              <feDisplacementMap in=\"SourceGraphic\" scale={WOBBLE.SCALE} />\n            </filter>\n          ))}\n        </svg>\n        <Check\n          aria-hidden=\"true\"\n          width=\"100%\"\n          height=\"100%\"\n          className=\"filter-(--sketch-check-frame-0) animate-[sketch-check-boil_1200ms_steps(1)_infinite]\"\n        />\n      </CheckboxPrimitive.Indicator>\n      <svg\n        aria-hidden=\"true\"\n        data-sketch-outline\n        ref={boxOutline.ref}\n        style={boxOutline.style}\n      />\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
