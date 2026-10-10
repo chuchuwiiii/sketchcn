@@ -1,12 +1,14 @@
 import { createContext, type CSSProperties, type Ref } from "react";
 import type { Options } from "roughjs/bin/core";
 
-export const DEFAULT_SEED = 20_260_828;
-export const DEFAULT_STROKE_WIDTH = 1.6;
-export const MIN_STROKE_WIDTH = 1;
-export const WOBBLE_INSET = 2;
-export const DEFAULT_BOWING = 1;
-export const BOW_REFERENCE_LENGTH = 600;
+export const SKETCH_CONFIGS = {
+	DEFAULT_SEED: 20_260_828,
+	DEFAULT_STROKE_WIDTH: 1.6,
+	MIN_STROKE_WIDTH: 1,
+	WOBBLE_INSET: 2,
+	DEFAULT_BOWING: 1,
+	BOW_REFERENCE_LENGTH: 600,
+} as const;
 
 export const PAPER_VARIANTS = [
 	"default",
@@ -134,7 +136,8 @@ export function getScaledBowing(
 	const longestEdge = Math.max(width, height);
 
 	return (
-		(bowing ?? DEFAULT_BOWING) * Math.min(1, BOW_REFERENCE_LENGTH / longestEdge)
+		(bowing ?? SKETCH_CONFIGS.DEFAULT_BOWING) *
+		Math.min(1, SKETCH_CONFIGS.BOW_REFERENCE_LENGTH / longestEdge)
 	);
 }
 

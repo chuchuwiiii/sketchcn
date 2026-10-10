@@ -17,21 +17,18 @@ import {
   createSeed,
   createUnderlinePath,
   createVerticalLinePath,
-  DEFAULT_SEED,
-  DEFAULT_STROKE_WIDTH,
   getBorderRadius,
   getCssSketchOptions,
   getCssSketchSeed,
   getPaddingBoxSize,
   getScaledBowing,
-  MIN_STROKE_WIDTH,
+  SKETCH_CONFIGS,
   SketchContext,
   type SketchOutline,
   type SketchOutlineOptions,
   type SketchScope,
   type SketchShape,
   type SketchTheme,
-  WOBBLE_INSET,
 } from "./utils/sketch";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -44,7 +41,7 @@ export type SketchProviderProps = {
 export { PAPER_VARIANTS } from "./utils/sketch";
 export type { PaperVariant, SketchOutline, SketchOutlineOptions, SketchScope, SketchShape } from "./utils/sketch";
 
-export function SketchProvider({ children, seed = DEFAULT_SEED }: SketchProviderProps) {
+export function SketchProvider({ children, seed = SKETCH_CONFIGS.DEFAULT_SEED }: SketchProviderProps) {
   const value = useMemo(() => ({ seed }), [seed]);
 
   return <SketchContext.Provider value={value}>{children}</SketchContext.Provider>;
@@ -83,8 +80,8 @@ export function useSketchOutline(
         seed: createSeed(getCssSketchSeed(target, scope) ?? theme.seed, instanceId),
       };
       const strokeWidth = Math.max(
-        MIN_STROKE_WIDTH,
-        drawingOptions.strokeWidth ?? DEFAULT_STROKE_WIDTH,
+        SKETCH_CONFIGS.MIN_STROKE_WIDTH,
+        drawingOptions.strokeWidth ?? SKETCH_CONFIGS.DEFAULT_STROKE_WIDTH,
       );
       const path = getSketchPath(shape, target, width, height, strokeWidth);
       const drawn = drawing.path(path, {
@@ -202,11 +199,15 @@ function getSketchPath(
     return createVerticalLinePath(width, height, strokeWidth);
   }
 
+  /**
+   *  Roughjs draws wobbly line which can stick out the box. Chrome keeps overflow visible, safari cuts it off.
+   *  Inset makes sure wobble stays inside the box
+   */
   return createRoundedRectanglePath(
     width,
     height,
     getBorderRadius(target),
-    strokeWidth + WOBBLE_INSET,
+    strokeWidth + SKETCH_CONFIGS.WOBBLE_INSET, 
   );
 }
 
