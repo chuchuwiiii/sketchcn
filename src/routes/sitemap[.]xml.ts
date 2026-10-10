@@ -8,6 +8,7 @@ const STATIC_PATHS = [
 	"/sketch-styles",
 	"/playground",
 	"/components",
+	"/changelog",
 ];
 
 function urlEntry(path: string) {

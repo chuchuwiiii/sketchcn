@@ -4,6 +4,7 @@ import {
 	Heart,
 	InfoCircle,
 	Palette,
+	Sparkles,
 	Star,
 } from "@boxicons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -33,6 +34,7 @@ import { Toggle } from "../../registry/components/ui/toggle";
 import { COMPONENT_SHOWCASES } from "../components/component-showcases";
 import { FloatingComponent } from "../components/floating-component";
 import { LandingBlocks } from "../components/landing-blocks";
+import { LATEST_VERSION } from "../lib/changelog";
 import { SITE, seo } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -59,6 +61,7 @@ function Hero() {
 		<main className="relative flex min-h-[calc(100svh-4.5rem)] flex-col items-center justify-center overflow-hidden px-6 py-24">
 			<FloatingComponents />
 			<div className="relative z-10 flex flex-col items-center gap-6 text-center">
+				{LATEST_VERSION && <WhatsNewPill version={LATEST_VERSION} />}
 				<div className="flex animate-wobble items-center gap-3 motion-reduce:animate-none sm:gap-5">
 					<img
 						src="/logo_no_bg.svg"
@@ -101,6 +104,22 @@ function Hero() {
 				</a>
 			</div>
 		</main>
+	);
+}
+
+function WhatsNewPill({ version }: { version: string }) {
+	return (
+		<Link to="/changelog">
+			<Button
+				size="sm"
+				variant="outline"
+				className="rounded-full text-muted-foreground hover:text-foreground"
+			>
+				<Sparkles className="text-primary group-hover/button:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />
+				{`New in ${version}`}
+				<ArrowRight className="transition-transform duration-200 group-hover/button:translate-x-0.5 motion-reduce:transition-none" />
+			</Button>
+		</Link>
 	);
 }
 

@@ -14,6 +14,7 @@ import { Route as DocsRouteImport } from './routes/_docs'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as DocsChangelogRouteImport } from './routes/_docs/changelog'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
 import { Route as DocsPlaygroundRouteImport } from './routes/_docs/playground'
 import { Route as DocsSketchStylesRouteImport } from './routes/_docs/sketch-styles'
@@ -44,6 +45,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DocsChangelogRoute = DocsChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
+  getParentRoute: () => DocsRoute,
 } as any)
 const DocsDocsRoute = DocsDocsRouteImport.update({
   id: '/docs',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/changelog': typeof DocsChangelogRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/sketch-styles': typeof DocsSketchStylesRoute
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/changelog': typeof DocsChangelogRoute
   '/docs': typeof DocsDocsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/sketch-styles': typeof DocsSketchStylesRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/llms.txt': typeof LlmsDottxtRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_docs/changelog': typeof DocsChangelogRoute
   '/_docs/docs': typeof DocsDocsRoute
   '/_docs/playground': typeof DocsPlaygroundRoute
   '/_docs/sketch-styles': typeof DocsSketchStylesRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/changelog'
     | '/docs'
     | '/playground'
     | '/sketch-styles'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/changelog'
     | '/docs'
     | '/playground'
     | '/sketch-styles'
@@ -146,6 +157,7 @@ export interface FileRouteTypes {
     | '/llms.txt'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/_docs/changelog'
     | '/_docs/docs'
     | '/_docs/playground'
     | '/_docs/sketch-styles'
@@ -200,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_docs/changelog': {
+      id: '/_docs/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof DocsChangelogRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/_docs/docs': {
       id: '/_docs/docs'
       path: '/docs'
@@ -246,6 +265,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface DocsRouteChildren {
+  DocsChangelogRoute: typeof DocsChangelogRoute
   DocsDocsRoute: typeof DocsDocsRoute
   DocsPlaygroundRoute: typeof DocsPlaygroundRoute
   DocsSketchStylesRoute: typeof DocsSketchStylesRoute
@@ -254,6 +274,7 @@ interface DocsRouteChildren {
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
+  DocsChangelogRoute: DocsChangelogRoute,
   DocsDocsRoute: DocsDocsRoute,
   DocsPlaygroundRoute: DocsPlaygroundRoute,
   DocsSketchStylesRoute: DocsSketchStylesRoute,

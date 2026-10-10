@@ -1,4 +1,11 @@
-import { Book, ComponentIcon, Home, Layers, Slider } from "@boxicons/react";
+import {
+	Book,
+	ComponentIcon,
+	History,
+	Home,
+	Layers,
+	Slider,
+} from "@boxicons/react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
@@ -108,6 +115,15 @@ export function DocsSidebar() {
 								>
 									<Slider />
 									<span>Playground</span>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									isActive={pathname === "/changelog"}
+									render={<Link to="/changelog" />}
+								>
+									<History />
+									<span>Changelog</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							<SidebarMenuItem collapsible defaultOpen>
