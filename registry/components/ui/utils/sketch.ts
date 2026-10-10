@@ -4,6 +4,7 @@ import type { Options } from "roughjs/bin/core";
 export const DEFAULT_SEED = 20_260_828;
 export const DEFAULT_STROKE_WIDTH = 1.6;
 export const MIN_STROKE_WIDTH = 1;
+export const WOBBLE_INSET = 2;
 export const DEFAULT_BOWING = 1;
 export const BOW_REFERENCE_LENGTH = 600;
 

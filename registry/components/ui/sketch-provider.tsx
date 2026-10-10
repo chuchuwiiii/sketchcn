@@ -31,6 +31,7 @@ import {
   type SketchScope,
   type SketchShape,
   type SketchTheme,
+  WOBBLE_INSET,
 } from "./utils/sketch";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -201,7 +202,12 @@ function getSketchPath(
     return createVerticalLinePath(width, height, strokeWidth);
   }
 
-  return createRoundedRectanglePath(width, height, getBorderRadius(target), strokeWidth);
+  return createRoundedRectanglePath(
+    width,
+    height,
+    getBorderRadius(target),
+    strokeWidth + WOBBLE_INSET,
+  );
 }
 
 function useSketch(): SketchTheme {
