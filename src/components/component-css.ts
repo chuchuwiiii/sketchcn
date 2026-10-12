@@ -14,7 +14,7 @@ const SKETCH_CSS_BLOCKS: Record<string, readonly string[]> = {
 		FILL_TRANSITION,
 	],
 	input: [DASH_WIRING, "@keyframes sketch-dash-boil"],
-	toggle: [DASH_WIRING, "@keyframes sketch-dash-alternate", FILL_TRANSITION],
+	toggle: [DASH_WIRING, "@keyframes sketch-dash-boil", FILL_TRANSITION],
 	switch: [FILL_TRANSITION],
 	checkbox: [FILL_TRANSITION, "@keyframes sketch-check-boil"],
 	avatar: ["@keyframes sketch-avatar-wobble"],

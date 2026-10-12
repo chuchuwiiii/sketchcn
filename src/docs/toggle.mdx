@@ -111,10 +111,10 @@ export function DraftsFilter() {
 
 ## Animation
 
-A pressed toggle dashes its outline and alternates the dashes with the `sketch-dash-alternate` keyframe from `sketch.css`, so the border reads as redrawn by hand.
+A pressed toggle dashes its outline and swaps dashes and gaps with the `sketch-dash-boil` keyframe from `sketch.css`, so the border reads as redrawn by hand.
 
 ```TSX
-"data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]"
+"data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]"
 ```
 
 Hovering raises the fill instead, through `--sketch-fill-opacity`.

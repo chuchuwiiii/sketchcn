@@ -1,6 +1,4 @@
-import {
-	SketchProviderComponentsDemo,
-} from "../components/demos/sketch-provider-demos";
+import { SketchProviderComponentsDemo } from "../components/demos/sketch-provider-demos";
 
 # Sketch Provider
 
@@ -79,12 +77,12 @@ export function Panel({ children }: { children: React.ReactNode }) {
 }
 ```
 
-| Option            | Type                         | Default       | Description                                                                                                |
-| ----------------- | ---------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
-| `shape`           | `"rectangle" \| "circle" \| "underline" \| "vertical-line"` | `"rectangle"` | Rectangle follows the element border radius; underline and vertical-line draw a single edge stroke. |
-| `id`              | `string`                     | `useId()`     | Seeds the wobble. Pass a stable id when the geometry must not change.                                      |
-| `opacity`         | `number`                     | —             | Applied to the returned svg style.                                                                         |
-| `...roughOptions` | `Partial<Options>`           | —             | Any RoughJS option except `seed`: roughness, bowing, stroke, strokeWidth, strokeLineDash, fill, fillStyle. |
+| Option            | Type                                                        | Default       | Description                                                                                                |
+| ----------------- | ----------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------- |
+| `shape`           | `"rectangle" \| "circle" \| "underline" \| "vertical-line"` | `"rectangle"` | Rectangle follows the element border radius; underline and vertical-line draw a single edge stroke.        |
+| `id`              | `string`                                                    | `useId()`     | Seeds the wobble. Pass a stable id when the geometry must not change.                                      |
+| `opacity`         | `number`                                                    | —             | Applied to the returned svg style.                                                                         |
+| `...roughOptions` | `Partial<Options>`                                          | —             | Any RoughJS option except `seed`: roughness, bowing, stroke, strokeWidth, strokeLineDash, fill, fillStyle. |
 
 The outline is measured from the padding box and redrawn whenever the element resizes or its class or style attribute changes.
 
@@ -139,33 +137,22 @@ const seed = useSketchSeed();
 | `--sketch-hachure-gap`          | —              | Distance between hachure strokes.                                                                                                 |
 | `--sketch-hachure-angle`        | —              | Angle of the hachure lines in degrees.                                                                                            |
 | `--sketch-dash`                 | `none`         | CSS stroke-dasharray on the outline.                                                                                              |
-| `--sketch-dash-animation`       | `none`         | CSS animation shorthand, used by the boil and alternate keyframes.                                                                |
+| `--sketch-dash-animation`       | `none`         | CSS animation shorthand, used by the boil keyframe.                                                                               |
 | `--sketch-fill-opacity`         | `1`            | CSS fill-opacity on the drawn path, transitioned over 150ms.                                                                      |
 
 ## Animations
 
-`sketch.css` ships five keyframes. They are global, so any element can use them through `--sketch-dash-animation`, an `animation` shorthand, or a Tailwind arbitrary `animate-[…]` value. They arrive with `sketch-provider`, so there is nothing to copy into your own CSS.
+`sketch.css` ships four keyframes. They are global, so any element can use them through `--sketch-dash-animation`, an `animation` shorthand, or a Tailwind arbitrary `animate-[…]` value. They arrive with `sketch-provider`, so there is nothing to copy into your own CSS.
 
-| Keyframe                | Applied through                             | Used by                                         |
-| ----------------------- | ------------------------------------------- | ----------------------------------------------- |
-| `sketch-dash-boil`      | `--sketch-dash` + `--sketch-dash-animation` | Ghost Button and Input on hover                 |
-| `sketch-dash-alternate` | `--sketch-dash` + `--sketch-dash-animation` | Toggle while pressed                            |
-| `sketch-icon-wiggle`    | `animate-[…]` on the icon                   | Button on press, Alert and Toast icons on hover |
-| `sketch-avatar-wobble`  | `[animation:…]` on the element              | AvatarGroup on hover                            |
-| `sketch-hatch-reveal`   | `data-sketch-reveal` on an ancestor         | Skeleton                                        |
+| Keyframe               | Applied through                             | Used by                                         |
+| ---------------------- | ------------------------------------------- | ----------------------------------------------- |
+| `sketch-dash-boil`     | `--sketch-dash` + `--sketch-dash-animation` | Ghost Button, Input on hover, pressed Toggle    |
+| `sketch-icon-wiggle`   | `animate-[…]` on the icon                   | Button on press, Alert and Toast icons on hover |
+| `sketch-avatar-wobble` | `[animation:…]` on the element              | AvatarGroup on hover                            |
+| `sketch-hatch-reveal`  | `data-sketch-reveal` on an ancestor         | Skeleton                                        |
 
 ```css
 @keyframes sketch-dash-boil {
-  to {
-    stroke-dashoffset: -10;
-  }
-}
-
-/*
-  Alternating dashes: with a 5/5 dasharray the period is 10, so sampling the
-  -10 sweep at steps(2) swaps dash and gap positions on every other frame.
-*/
-@keyframes sketch-dash-alternate {
   to {
     stroke-dashoffset: -10;
   }

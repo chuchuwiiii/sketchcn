@@ -135,12 +135,6 @@
   }
 }
 
-@keyframes sketch-dash-alternate {
-  to {
-    stroke-dashoffset: -10;
-  }
-}
-
 @keyframes sketch-icon-wiggle {
   0%,
   100% {

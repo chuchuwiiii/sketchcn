@@ -87,12 +87,6 @@ const KEYFRAMES_SNIPPET = `@keyframes sketch-dash-boil {
   }
 }
 
-@keyframes sketch-dash-alternate {
-  to {
-    stroke-dashoffset: -10;
-  }
-}
-
 @keyframes sketch-icon-wiggle {
   0%,
   100% {
@@ -371,7 +365,7 @@ const CSS_VARIABLES = [
 		type: "string",
 		defaultValue: "none",
 		description:
-			"CSS animation shorthand for the outline, used by the boil and alternate keyframes.",
+			"CSS animation shorthand for the outline, used by the boil keyframe.",
 	},
 	{
 		name: "--sketch-fill-opacity",
@@ -388,15 +382,7 @@ const KEYFRAMES = [
 		defaultValue: "1s steps(2) infinite",
 		cssVariable: "--sketch-dash-animation",
 		description:
-			"Shifts the dash offset by one full period in two steps, so the outline reads as redrawn by hand. Needs --sketch-dash set. Used by the ghost Button and the Input file selector on hover.",
-	},
-	{
-		name: "sketch-dash-alternate",
-		type: "outline dash",
-		defaultValue: "1s steps(2) infinite",
-		cssVariable: "--sketch-dash-animation",
-		description:
-			"The same sweep against a 5 5 dasharray, so dashes and gaps swap places every frame. Used by Toggle while pressed.",
+			"Shifts the dash offset by one full period in two steps, so the outline reads as redrawn by hand. Needs --sketch-dash set. With a 6 4 dash the outline jitters; with 5 5 the dashes and gaps swap places. Used by the ghost Button, the Input file selector on hover, and Toggle while pressed.",
 	},
 	{
 		name: "sketch-icon-wiggle",
@@ -593,14 +579,14 @@ const CSS_VARIABLE_EXAMPLES: readonly CssVariableRow[] = [
 		name: "--sketch-dash-animation",
 		examples: [
 			{
-				value: "sketch-dash-boil 1s steps(2) infinite",
+				value: "boil with dash 6 4",
 				className:
 					"[--sketch-dash:6_4] [--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]",
 			},
 			{
-				value: "sketch-dash-alternate 1s steps(2) infinite",
+				value: "boil with dash 5 5",
 				className:
-					"[--sketch-dash:5_5] [--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]",
+					"[--sketch-dash:5_5] [--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]",
 			},
 		],
 	},
@@ -650,11 +636,6 @@ const KEYFRAME_PREVIEWS = [
 		name: "sketch-dash-boil",
 		className:
 			"[--sketch-dash:6_4] [--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]",
-	},
-	{
-		name: "sketch-dash-alternate",
-		className:
-			"[--sketch-dash:5_5] [--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]",
 	},
 	{
 		name: "sketch-avatar-wobble",
@@ -826,7 +807,7 @@ function DocsPage() {
 				<DocsSection
 					id="animations"
 					title="Animations"
-					description="sketch.css ships five keyframes. They are global, so any element can use them through --sketch-dash-animation, an animation shorthand, or a Tailwind arbitrary animate-[…] value."
+					description="sketch.css ships four keyframes. They are global, so any element can use them through --sketch-dash-animation, an animation shorthand, or a Tailwind arbitrary animate-[…] value."
 				>
 					<DocsSection.Reference rows={KEYFRAMES} />
 					<DocsSection.Block label="Live, the dashed ones loop and the rest react to hover">

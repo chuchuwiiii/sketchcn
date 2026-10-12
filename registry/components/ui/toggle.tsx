@@ -13,7 +13,7 @@ const toggleVariants = cva(
         default:
           "text-foreground/70 [--sketch-stroke:var(--primary)] hover:text-foreground hover:[--sketch-fill-opacity:0.12] data-pressed:text-primary-foreground data-pressed:[--sketch-fill-opacity:1] data-pressed:hover:[--sketch-fill-opacity:0.85]",
         outline:
-          "text-foreground/70 hover:text-foreground hover:[--sketch-fill-opacity:0.08] data-pressed:text-foreground data-pressed:[--sketch-fill-opacity:0.14] data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-alternate_1s_steps(2)_infinite]",
+          "text-foreground/70 hover:text-foreground hover:[--sketch-fill-opacity:0.08] data-pressed:text-foreground data-pressed:[--sketch-fill-opacity:0.14] data-pressed:[--sketch-dash:5_5] data-pressed:[--sketch-dash-animation:sketch-dash-boil_1s_steps(2)_infinite]",
       },
       size: {
         default:
