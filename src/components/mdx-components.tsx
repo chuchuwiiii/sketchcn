@@ -1,9 +1,10 @@
 import type { MDXComponents } from "mdx/types";
-import { isValidElement, type ReactNode } from "react";
+import { type ComponentProps, isValidElement, type ReactNode } from "react";
 import { Card, CardContent } from "../../registry/components/ui/card";
 import type { CodeLanguage } from "../lib/highlighter";
 import { CodeBlock } from "./code-block";
 import { InstallTabs, REGISTRY_URL } from "./install-tabs";
+import { SectionLink } from "./section-link";
 
 const REGISTRY_ITEM = new RegExp(`${REGISTRY_URL}/([a-z-]+)\\.json`);
 
@@ -26,6 +27,19 @@ function MdxPre({ children }: { children?: ReactNode }) {
 	return <CodeBlock code={code} lang={lang as CodeLanguage} />;
 }
 
+function MdxH2({ id, children, ...props }: ComponentProps<"h2">) {
+	return (
+		<h2
+			id={id}
+			className="mt-4 flex scroll-mt-8 items-center gap-1 text-2xl"
+			{...props}
+		>
+			{id && <SectionLink id={id} />}
+			{children}
+		</h2>
+	);
+}
+
 function DocSection({ children }: { children?: ReactNode }) {
 	return (
 		<Card className="[--card-spacing:--spacing(6)]">
@@ -36,8 +50,8 @@ function DocSection({ children }: { children?: ReactNode }) {
 
 export const MDX_ELEMENTS: MDXComponents = {
 	h1: (props) => <h1 className="text-4xl" {...props} />,
-	h2: (props) => <h2 className="mt-4 text-2xl" {...props} />,
-	h3: (props) => <h3 className="mt-2 text-xl" {...props} />,
+	h2: MdxH2,
+	h3: (props) => <h3 className="mt-2 scroll-mt-8 text-xl" {...props} />,
 	p: (props) => (
 		<p className="text-muted-foreground leading-relaxed" {...props} />
 	),

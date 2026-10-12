@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from "../../registry/components/ui/card";
 import type { PaperVariant } from "../../registry/components/ui/sketch-provider";
+import { SectionLink } from "./section-link";
 
 export type DocsReferenceRow = {
 	name: string;
@@ -33,7 +34,10 @@ function DocsSectionRoot({
 	return (
 		<Card id={id} variant={variant} className="scroll-mt-8">
 			<CardHeader>
-				<CardTitle className="text-xl">{title}</CardTitle>
+				<CardTitle className="flex items-center gap-1 text-xl">
+					<SectionLink id={id} />
+					{title}
+				</CardTitle>
 				<CardDescription>{description}</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-5">{children}</CardContent>

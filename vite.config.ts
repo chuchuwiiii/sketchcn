@@ -5,11 +5,15 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { defineConfig } from "vite";
 import { remarkDocSections } from "./src/lib/mdx/remark-doc-sections.ts";
 
-const mdxPlugin = mdx({ remarkPlugins: [remarkGfm, remarkDocSections] });
+const mdxPlugin = mdx({
+	remarkPlugins: [remarkGfm, remarkDocSections],
+	rehypePlugins: [rehypeSlug],
+});
 
 /*
   @mdx-js/rollup drops the query before filtering, so it would compile

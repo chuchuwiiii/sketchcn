@@ -1,19 +1,25 @@
 import { Check, Copy } from "@boxicons/react";
 import { cn } from "cn";
-import { useState } from "react";
+import { type ComponentType, useState } from "react";
 import { Button } from "../../registry/components/ui/button";
 
 export function CopyButton({
 	value,
+	icon: Icon = Copy,
+	label = "Copy to clipboard",
 	className,
 }: {
-	value: string;
+	value: string | (() => string);
+	icon?: ComponentType<{ className?: string }>;
+	label?: string;
 	className?: string;
 }) {
 	const [copied, setCopied] = useState(false);
 
 	const handleCopy = async () => {
-		await navigator.clipboard.writeText(value);
+		await navigator.clipboard.writeText(
+			typeof value === "function" ? value() : value,
+		);
 		setCopied(true);
 		setTimeout(() => setCopied(false), 1500);
 	};
@@ -23,7 +29,7 @@ export function CopyButton({
 			type="button"
 			variant="ghost"
 			size="icon-sm"
-			aria-label={copied ? "Copied" : "Copy to clipboard"}
+			aria-label={copied ? "Copied" : label}
 			className={cn("shrink-0", className)}
 			onClick={handleCopy}
 		>
@@ -34,7 +40,7 @@ export function CopyButton({
 						copied && "scale-100 opacity-100",
 					)}
 				/>
-				<Copy
+				<Icon
 					className={cn(
 						"absolute inset-0 size-3.5 scale-100 opacity-100 transition-all duration-200",
 						copied && "scale-75 opacity-0",
