@@ -1,4 +1,4 @@
-import { Check } from "@boxicons/react";
+import { Check } from "@matita/icons/react";
 import {
 	Avatar,
 	AvatarBadge,

@@ -1,4 +1,4 @@
-import { ArrowRight } from "@boxicons/react";
+import { ArrowRight } from "@matita/icons/react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../../registry/components/ui/button";
 import { Card } from "../../registry/components/ui/card";

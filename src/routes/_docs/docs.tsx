@@ -1,4 +1,4 @@
-import { InfoCircle } from "@boxicons/react";
+import { Info } from "@matita/icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { cn } from "cn";
 import { CodeBlock } from "../../components/code-block";
@@ -142,7 +142,7 @@ const ANIMATION_USAGE_SNIPPET = `<div className="[--sketch-dash:6_4] hover:[--sk
   <Button variant="ghost">Boiling outline</Button>
 </div>
 
-<InfoCircle className="hover:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />`;
+<Info className="hover:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />`;
 
 const REDUCED_MOTION_SNIPPET = `@media (prefers-reduced-motion: reduce) {
   [data-sketch-outline] path {
@@ -653,7 +653,7 @@ function KeyframeGallery() {
 			))}
 			<OutlinePreview className="hover:[&_svg:not([data-sketch-outline])]:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:hover:[&_svg:not([data-sketch-outline])]:animate-none">
 				<span className="flex items-center gap-2 font-mono text-xs">
-					<InfoCircle className="size-4" />
+					<Info className="size-4" />
 					sketch-icon-wiggle
 				</span>
 			</OutlinePreview>

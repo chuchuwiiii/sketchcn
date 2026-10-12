@@ -1,4 +1,4 @@
-import { AlertTriangle, InfoCircle } from "@boxicons/react";
+import { Info, TriangleAlert } from "@matita/icons/react";
 import {
 	Alert,
 	AlertAction,
@@ -16,7 +16,7 @@ export function AlertShowcaseCard() {
 		>
 			<ShowcaseCard.Row label="Default">
 				<Alert>
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Sketchcn just got a new pen</AlertTitle>
 					<AlertDescription>
 						Every outline is drawn with RoughJS, so no two alerts look alike.
@@ -25,7 +25,7 @@ export function AlertShowcaseCard() {
 			</ShowcaseCard.Row>
 			<ShowcaseCard.Row label="Destructive">
 				<Alert variant="destructive">
-					<AlertTriangle />
+					<TriangleAlert />
 					<AlertTitle>{"Your sketch couldn't be saved"}</AlertTitle>
 					<AlertDescription>
 						Check your connection and try drawing it again.
@@ -34,7 +34,7 @@ export function AlertShowcaseCard() {
 			</ShowcaseCard.Row>
 			<ShowcaseCard.Row label="With action">
 				<Alert>
-					<InfoCircle />
+					<Info />
 					<AlertTitle>A new pencil set is available</AlertTitle>
 					<AlertDescription>
 						Update the registry to pick up the latest components.
@@ -58,27 +58,27 @@ export function AlertShowcaseCard() {
 				}
 			>
 				<Alert paper="polkadots">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Polka dots</AlertTitle>
 					<AlertDescription>{"Bullet-journal dot paper."}</AlertDescription>
 				</Alert>
 				<Alert paper="hexagons">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Hexagons</AlertTitle>
 					<AlertDescription>{"Honeycomb hexagon grid."}</AlertDescription>
 				</Alert>
 				<Alert paper="graph">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Graph</AlertTitle>
 					<AlertDescription>{"Engineering graph paper."}</AlertDescription>
 				</Alert>
 				<Alert paper="plus">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Plus</AlertTitle>
 					<AlertDescription>{"Scattered plus-sign paper."}</AlertDescription>
 				</Alert>
 				<Alert paper="filled-dots">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Filled dots</AlertTitle>
 					<AlertDescription>{"Tight pinprick dot grid."}</AlertDescription>
 				</Alert>

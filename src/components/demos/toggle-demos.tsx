@@ -1,4 +1,4 @@
-import { Bold, Italic, TextUnderline } from "@boxicons/react";
+import { Bold, Italic, Underline } from "@matita/icons/react";
 import { useState } from "react";
 import { Toggle } from "../../../registry/components/ui/toggle";
 import { Demo } from "../demo";
@@ -6,7 +6,7 @@ import { Demo } from "../demo";
 const TEXT_MARKS = [
 	{ value: "bold", label: "Bold", Icon: Bold },
 	{ value: "italic", label: "Italic", Icon: Italic },
-	{ value: "underline", label: "Underline", Icon: TextUnderline },
+	{ value: "underline", label: "Underline", Icon: Underline },
 ] as const;
 
 function TextToolbarPreview() {

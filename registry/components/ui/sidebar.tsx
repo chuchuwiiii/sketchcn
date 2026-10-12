@@ -3,7 +3,7 @@
 import { Collapsible } from "@base-ui/react/collapsible"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
-import { ChevronRight, Menu } from "@boxicons/react"
+import { ChevronRight, Menu } from "@matita/icons/react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import * as React from "react"

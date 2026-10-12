@@ -1,12 +1,12 @@
 import {
 	Book,
-	ComponentIcon,
-	History,
+	Clock,
 	Home,
 	Layers,
-	Shapes,
-	Slider,
-} from "@boxicons/react";
+	Package,
+	PenNib,
+	Sliders,
+} from "@matita/icons/react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
@@ -114,7 +114,7 @@ export function DocsSidebar() {
 									isActive={pathname === "/playground"}
 									render={<Link to="/playground" />}
 								>
-									<Slider />
+									<Sliders />
 									<span>Playground</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -123,7 +123,7 @@ export function DocsSidebar() {
 									isActive={pathname === "/icons"}
 									render={<Link to="/icons" />}
 								>
-									<Shapes />
+									<PenNib />
 									<span>Icons</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -132,7 +132,7 @@ export function DocsSidebar() {
 									isActive={pathname === "/changelog"}
 									render={<Link to="/changelog" />}
 								>
-									<History />
+									<Clock />
 									<span>Changelog</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
@@ -154,7 +154,7 @@ export function DocsSidebar() {
 							</SidebarMenuItem>
 							<SidebarMenuItem collapsible defaultOpen>
 								<SidebarMenuButton>
-									<ComponentIcon />
+									<Package />
 									<span>Components</span>
 								</SidebarMenuButton>
 								<ShowcaseSubMenu showcases={UI_SHOWCASES} />

@@ -1,4 +1,4 @@
-import { ArrowRight, Plus, Trash } from "@boxicons/react";
+import { ArrowRight, Plus, Trash2 } from "@matita/icons/react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "../../../registry/components/ui/button";
 import { Demo } from "../demo";
@@ -32,7 +32,7 @@ export function ButtonConfirmDemo() {
 	return (
 		<Demo>
 			<Button variant="destructive" size="sm">
-				<Trash />
+				<Trash2 />
 				Delete
 			</Button>
 		</Demo>

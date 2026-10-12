@@ -5,7 +5,7 @@
   "description": "A Base UI button with hand-drawn style in shadcn conventions.",
   "dependencies": [
     "@base-ui/react",
-    "@boxicons/react",
+    "@matita/icons",
     "@fontsource/patrick-hand",
     "class-variance-authority",
     "cn"

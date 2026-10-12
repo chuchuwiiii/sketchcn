@@ -1,4 +1,4 @@
-import { Search } from "@boxicons/react";
+import { Search } from "@matita/icons/react";
 import { useId, useState } from "react";
 import { Button } from "../../../registry/components/ui/button";
 import { Input } from "../../../registry/components/ui/input";

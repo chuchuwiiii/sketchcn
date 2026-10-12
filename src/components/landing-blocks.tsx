@@ -1,12 +1,5 @@
-import {
-	Bell,
-	Cart,
-	Check,
-	Github,
-	Google,
-	Package,
-	Send,
-} from "@boxicons/react";
+import { Github, Google } from "@boxicons/react";
+import { Bell, Check, Package, Send, ShoppingCart } from "@matita/icons/react";
 import { useState } from "react";
 import {
 	Alert,
@@ -174,7 +167,7 @@ function ProductBlock() {
 			</CardContent>
 			<CardFooter className="pb-(--card-spacing)">
 				<Button className="w-full">
-					<Cart />
+					<ShoppingCart />
 					{"Add to cart"}
 				</Button>
 			</CardFooter>

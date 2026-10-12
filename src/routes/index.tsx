@@ -2,11 +2,11 @@ import {
 	ArrowRight,
 	Bold,
 	Heart,
-	InfoCircle,
+	Info,
 	Palette,
-	Sparkles,
 	Star,
-} from "@boxicons/react";
+	Zap,
+} from "@matita/icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	Alert,
@@ -115,7 +115,7 @@ function WhatsNewPill({ version }: { version: string }) {
 				variant="outline"
 				className="rounded-full text-muted-foreground hover:text-foreground"
 			>
-				<Sparkles className="text-primary group-hover/button:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />
+				<Zap className="text-primary group-hover/button:animate-[sketch-icon-wiggle_180ms_ease-in-out_infinite] motion-reduce:animate-none" />
 				{`New in ${version}`}
 				<ArrowRight className="transition-transform duration-200 group-hover/button:translate-x-0.5 motion-reduce:transition-none" />
 			</Button>
@@ -243,7 +243,7 @@ function FloatingComponents() {
 
 			<FloatingComponent className="top-[4%] left-[34%] hidden [--float-drift:16px] [--float-tilt:4deg] [animation-delay:1.8s] [animation-duration:9.5s] 2xl:block">
 				<Alert className="w-64">
-					<InfoCircle />
+					<Info />
 					<AlertTitle>Fresh ink</AlertTitle>
 					<AlertDescription>{"No two outlines match."}</AlertDescription>
 				</Alert>

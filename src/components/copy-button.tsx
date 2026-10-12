@@ -1,4 +1,4 @@
-import { Check, Copy } from "@boxicons/react";
+import { Check, Copy } from "@matita/icons/react";
 import { cn } from "cn";
 import { type ComponentType, useState } from "react";
 import { Button } from "../../registry/components/ui/button";

@@ -1,7 +1,7 @@
 "use client"
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
-import { Check } from "@boxicons/react"
+import { Check } from "@matita/icons/react"
 import { cn } from "cn"
 import { type CSSProperties, useId } from "react"
 import { useSketchOutline, useSketchSeed } from "./sketch-provider"

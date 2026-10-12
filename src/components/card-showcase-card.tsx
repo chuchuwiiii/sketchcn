@@ -1,4 +1,4 @@
-import { Pencil } from "@boxicons/react";
+import { Pencil } from "@matita/icons/react";
 import { Button } from "../../registry/components/ui/button";
 import {
 	Card,

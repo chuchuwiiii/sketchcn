@@ -5,7 +5,7 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
 
 import { Button } from "./button"
 import { cn } from "cn"
-import { X } from "@boxicons/react"
+import { X } from "@matita/icons/react"
 import { useSketchBg, useSketchOutline } from "./sketch-provider"
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {

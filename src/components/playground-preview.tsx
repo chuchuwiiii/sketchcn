@@ -1,11 +1,4 @@
-import {
-	Bold,
-	Heart,
-	InfoCircle,
-	Italic,
-	Palette,
-	Star,
-} from "@boxicons/react";
+import { Bold, Heart, Info, Italic, Palette, Star } from "@matita/icons/react";
 import { cn } from "cn";
 import {
 	Alert,
@@ -245,12 +238,12 @@ export function PlaygroundPreview({ config }: { config: PlaygroundConfig }) {
 				<PreviewSection title="Feedback">
 					<div className="flex flex-wrap items-start gap-4">
 						<Alert className="w-64">
-							<InfoCircle />
+							<Info />
 							<AlertTitle>Fresh ink</AlertTitle>
 							<AlertDescription>{"No two outlines match."}</AlertDescription>
 						</Alert>
 						<Alert variant="destructive" className="w-64">
-							<InfoCircle />
+							<Info />
 							<AlertTitle>Smudged</AlertTitle>
 							<AlertDescription>
 								{"Something went wrong on the page."}

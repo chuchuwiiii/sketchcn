@@ -1,4 +1,5 @@
-import { DiceRoll, RefreshCcw, X } from "@boxicons/react";
+import { DiceRoll } from "@boxicons/react";
+import { RotateCcw, X } from "@matita/icons/react";
 import { useId } from "react";
 import { Button } from "../../registry/components/ui/button";
 import {
@@ -257,7 +258,7 @@ export function PlaygroundControls({
 			<div className="flex items-center justify-between gap-2">
 				<h2 className="text-lg">Controls</h2>
 				<Button type="button" variant="ghost" size="sm" onClick={onReset}>
-					<RefreshCcw />
+					<RotateCcw />
 					Reset
 				</Button>
 			</div>

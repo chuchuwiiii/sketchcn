@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronDown } from "@boxicons/react"
+import { ChevronDown } from "@matita/icons/react"
 import { cn } from "cn"
 import type * as React from "react"
 import { useSketchOutline } from "./sketch-provider"

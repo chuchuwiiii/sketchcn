@@ -1,4 +1,4 @@
-import { Pencil, Plus, Trash } from "@boxicons/react";
+import { Pencil, Plus, Trash2 } from "@matita/icons/react";
 import {
 	BUTTON_SIZES,
 	BUTTON_VARIANTS,
@@ -44,7 +44,7 @@ export function ButtonShowcaseCard() {
 					<Pencil />
 				</Button>
 				<Button variant="destructive">
-					<Trash />
+					<Trash2 />
 					Delete
 				</Button>
 			</ShowcaseCard.Row>

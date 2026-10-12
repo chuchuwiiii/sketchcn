@@ -1,4 +1,4 @@
-import { Link } from "@boxicons/react";
+import { Link } from "@matita/icons/react";
 import { CopyButton } from "./copy-button";
 
 function sectionUrl(id: string) {

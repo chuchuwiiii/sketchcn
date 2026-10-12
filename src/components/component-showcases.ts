@@ -126,7 +126,7 @@ export const COMPONENT_SHOWCASES = [
 		slug: "checkbox",
 		title: "Checkbox",
 		description:
-			"A Base UI checkbox with a hand-drawn box and a seeded, wobbling Boxicons tick.",
+			"A Base UI checkbox with a hand-drawn box and a seeded, wobbling Matita tick.",
 		Showcase: CheckboxShowcaseCard,
 	},
 	{

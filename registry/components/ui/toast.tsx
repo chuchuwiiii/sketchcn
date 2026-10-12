@@ -1,14 +1,7 @@
 "use client"
 
 import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-import {
-  AlertTriangle,
-  CheckCircle,
-  InfoCircle,
-  LoaderLines,
-  X,
-  XCircle,
-} from "@boxicons/react"
+import { CircleCheck, Info, Loader, TriangleAlert, X, CircleX } from "@matita/icons/react"
 import { cn } from "cn"
 import { memo } from "react"
 
@@ -16,11 +9,11 @@ import { Button } from "./button"
 import { type PaperVariant, useSketchOutline } from "./sketch-provider"
 
 const TOAST_ICONS = {
-  error: memo(XCircle),
-  info: memo(InfoCircle),
-  loading: memo(LoaderLines),
-  success: memo(CheckCircle),
-  warning: memo(AlertTriangle),
+  error: memo(CircleX),
+  info: memo(Info),
+  loading: memo(Loader),
+  success: memo(CircleCheck),
+  warning: memo(TriangleAlert),
 } as const
 
 const CloseIcon = memo(X)

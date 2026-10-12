@@ -1,4 +1,4 @@
-import { Bold, Italic, TextUnderline } from "@boxicons/react";
+import { Bold, Italic, Underline } from "@matita/icons/react";
 import {
 	TOGGLE_SIZES,
 	TOGGLE_VARIANTS,
@@ -36,7 +36,7 @@ export function ToggleShowcaseCard() {
 					Italic
 				</Toggle>
 				<Toggle aria-label="Toggle underline">
-					<TextUnderline />
+					<Underline />
 					Underline
 				</Toggle>
 			</ShowcaseCard.Row>

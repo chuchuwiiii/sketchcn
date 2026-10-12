@@ -1,4 +1,4 @@
-import { AlertTriangle, CheckCircle, InfoCircle } from "@boxicons/react";
+import { CircleCheck, Info, TriangleAlert } from "@matita/icons/react";
 import {
 	Alert,
 	AlertAction,
@@ -12,7 +12,7 @@ export function AlertBasicDemo() {
 	return (
 		<Demo>
 			<Alert>
-				<InfoCircle />
+				<Info />
 				<AlertTitle>Sketchcn 1.2 is out</AlertTitle>
 				<AlertDescription>
 					Alerts now draw their own outline with RoughJS.
@@ -26,7 +26,7 @@ export function AlertDestructiveDemo() {
 	return (
 		<Demo>
 			<Alert variant="destructive">
-				<AlertTriangle />
+				<TriangleAlert />
 				<AlertTitle>Upload failed</AlertTitle>
 				<AlertDescription>
 					The file is larger than the 5 MB limit.
@@ -40,7 +40,7 @@ export function AlertActionDemo() {
 	return (
 		<Demo>
 			<Alert>
-				<CheckCircle />
+				<CircleCheck />
 				<AlertTitle>Draft saved</AlertTitle>
 				<AlertDescription>
 					You can keep sketching from any device.
@@ -59,7 +59,7 @@ export function AlertPaperDemo() {
 	return (
 		<Demo>
 			<Alert paper="graph" variant="destructive">
-				<AlertTriangle />
+				<TriangleAlert />
 				<AlertTitle>Scheduled maintenance</AlertTitle>
 				<AlertDescription>Sketches are read-only until 18:00.</AlertDescription>
 			</Alert>

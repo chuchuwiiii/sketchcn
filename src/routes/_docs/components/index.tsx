@@ -1,4 +1,4 @@
-import { ArrowRight } from "@boxicons/react";
+import { ArrowRight } from "@matita/icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	Card,

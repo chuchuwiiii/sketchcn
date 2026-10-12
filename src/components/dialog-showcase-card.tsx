@@ -1,4 +1,4 @@
-import { Trash } from "@boxicons/react";
+import { Trash2 } from "@matita/icons/react";
 import { Button } from "../../registry/components/ui/button";
 import {
 	Dialog,
@@ -57,7 +57,7 @@ export function DialogShowcaseCard() {
 					<DialogTrigger
 						render={
 							<Button variant="destructive">
-								<Trash />
+								<Trash2 />
 								Delete sketch
 							</Button>
 						}

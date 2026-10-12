@@ -1,4 +1,4 @@
-import { ArrowRight } from "@boxicons/react";
+import { ArrowRight } from "@matita/icons/react";
 import { useId } from "react";
 import { Button } from "../../../registry/components/ui/button";
 import {

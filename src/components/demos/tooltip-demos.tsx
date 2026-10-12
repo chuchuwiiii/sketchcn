@@ -1,4 +1,4 @@
-import { Palette } from "@boxicons/react";
+import { Palette } from "@matita/icons/react";
 import { Button } from "../../../registry/components/ui/button";
 import {
 	Tooltip,

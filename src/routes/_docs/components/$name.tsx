@@ -1,4 +1,4 @@
-import { ArrowLeft } from "@boxicons/react";
+import { ArrowLeft } from "@matita/icons/react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { MDXComponents } from "mdx/types";
 import { Button } from "../../../../registry/components/ui/button";

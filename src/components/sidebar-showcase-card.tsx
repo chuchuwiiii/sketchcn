@@ -1,4 +1,4 @@
-import { Bookmark, Cog, Home, Palette, Search } from "@boxicons/react";
+import { Bookmark, Home, Palette, Search, Settings } from "@matita/icons/react";
 import { useState } from "react";
 import { Input } from "../../registry/components/ui/input";
 import {
@@ -28,7 +28,7 @@ const NAV_GROUPS = [
 		label: "Studio",
 		items: [
 			{ icon: Palette, label: "Palettes" },
-			{ icon: Cog, label: "Settings" },
+			{ icon: Settings, label: "Settings" },
 		],
 	},
 ] as const;

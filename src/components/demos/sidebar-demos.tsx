@@ -1,4 +1,4 @@
-import { Bell, Folder, Home, Star } from "@boxicons/react";
+import { Bell, Folder, Home, Star } from "@matita/icons/react";
 import {
 	Sidebar,
 	SidebarContent,
