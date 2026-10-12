@@ -716,7 +716,6 @@ function DocsPage() {
 
 				<DocsSection
 					id="llms"
-					variant="polkadots"
 					title="Docs for LLMs"
 					description="Every component doc is also served as plain markdown, so a coding agent can read it without scraping the page."
 				>
@@ -763,18 +762,6 @@ function DocsPage() {
 						}
 					</p>
 					<DocsSection.Reference rows={OUTLINE_OPTIONS} />
-					<DocsSection.Block label="Live">
-						<div className="flex flex-wrap items-center gap-4 p-4">
-							<OutlinePreview>Default</OutlinePreview>
-							<OutlinePreview strokeLineDash={[6, 4]}>Dashed</OutlinePreview>
-							<OutlinePreview className="[--sketch-roughness:2.8]">
-								Rougher
-							</OutlinePreview>
-							<OutlinePreview shape="underline" className="px-1 py-1">
-								Underline
-							</OutlinePreview>
-						</div>
-					</DocsSection.Block>
 				</DocsSection>
 
 				<DocsSection
@@ -863,7 +850,6 @@ function DocsPage() {
 
 				<DocsSection
 					id="data-attributes"
-					variant="graph"
 					title="Data attributes"
 					description="sketch.css styles these attributes wherever they appear, so they work on your own markup, not only inside the components."
 				>
