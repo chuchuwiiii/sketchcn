@@ -7,6 +7,7 @@ const STATIC_PATHS = [
 	"/docs",
 	"/sketch-styles",
 	"/playground",
+	"/icons",
 	"/components",
 	"/changelog",
 ];

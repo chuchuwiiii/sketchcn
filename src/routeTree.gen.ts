@@ -16,6 +16,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsChangelogRouteImport } from './routes/_docs/changelog'
 import { Route as DocsDocsRouteImport } from './routes/_docs/docs'
+import { Route as DocsIconsRouteImport } from './routes/_docs/icons'
 import { Route as DocsPlaygroundRouteImport } from './routes/_docs/playground'
 import { Route as DocsSketchStylesRouteImport } from './routes/_docs/sketch-styles'
 import { Route as DocsComponentsIndexRouteImport } from './routes/_docs/components/index'
@@ -56,6 +57,11 @@ const DocsDocsRoute = DocsDocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsIconsRoute = DocsIconsRouteImport.update({
+  id: '/icons',
+  path: '/icons',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsPlaygroundRoute = DocsPlaygroundRouteImport.update({
   id: '/playground',
   path: '/playground',
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/changelog': typeof DocsChangelogRoute
   '/docs': typeof DocsDocsRoute
+  '/icons': typeof DocsIconsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/sketch-styles': typeof DocsSketchStylesRoute
   '/components/$name': typeof DocsComponentsNameRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/changelog': typeof DocsChangelogRoute
   '/docs': typeof DocsDocsRoute
+  '/icons': typeof DocsIconsRoute
   '/playground': typeof DocsPlaygroundRoute
   '/sketch-styles': typeof DocsSketchStylesRoute
   '/components/$name': typeof DocsComponentsNameRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_docs/changelog': typeof DocsChangelogRoute
   '/_docs/docs': typeof DocsDocsRoute
+  '/_docs/icons': typeof DocsIconsRoute
   '/_docs/playground': typeof DocsPlaygroundRoute
   '/_docs/sketch-styles': typeof DocsSketchStylesRoute
   '/_docs/components/$name': typeof DocsComponentsNameRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/changelog'
     | '/docs'
+    | '/icons'
     | '/playground'
     | '/sketch-styles'
     | '/components/$name'
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/changelog'
     | '/docs'
+    | '/icons'
     | '/playground'
     | '/sketch-styles'
     | '/components/$name'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/_docs/changelog'
     | '/_docs/docs'
+    | '/_docs/icons'
     | '/_docs/playground'
     | '/_docs/sketch-styles'
     | '/_docs/components/$name'
@@ -226,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsDocsRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/_docs/icons': {
+      id: '/_docs/icons'
+      path: '/icons'
+      fullPath: '/icons'
+      preLoaderRoute: typeof DocsIconsRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/_docs/playground': {
       id: '/_docs/playground'
       path: '/playground'
@@ -267,6 +286,7 @@ declare module '@tanstack/react-router' {
 interface DocsRouteChildren {
   DocsChangelogRoute: typeof DocsChangelogRoute
   DocsDocsRoute: typeof DocsDocsRoute
+  DocsIconsRoute: typeof DocsIconsRoute
   DocsPlaygroundRoute: typeof DocsPlaygroundRoute
   DocsSketchStylesRoute: typeof DocsSketchStylesRoute
   DocsComponentsNameRoute: typeof DocsComponentsNameRoute
@@ -276,6 +296,7 @@ interface DocsRouteChildren {
 const DocsRouteChildren: DocsRouteChildren = {
   DocsChangelogRoute: DocsChangelogRoute,
   DocsDocsRoute: DocsDocsRoute,
+  DocsIconsRoute: DocsIconsRoute,
   DocsPlaygroundRoute: DocsPlaygroundRoute,
   DocsSketchStylesRoute: DocsSketchStylesRoute,
   DocsComponentsNameRoute: DocsComponentsNameRoute,

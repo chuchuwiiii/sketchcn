@@ -4,6 +4,7 @@ import {
 	History,
 	Home,
 	Layers,
+	Shapes,
 	Slider,
 } from "@boxicons/react";
 import { Link, useRouterState } from "@tanstack/react-router";
@@ -115,6 +116,15 @@ export function DocsSidebar() {
 								>
 									<Slider />
 									<span>Playground</span>
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+							<SidebarMenuItem>
+								<SidebarMenuButton
+									isActive={pathname === "/icons"}
+									render={<Link to="/icons" />}
+								>
+									<Shapes />
+									<span>Icons</span>
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 							<SidebarMenuItem>

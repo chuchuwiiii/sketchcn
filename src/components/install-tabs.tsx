@@ -15,22 +15,47 @@ const PACKAGE_MANAGERS = [
 		id: "npm",
 		label: "npm",
 		command: (url: string) => `npx shadcn@latest add ${url}`,
+		install: "npm install",
 	},
 	{
 		id: "pnpm",
 		label: "pnpm",
 		command: (url: string) => `pnpm dlx shadcn@latest add ${url}`,
+		install: "pnpm add",
 	},
 	{
 		id: "bun",
 		label: "bun",
 		command: (url: string) => `bunx --bun shadcn@latest add ${url}`,
+		install: "bun add",
 	},
 ] as const;
+
+type PackageManager = (typeof PACKAGE_MANAGERS)[number];
 
 export function InstallTabs({ name }: { name: string }) {
 	const url = `${REGISTRY_URL}/${name}.json`;
 
+	return <CommandTabs commandFor={(manager) => manager.command(url)} />;
+}
+
+export function PackageInstallTabs({
+	packages,
+}: {
+	packages: readonly string[];
+}) {
+	return (
+		<CommandTabs
+			commandFor={(manager) => `${manager.install} ${packages.join(" ")}`}
+		/>
+	);
+}
+
+function CommandTabs({
+	commandFor,
+}: {
+	commandFor: (manager: PackageManager) => string;
+}) {
 	return (
 		<Tabs defaultValue="npm" className="flex flex-col gap-2">
 			<TabsList className="w-fit">
@@ -42,7 +67,7 @@ export function InstallTabs({ name }: { name: string }) {
 			</TabsList>
 			{PACKAGE_MANAGERS.map((manager) => (
 				<TabsContent key={manager.id} value={manager.id}>
-					<CommandBox command={manager.command(url)} />
+					<CommandBox command={commandFor(manager)} />
 				</TabsContent>
 			))}
 		</Tabs>
